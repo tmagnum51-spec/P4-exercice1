@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 23 avr. 2026 à 10:42
+-- Généré le : jeu. 23 avr. 2026 à 12:51
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `books` (
   `title` varchar(256) NOT NULL,
   `author` varchar(256) NOT NULL,
   `description` text NOT NULL,
-  `owner_id` int(11) NOT NULL,
+  `fk_Id_User` int(11) NOT NULL,
   `status` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,8 +46,10 @@ CREATE TABLE `books` (
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `sender_Id` int(11) NOT NULL,
+  `recipient_Id` int(11) NOT NULL,
   `message_date` datetime NOT NULL,
-  `message_text` text NOT NULL
+  `message_text` text NOT NULL,
+  `is_Read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -73,7 +75,8 @@ CREATE TABLE `users` (
 -- Index pour la table `books`
 --
 ALTER TABLE `books`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_Id_User` (`fk_Id_User`);
 
 --
 -- Index pour la table `messages`
@@ -107,7 +110,17 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `books`
+--
+ALTER TABLE `books`
+  ADD CONSTRAINT `fk_Id_User` FOREIGN KEY (`fk_Id_User`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
