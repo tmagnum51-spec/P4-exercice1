@@ -41,6 +41,7 @@
         </section>
 
         <section class="image-section">
+            <img src="../pictures/bibli.png" alt="Illustration bibliothèque">
             </section>
     </main>
 

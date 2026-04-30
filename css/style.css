@@ -93,6 +93,6 @@ body {
 /* Section Image */
 .image-section {
     flex: 1;
-    background: url('marialaura-gionfriddo-50G3FvyQxX0-unsplash.jpg') no-repeat center center;
+    background: url('../pictures/bibli.png') no-repeat center center;
     background-size: cover;
 }
