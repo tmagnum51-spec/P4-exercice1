@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscription - Tom Troc</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <script src="../scripts/script.js" defer></script>
 </head>
@@ -41,7 +41,7 @@
         </section>
 
         <section class="image-section">
-            <img src="../pictures/bibli.png" alt="Illustration bibliothèque">
+            <img src="../assets/pictures/bibli.png" alt="Illustration bibliothèque">
             </section>
     </main>
 
