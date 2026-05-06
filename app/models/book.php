@@ -1,69 +1,92 @@
 <?php
 class Book
 {
-    private int $bookID;
-    private string $bookTitle;
-    private string $bookAuthor;
-    private string $bookDescription;
-    private string $bookStatus;
-    private string $bookCoverPicture;
-    private int $bookOwnerID;
+    private ?int $bookId = null;
+    private ?string $title = null;
+    private ?string $author = null;
+    private ?string $description = null;
+    private ?string $status = null;
+    private ?string $coverPicture = null;
+    private ?int $ownerId = null;
 
+    public function __construct(array $data = []) 
+    {
+        if (!empty($data)) {
+            $this->hydrate($data);
+        }
+    }
+
+    /**
+     * Système d'hydratation de l'entité.
+     * Permet de transformer les données d'un tableau associatif.
+     * Les noms de champs de la table doivent correspondre aux noms des attributs de l'entité.
+     * Les underscore sont transformés en camelCase (ex: date_creation devient setDateCreation).
+     * @return void
+     */
+    protected function hydrate(array $data) : void 
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set' . str_replace('_', '', ucwords($key, '_'));
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
     //accesseur
-    public function getID(): ?int
+    public function getId(): ?int
         {
-        return $this->bookID;
+        return $this->bookId;
         }
     public function getTitle(): ?string
         {   
-        return $this->bookTitle;}
+        return $this->title;}
     public function getAuthor(): ?string
         {   
-        return $this->bookAuthor;}
-    public function getbookStatus(): ?string
+        return $this->author;}
+    public function getStatus(): ?string
         {   
-        return $this->bookStatus;}    
-    public function getbookDescription(): ?string
+        return $this->status;}    
+    public function getdescription(): ?string
         {   
-        return $this->bookDescription;} 
-    public function getBookCoverPicture(): ?string
+        return $this->description;} 
+    public function getCoverPicture(): ?string
         {   
-        return $this->bookCoverPicture;}     
+        return $this->coverPicture;}     
 
-    public function getOwnerID(): ?int
+    public function getOwnerId(): ?int
         {
-        return $this->ownerID;    
+        return $this->ownerId;    
         }
 
 //mutateurs
-    Public function setID(?int $bookID):void
+    Public function setId(?int $bookId):void
         {
-        $this->bookID = $bookID;
+        $this->bookId = $bookId;
         }
 
-    Public function setTitle(?string $bookTitle):void
+    Public function setTitle(?string $title):void
         {
-        $this->bookTitle = $bookTitle;
+        $this->title = $title;
         }
-    Public function setAuthor(?string $bookAuthor):void
+    Public function setAuthor(?string $author):void
     {
-        $this->bookAuthor = $bookAuthor;
+        $this->author = $author;
     }
-     Public function setDescription(?string $bookDescription):void
+     Public function setDescription(?string $description):void
     {
-        $this->bookDescription = $bookDescription;
+        $this->description = $description;
     }
-    Public function setBookStatus(?string $bookStatus):void
+    Public function setStatus(?string $status):void
     {
-        $this->bookStatus = $bookStatus;
+        $this->status = $status;
     }    
-    Public function setBookCoverPicture(?string $bookCoverPicture):void
+    Public function setCoverPicture(?string $coverPicture):void
     {
-        $this->bookCoverpicture = $bookCoverPicture;
+        $this->coverPicture = $coverPicture;
     }   
-     Public function setOwnerID(?int $bookOwnerID):void
+     Public function setOwnerId(?int $ownerId):void
     {
-        $this->bookOwnerID = $bookOwnerID;
+        $this->ownerId = $ownerId;
     }    
 
 
