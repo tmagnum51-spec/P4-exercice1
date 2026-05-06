@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Test de la page d'accueil</h1>
+        <p>Le message est : <?php echo $message; ?></p>
 </body>
 </html>

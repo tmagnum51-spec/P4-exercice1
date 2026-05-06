@@ -26,5 +26,10 @@ class BookManager
         }
         return $allTheBooks;
     }
+    public function modifyBook()
+    {
+
+
+    }
 
 }

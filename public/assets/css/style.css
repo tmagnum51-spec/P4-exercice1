@@ -1,6 +1,8 @@
+body {
 
+}
 
-root {
+:root {
     --primary-green: #00AC66;
     --bg-light: #FAF9F7;
     --text-dark: #292929;
@@ -56,7 +58,7 @@ body {
     margin-bottom: 8px;
 }
 
-.input-group input {
+.input-group input:focus {
     width: 100%;
     height: 50px;
     border: 1px solid var(--border-color);
@@ -95,4 +97,81 @@ body {
     flex: 1;
     background: url('../pictures/bibli.png') no-repeat center center;
     background-size: cover;
+}
+/* 1. Le conteneur principal (Single livre) */
+.book-container {
+    display: flex; /* Pour mettre l'image à gauche et le texte à droite */
+    min-height: 100vh; /* Pour que ça prenne toute la hauteur de l'écran */
+}
+
+.book-cover {
+    flex: 1; /* Prend 50% de la largeur */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* IMPORTANT : si l'image ne s'affiche pas, force une hauteur ici pour tester */
+    min-height: 600px; 
+}
+
+.book-details {
+    flex: 1; /* Prend l'autre 50% */
+    padding: 50px;
+}
+
+/* 4. Le texte de description */
+.book-description-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5; /* Plus souple que 17px fixe */
+    color: #292929;
+    margin-bottom: 30px;
+}
+
+/* 5. Le badge Propriétaire (Group 12 dans ton Figma) */
+.owner-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 17px 6px 6px;
+    gap: 12px;
+    background: #FFFFFF;
+    border-radius: 114px;
+    width: fit-content; /* S'adapte à la longueur du nom */
+}
+
+.owner-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+/* La ligne grise sous l'auteur (Line 3 du Figma) */
+.divider {
+    width: 27px;
+    height: 0;
+    border-top: 1px solid var(--text-grey);
+    margin: 20px 0;
+}
+
+/* Le style des petits labels (DESCRIPTION, PROPRIÉTAIRE) */
+.section-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+/* Style pour le nom de l'auteur */
+.book-author {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-grey);
+    margin-top: -30px; /* Pour le coller un peu au titre */
+    margin-bottom: 20px;
 }

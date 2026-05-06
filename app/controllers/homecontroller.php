@@ -1,7 +1,10 @@
 <?php
-class HomeController{
+
+
+class HomeController
+{
     public function index(){
         $message='bonjour';
-        require_once '../app/view/home.php'
+        require_once 'app/views/home.php';
     }
 }

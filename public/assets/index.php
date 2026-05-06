@@ -7,3 +7,8 @@ if ($action==='index'){
     $controller=new HomeController();
     $controller->index();
 }
+// AJOUTE CETTE CONDITION :
+elseif ($action === 'showBook') {
+    $controller = new BookController();
+    $controller->showBook();
+}
