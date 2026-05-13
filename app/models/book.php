@@ -57,7 +57,10 @@ class Book
         {
         return $this->ownerId;    
         }
-
+        public function getOwnerImg():?string
+        {
+            return $this->OwnerImg;
+        }
 //mutateurs
     Public function setId(?int $bookId):void
         {
@@ -87,6 +90,10 @@ class Book
      Public function setOwnerId(?int $ownerId):void
     {
         $this->ownerId = $ownerId;
+    }    
+    Public function setOwnerImg(?int $ownerImg):void
+    {
+        $this->ownerImg = $ownerImg;
     }    
 
 

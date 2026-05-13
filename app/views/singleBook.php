@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($book->getTitle()) ?></title>
-    <link rel="stylesheet" href="public/assets/css/style.css">
-</head>
-<body>
 
-    <div class="single-book-container">
+<?php require_once 'app/views/partials/header.php'; ?>
+
+    <div class="book-container">
        <div class="book-cover" style="background-image: url('public/assets/img/<?= $book->getCoverPicture() ?>');">
         </div>
         
-        <div class="book-content-section">
+        <div class="book-details">
             <h1 class="title"><?= htmlspecialchars($book->getTitle()) ?></h1>
             <p class="book-author">par <?= htmlspecialchars($book->getAuthor()) ?></p>
             
@@ -25,10 +18,11 @@
 
             <p class="section-label">Propriétaire</p>
             <div class="owner-info">
-                <img src="../pictures/avatar.png" class="owner-avatar" alt="Avatar">
+                <img src="public/assets/img/" class="owner-avatar" alt="Avatar">
                 <span class="owner-name"><?= nl2br(htmlspecialchars($book->getOwnerId())) ?></span>
             </div>
 
             <button class="cta-button">Envoyer un message</button>
         </div>
     </div>
+<?php require_once 'app/views/partials/footer.php'; ?>

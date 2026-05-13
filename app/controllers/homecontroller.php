@@ -5,6 +5,6 @@ class HomeController
 {
     public function index(){
         $message='bonjour';
-        require_once 'app/views/home.php';
+        require_once 'app/views/ourBooks.php';
     }
 }

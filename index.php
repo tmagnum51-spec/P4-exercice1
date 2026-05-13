@@ -14,3 +14,16 @@ elseif ($action === 'showBook') {
     $controller = new BookController();
     $controller->showBook();
 }
+elseif ($action === 'showHome') {
+    $controller = new BookController();
+    $controller->showHome();
+}
+elseif ($action === 'showAllBooks') {
+    $controller = new BookController();
+    $controller->showAllBooks();
+}
+elseif ($action === 'search') {
+$controller = new BookController();
+$controller->searchBooks();
+
+}

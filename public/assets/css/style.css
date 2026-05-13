@@ -9,15 +9,30 @@ body {
     --text-grey: #A6A6A6;
     --border-color: #F0F0F0;
 }
-
+/* 1. La base du site en Inter */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased; /* Pour un rendu plus net */
+    font-weight: 400;
+}
+h1, h2, .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+/* 3. Ton footer (liens et copyright) sera automatiquement en Inter */
+.footer-content a, 
+.footer-content span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400; /* Poids normal */
+    font-size: 14px;
+    letter-spacing: -0.01em; /* Inter est encore plus jolie avec un léger resserrage */
+}
+/* 1. On nettoie le body pour que la page coule naturellement de haut en bas */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    /* Supprime display: flex et align-items ici */
 }
 
 .registration-container {
@@ -66,6 +81,32 @@ body {
     padding: 0 15px;
     font-size: 14px;
 }
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Intro {
+    flex: 1; /* Prend la moitié de la place */
+}
+
+.intro-picture {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Pousse l'image bien à droite */
+}
+
+.intro-picture img {
+    width: 100%;       /* S'adapte à sa colonne */
+    max-width: 500px;  /* 👈 Ajuste ce chiffre pour changer la taille de l'image */
+    height: auto;
+    border-radius: 8px;
+}
 
 /* Bouton Vert Principal */
 .cta-button {
@@ -85,13 +126,106 @@ body {
 .cta-button:hover {
     opacity: 0.9;
 }
+.btn-discover {
+    /* Dimensions exactes de ton design */
+    width: 218px;
+    height: 63px;
+    border-radius: 10px;
+    
+    /* Style transparent */
+    background-color: transparent;
+    border: 1px solid #00AC66; /* Couleur à ajuster selon ton design */
+    color: #00AC66;
+    
+    /* Espacements internes (paddings) */
+    padding: 22px 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    /* Sécurité pour les dimensions */
+    box-sizing: border-box; 
+    
+    /* Typographie & Curseur */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    
+    /* Animation douce */
+    transition: all 0.3s ease;
+}
 
+/* Effet au survol */
+.btn-discover:hover {
+    background-color: #00AC66;
+    color: white;
+}
 .login-link {
     margin-top: 30px;
     font-size: 14px;
     color: var(--text-dark);
 }
+.banner-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centre l'image horizontalement */
+    margin: 40px 0;          /* Ajoute un peu d'espace en haut et en bas */
+    overflow: hidden;        /* Coupe ce qui dépasse si besoin */
+}
 
+.banner-img {
+    width: 100%;             /* Prend toute la largeur du conteneur */
+    max-width: 1200px;       /* Largeur max pour ne pas qu'elle soit trop immense sur grand écran */
+    height: 300px;           /* Hauteur fixe pour l'effet bannière */
+    object-fit: cover;       /* 👈 TRÈS IMPORTANT : l'image est recadrée sans être déformée */
+    border-radius: 15px;     /* Optionnel : pour des bords arrondis élégants */
+}
+.values-container {
+    display: flex;
+    flex-direction: column;
+    /* On aligne tout le contenu du container à gauche */
+    align-items: flex-start; 
+    
+    /* On centre la "boîte" elle-même au milieu de l'écran */
+    margin: 80px auto; 
+    
+    /* On fixe la largeur sur ton texte le plus large (392px) */
+    width: 392px; 
+    
+    /* On s'assure que le texte ne touche pas les bords sur mobile */
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+
+.values-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 43px;
+    color: #292929;
+    margin-bottom: 30px;
+    text-align: left; /* Force le titre à gauche */
+}
+
+.values-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #292929;
+    text-align: left; /* Force le paragraphe à gauche */
+    margin: 0;        /* Enlève les marges qui pourraient décentrer */
+}
+
+.values-signature {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne la ligne verte et la signature à gauche */
+    gap: 10px;
+}
 /* Section Image */
 .image-section {
     flex: 1;
@@ -103,6 +237,11 @@ body {
     display: flex; /* Pour mettre l'image à gauche et le texte à droite */
     min-height: 100vh; /* Pour que ça prenne toute la hauteur de l'écran */
 }
+.latest-books {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
 
 .book-cover {
     flex: 1; /* Prend 50% de la largeur */
@@ -110,7 +249,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     /* IMPORTANT : si l'image ne s'affiche pas, force une hauteur ici pour tester */
-    min-height: 600px; 
+    min-height: 863px;
+    max-width: 720px; 
 }
 
 .book-details {
@@ -174,4 +314,186 @@ body {
     color: var(--text-grey);
     margin-top: -30px; /* Pour le coller un peu au titre */
     margin-bottom: 20px;
+}
+/* 1. Le conteneur principal du menu */
+.header {
+    width: 100%;
+    height: 80px;
+    background: #F5F3EF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    z-index: 1000;
+    position: relative;
+    box-sizing: border-box; /* Pour que le padding ne dépasse pas des 100% */
+}
+
+/* 2. Le style des liens à l'intérieur */
+.header nav a {
+    text-decoration: none;
+    color: #32352C;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+/* 3. L'état "actif" (en gras) */
+.header nav a.active {
+    font-weight: 700;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo-icon {
+    position: relative;
+    width: 60px;       /* Ajuste selon la taille voulue */
+    height: 60px;      /* Doit être un carré */
+    background-color: #00AC66;
+    border-radius: 12px; /* L'arrondi de ta maquette */
+    display: block;
+}
+
+.logo-icon span {
+    position: absolute;
+    color: white;
+    font-family: 'Playfair Display', serif; /* Utilise Playfair pour les empattements du T */
+    font-weight: 700;
+    font-size: 38px;   /* Taille des T */
+    line-height: 1;
+}
+
+/* Le premier T (plus haut et à gauche) */
+.t-first {
+    top: 6px;
+    left: 8px;
+}
+
+/* Le deuxième T (plus bas et à droite, il chevauche le premier) */
+.t-second {
+    bottom: 6px;
+    right: 8px;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #00AC66;
+    letter-spacing: -0.5px;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #00AC66;
+}
+.allBooksTitle-container
+{
+    display: flex;        /* Active le mode flexible 🔗 */
+    gap: 200px;           /* Espace entre les cartes ↔️ */
+    justify-content: center; /* Centre les cartes sur la page 🎯 */
+    flex-wrap: wrap;  
+    min-height: 50px;
+    justify-content: center;
+    
+
+}
+.allBookTitle-title
+{
+flex: 1; /* Prend 50% de la largeur */
+
+}
+.allBookTitle-search
+{
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+
+}
+.search-form-books {
+    /* On utilise tes dimensions Figma */
+    width: 322px;
+    height: 50px;
+    margin: 20px 0; /* Ajuste la marge pour le placer verticalement */
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.search-field {
+   width: 100%;
+    height: 50px; /* Ici, il prendra bien les 50px du parent */
+    padding: 0 45px 0 15px;
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box; /* Crucial pour que le padding n'agrandisse pas le champ */
+    outline: none;
+}
+
+.search-field::placeholder {
+    color: #9A9A9A;
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 15px; /* Aligné à droite à l'intérieur */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.search-field:focus {
+    border-color: #00AC66; /* Petit rappel de ton vert principal */
+}
+
+.books-grid {
+    display: flex;        /* Active le mode flexible 🔗 */
+    gap: 20px;           /* Espace entre les cartes ↔️ */
+    justify-content: center; /* Centre les cartes sur la page 🎯 */
+    flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
+    min-height: 720px;
+}
+.book-card {
+    background-color: #ffffff;
+    border-radius: 10px; /* Pour des coins arrondis */
+    padding: 15px;      /* Pour que le texte ne colle pas aux bords */
+    width: 200px;
+    height: 324px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
+    
+    /* Pour aligner le contenu à l'intérieur de la carte */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footer-content {
+    display: block !important; /* On force le mode bloc classique */
+    width: 100% !important;    /* On force toute la largeur */
+    text-align: right !important; /* 👈 ÇA, ça pousse tout le texte à droite */
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+.footer-content a, 
+.footer-content span {
+    display: inline-block;     /* Permet de mettre des marges si besoin */
+    margin-left: 20px;         /* Espace entre les liens */
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
 }
