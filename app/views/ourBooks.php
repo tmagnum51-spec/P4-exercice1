@@ -22,11 +22,17 @@
                 <?php foreach($lastBooks as $book): ?>
                     <article class="book-card">
                         <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
-                        <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">
-                        
-                        <h3><?= $book->getTitle() ?></h3>
-                        <p><?= $book->getAuthor() ?></p>
+                        <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">                        
+                        <div class="book-card-content">
+                            <h3><?= $book->getTitle() ?></h3>
+                            <div class="book-card-content-author">
+                                <h3><?= $book->getAuthor() ?></h3>
+                            </div>
+                            <div class="book-card-content-owner">
+                                <p>Vendu par : <?= $book->getpseudo() ?></p>
+                            </div>
                         </a>
+                         </div>
                     </article>
                 <?php endforeach; ?>
             </div>
@@ -40,18 +46,18 @@
             <h4>Échanger des livres avec TomTroc c’est simple et amusant ! Suivez ces étapes pour commencer :</h4>
         
 
-            <div class="books-grid-lastBooks">
+            <div class="books-grid-text">
                 
-                    <article class="book-card">                                               
+                    <article class="text-card">                                               
                     <p>Inscrivez-vous gratuitement sur notre plateforme.</p>
                     </article>
-                    <article class="book-card">                                               
+                    <article class="text-card">                                               
                     <p>Ajoutez les livres que vous souhaitez échanger à votre profil.</p>
                     </article>
-                    <article class="book-card">                                               
+                    <article class="text-card">                                               
                     <p>Parcourez les livres disponibles chez d'autres membres.</p>
                     </article>
-                    <article class="book-card">                                               
+                    <article class="text-card">                                               
                     <p>Proposez un échange et discutez avec d'autres passionnés de lecture.</p>
                     </article>
             </div>
@@ -74,7 +80,7 @@
                 Notre association a été fondée avec une conviction profonde : chaque livre mérite d'être lu et partagé. 
                 Nous sommes passionnés par la création d'une plateforme conviviale qui permet aux lecteurs de se connecter, de partager leurs découvertes littéraires et d'échanger des livres qui attendent patiemment sur les étagères.   
                 </div>
-                    <div class="values-signature">
+                    <div class="book-card-content-owner">
                         L’équipe Tom Troc
                     </div>
         </section>

@@ -9,6 +9,21 @@ body {
     --text-grey: #A6A6A6;
     --border-color: #F0F0F0;
 }
+/* --- RAZ des styles de liens par défaut --- */
+a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: inherit;       /* Le lien prend la couleur de son parent (noir/gris) */
+}
+
+a:visited {
+    color: inherit;       /* Empêche le changement de couleur après le clic */
+}
+
+a:hover {
+    /* Optionnel : tu peux définir un effet au survol ici 
+       pour que l'utilisateur sache que c'est cliquable */
+    color: var(--primary-green); 
+}
 /* 1. La base du site en Inter */
 body {
     font-family: 'Inter', sans-serif;
@@ -105,7 +120,7 @@ body {
     width: 100%;       /* S'adapte à sa colonne */
     max-width: 500px;  /* 👈 Ajuste ce chiffre pour changer la taille de l'image */
     height: auto;
-    border-radius: 8px;
+    
 }
 
 /* Bouton Vert Principal */
@@ -507,12 +522,30 @@ flex: 1; /* Prend 50% de la largeur */
     justify-content: center; /* Centre les cartes sur la page 🎯 */
     margin: 40px 0;
     flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
-    min-height: 320px;
+    min-height: 220px;
+}
+.books-grid-text {
+    display: grid;        /* Active le mode flexible 🔗 */
+    grid-template-columns: repeat(4, minmax(200px, 280px)) !important;
+    gap: 30px;           /* Espace entre les cartes ↔️ */
+    width: 100%;
+    justify-content: center; /* Centre les cartes sur la page 🎯 */
+    margin: 40px 0;
+    flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
+    min-height: 220px;
+}
+.text-card {
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 10px; /* Pour des coins arrondis */
+    padding: 15px;      /* Pour que le texte ne colle pas aux bords */
+    width: 200px;
+    min-height: 50px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
+    
 }
 .book-card {
     background-color: #ffffff;
-    border-radius: 10px; /* Pour des coins arrondis */
-    padding: 15px;      /* Pour que le texte ne colle pas aux bords */
     width: 200px;
     min-height: 324px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
@@ -527,6 +560,36 @@ flex: 1; /* Prend 50% de la largeur */
     aspect-ratio: 1 / 1; 
     object-fit: cover;
 }
+.book-card-content h3 {
+    padding: 5px; /* Voici ta marge pour le titre, l'auteur, etc. */
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Espace entre le titre et l'auteur */
+    flex-grow: 1; /* Pour pousser le contenu si besoin */
+    margin: 0px; /* Supprime l'espace automatique sous le titre */
+    line-height: 1.2; /* Resserre l'espace entre les lignes de texte */
+}
+.book-card-content-author {
+    padding: 0px; /* Voici ta marge pour le titre, l'auteur, etc. */
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Espace entre le titre et l'auteur */
+    flex-grow: 1; /* Pour pousser le contenu si besoin */
+    color: var(--text-grey); /* Le "par" reste discret en gris */
+    font-weight: 100;
+}
+.book-card-content-owner {
+    padding: 0px; /* Voici ta marge pour le titre, l'auteur, etc. */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espace entre le titre et l'auteur */
+    flex-grow: 1; /* Pour pousser le contenu si besoin */
+    color: var(--text-grey); /* Ta couleur spéciale #00AC66 */
+    font-style: italic;          /* 👈 L'italique que tu souhaitais */
+    font-weight: 500;            /* Un peu plus épais pour la lisibilité */
+    margin-top: 10px;
+}
+
 .footer-content {
     display: block !important; /* On force le mode bloc classique */
     width: 100% !important;    /* On force toute la largeur */

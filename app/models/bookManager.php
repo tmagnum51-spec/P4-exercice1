@@ -16,7 +16,7 @@ class BookManager
     {
         $allTheBooks = [];
         $db = DBConnect::getPDO();
-        $request = $db->prepare('SELECT * FROM `books`');
+        $request = $db->prepare('SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id');
         $request->execute();
         $allLines = $request->fetchAll();
 
@@ -31,7 +31,7 @@ class BookManager
     {
         $foundBooks = [];
         $db = DBConnect::getPDO();
-        $sql = $db->prepare("SELECT * FROM books WHERE title LIKE :search OR author LIKE :search");
+        $sql = $db->prepare("SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id WHERE title LIKE :search OR author LIKE :search");
         $searchTerm = "%" . $search . "%";
 
         $sql->execute(['search'=>$searchTerm]);
@@ -50,7 +50,7 @@ class BookManager
     {
     $lastBooks = [];
     $db = DBConnect::getPDO();
-    $request = $db->prepare('SELECT * FROM books ORDER BY id DESC LIMIT 4;');
+    $request = $db->prepare('SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id ORDER BY b.id DESC LIMIT 4');
     $request->execute();
     $allLines = $request->fetchAll();
 

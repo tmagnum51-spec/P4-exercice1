@@ -25,8 +25,15 @@
                     <article class="book-card">
                         <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
                         <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">
-                        <h3><?= $book->getTitle() ?></h3>
-                        <p><?= $book->getAuthor() ?></p>
+                        <div class="book-card-content">
+                            <h3><?= $book->getTitle() ?></h3>
+                        </div>
+                        <div class="book-card-content-author">
+                            <h3><?= $book->getAuthor() ?></h3>
+                        </div>
+                        <div class="book-card-content-owner">
+                            <p>Vendu par : <?= $book->getpseudo() ?></p>
+                        </div>
                         </a>
                     </article>
                 <?php endforeach; ?>
