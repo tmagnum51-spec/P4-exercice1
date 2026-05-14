@@ -4,7 +4,8 @@ class BookManager
     public function getBookByID(int $id) : ?Book
     {
         $db= DBConnect::getPDO();
-        $sql = $db->prepare("SELECT * FROM books WHERE id = :id");
+        $sql = $db->prepare("SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id WHERE b.id = :id
+    ");
         $sql->execute(['id' =>$id]);
         $bookDetail = $sql->fetch();
       

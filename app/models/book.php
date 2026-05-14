@@ -7,7 +7,9 @@ class Book
     private ?string $description = null;
     private ?string $status = null;
     private ?string $coverPicture = null;
-    private ?int $ownerId = null;
+    private ?int $userId = null;
+    private ?string $pseudo;
+    private ?string $picture;
 
     public function __construct(array $data = []) 
     {
@@ -53,13 +55,17 @@ class Book
         {   
         return $this->coverPicture;}     
 
-    public function getOwnerId(): ?int
+    public function getUserId(): ?int
         {
-        return $this->ownerId;    
+        return $this->userId;    
         }
-        public function getOwnerImg():?string
+    public function getPseudo():?string
+    {
+        return $this->pseudo;
+    }
+    public function getUserPicture():?string
         {
-            return $this->OwnerImg;
+            return $this->picture;
         }
 //mutateurs
     Public function setId(?int $bookId):void
@@ -87,14 +93,18 @@ class Book
     {
         $this->coverPicture = $coverPicture;
     }   
-     Public function setOwnerId(?int $ownerId):void
+     Public function setUserId(?int $userId):void
     {
-        $this->ownerId = $ownerId;
+        $this->userId = $userId;
     }    
-    Public function setOwnerImg(?int $ownerImg):void
+    Public function setPicture(?string $picture):void
     {
-        $this->ownerImg = $ownerImg;
+        $this->picture = $picture;
     }    
+    public function setPseudo(?string $pseudo):void
+    {
+        $this->pseudo = $pseudo;
+    }
 
 
 }

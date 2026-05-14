@@ -18,8 +18,8 @@
 
             <p class="section-label">Propriétaire</p>
             <div class="owner-info">
-                <img src="public/assets/img/" class="owner-avatar" alt="Avatar">
-                <span class="owner-name"><?= nl2br(htmlspecialchars($book->getOwnerId())) ?></span>
+                <img src="public/assets/img/<?= htmlspecialchars($book->getUserPicture()) ?>" class="owner-avatar" alt="Avatar">
+                <span class="owner-name"><?= nl2br(htmlspecialchars($book->getPseudo())) ?></span>
             </div>
 
             <button class="cta-button">Envoyer un message</button>
