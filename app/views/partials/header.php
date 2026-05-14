@@ -8,21 +8,29 @@
     <link rel="stylesheet" href="public/assets/css/style.css">
 </head>
 <body>    
+<main class="nav-container">  
     <header class="header">
-        <div class="logo">
-            <div class="logo-icon">
-                <span class="t-first">T</span>
-                <span class="t-second">T</span>
+        <section class="nav-group-left">
+            <div class="logo">
+                <div class="logo-icon">
+                    <a href="index.php?action=showHome">
+                    <span class="t-first">T</span>
+                    <span class="t-second">T</span>
+                    </a>
+                </div>
+                <a href="index.php?action=showHome"> <span class="logo-text">Tom Troc</span></a>
             </div>
-            <span class="logo-text">Tom Troc</span>
-        </div>
-        <nav>
-            <a href="index.php?action=showHome">Accueil</a>
-            <a href="index.php?action=showAllBooks">Nos livres à l'échange</a>
-        </nav>
-        <nav>    
-            <a href="index.php?action=message">Messagerie</a>
-            <a href="index.php?action=account">Mon compte</a>
-            <a href="index.php?action=connection">Connexion</a>
-        </nav>
+            <nav>
+                <a href="index.php?action=showHome">Accueil</a>
+                <a href="index.php?action=showAllBooks">Nos livres à l'échange</a>
+            </nav>
+            </section>
+            <section class="nav-group-right">
+            <nav>    
+                    <a href="index.php?action=message">Messagerie</a>
+                    <a href="index.php?action=account">Mon compte</a>
+                    <a href="index.php?action=connection">Connexion</a>
+                    </nav>
+            </section>
+
     </header>

@@ -1,6 +1,6 @@
 
 <?php require_once 'app/views/partials/header.php'; ?>
-
+<main class="container">
     <div class="book-container">
        <div class="book-cover" style="background-image: url('public/assets/img/<?= $book->getCoverPicture() ?>');">
         </div>

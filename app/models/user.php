@@ -6,6 +6,7 @@ class User
 Private int $userID;
 private string $pseudo;
 private string $email;
+private string $picture;
 
 //accesseur
     public function getID(): ?int
@@ -14,10 +15,16 @@ private string $email;
         }
     public function getName(): ?string
         {   
-        return $this->userPseudo;}
+        return $this->Pseudo;}
     public function getEmail(): ?string
         {   
-        return $this->userEmail;}
+        return $this->email;}
+
+    public function getPicture(): ?string 
+    {
+        return $this->picture;
+
+    }    
 
 //mutateurs
     Public function setID(?int $userID):void
@@ -25,13 +32,17 @@ private string $email;
         $this->userID = $userID;
     }
 
-    Public function setName(?string $userPseudo):void
+    Public function setName(?string $pseudo):void
     {
-        $this->userPseudo = $userPseudo;
+        $this->pseudo = $pseudo;
     }
-    Public function setEmail(?string $userEmail):void
+    Public function setEmail(?string $email):void
     {
-        $this->userEmail = $userEmail;
+        $this->email = $email;
+    }
+    public function setPicture(?string $picture):void
+    {
+        $this->picture = $picture;
     }
 
  

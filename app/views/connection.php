@@ -1,18 +1,4 @@
-<?php
-    /**
-     * formulaire de connexion.
-     */
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription - Tom Troc</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    <script src="../scripts/script.js" defer></script>
-</head>
-<body>
+<?php require_once 'app/views/partials/header.php'; ?>
 
     <main class="registration-container">
         <section class="form-section">
@@ -45,5 +31,4 @@
             </section>
     </main>
 
-</body>
-</html>
+<?php require_once 'app/views/partials/footer.php'; ?>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<?php header.php ?>
 <body>
     <h1>Test de la page d'accueil</h1>
         <p>Le message est : <?php echo $message; ?></p>

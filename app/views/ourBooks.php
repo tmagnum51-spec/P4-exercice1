@@ -1,13 +1,13 @@
 <?php require_once 'app/views/partials/header.php'; ?>
 
-        <main>
+        <main class="container">
         <div class="hero">
             <section class="Intro">
                 <h2>Rejoignez nos lecteurs passionnés</h2>
                     <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. 
                         Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres. 
                     </p>
-                    <form action="index.php?action=listBooks" method="POST"><button type="submit" class="cta-button">Découvrir</button></form>
+                    <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="cta-button">Découvrir</button></form>
             </section>
                        
         <section class="intro-picture"> 
@@ -18,18 +18,21 @@
             <h2>Les derniers livres ajoutés</h2>
         
 
-            <div class="books-grid">
+            <div class="books-grid-lastBooks">
                 <?php foreach($lastBooks as $book): ?>
                     <article class="book-card">
+                        <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
                         <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">
+                        
                         <h3><?= $book->getTitle() ?></h3>
                         <p><?= $book->getAuthor() ?></p>
+                        </a>
                     </article>
                 <?php endforeach; ?>
             </div>
 
             <div class="container-btn">
-                <form action="index.php?action=listbooks method="POST"><button type"submit" class="cta-button">Voir tous les livres</a>
+                <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="cta-button">Voir tous les livres</a>
             </div>
         </section>
         <section class="latest-books">
@@ -37,7 +40,7 @@
             <h4>Échanger des livres avec TomTroc c’est simple et amusant ! Suivez ces étapes pour commencer :</h4>
         
 
-            <div class="books-grid">
+            <div class="books-grid-lastBooks">
                 
                     <article class="book-card">                                               
                     <p>Inscrivez-vous gratuitement sur notre plateforme.</p>
@@ -54,7 +57,7 @@
             </div>
 
             <div class="container-btn">
-                <form action="index.php?action=listbooks method="POST"><button type"submit" class="btn-discover">Voir tous les livres</a>
+                <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="btn-discover">Voir tous les livres</a>
             </div>
         </section>
         <section class="banner-container">
