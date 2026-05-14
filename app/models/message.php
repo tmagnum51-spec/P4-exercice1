@@ -31,29 +31,29 @@ class Message extends AbstractEntity
     }
 
     //mutateurs
-    public function setRecipientId():void
+    public function setRecipientId(?int $recipientId):void
     {
-        return $this->recipientId = $recipientId;
+        $this->recipientId = $recipientId;
 
     }
-    public function setSendertId():void
+    public function setSendertId(?int $senderId):void
     {
-        return $this->senderId = $senderId;
+        $this->senderId = $senderId;
 
     }
-    public function setMessageDate():void
+    public function setMessageDate(?string $messageDate):void
     {
-        return $this->messageDate = $messageDate;
+        $this->messageDate = $messageDate;
 
     }
-    public function setPseudo():void
+    public function setPseudo(?string $pseudo):void
     {
-        return $this->pseudo = $pseudo;
+        $this->pseudo = $pseudo;
 
     }
-    public function setMessageText():void
+    public function setMessageText(?string $messageText):void
     {
-        return $this->messageText = $messageText;
+        $this->messageText = $messageText;
 
     }
 }

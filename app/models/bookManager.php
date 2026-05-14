@@ -12,6 +12,17 @@ class BookManager
        
                 return $bookDetail ? new Book($bookDetail) : null;
     }
+    public function getBookByUSer(int $id) : ?Book
+    {
+        $db= DBConnect::getPDO();
+        $sql = $db->prepare("SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id WHERE u.id = :id
+    ");
+        $sql->execute(['id' =>$id]);
+        $bookDetail = $sql->fetch();
+      
+       
+                return $bookDetail ? new Book($bookDetail) : null;
+    }
     public function getAllBooks(): array
     {
         $allTheBooks = [];
