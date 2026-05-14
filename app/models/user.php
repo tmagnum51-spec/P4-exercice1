@@ -8,12 +8,13 @@ private string $pseudo;
 private string $email;
 private string $picture;
 
+
 //accesseur
     public function getID(): ?int
         {
         return $this->userID;
         }
-    public function getName(): ?string
+    public function getPseudo(): ?string
         {   
         return $this->Pseudo;}
     public function getEmail(): ?string
@@ -31,8 +32,7 @@ private string $picture;
     {
         $this->userID = $userID;
     }
-
-    Public function setName(?string $pseudo):void
+    Public function setPseudo(?string $pseudo):void
     {
         $this->pseudo = $pseudo;
     }
