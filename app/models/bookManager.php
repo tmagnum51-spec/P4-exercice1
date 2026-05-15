@@ -72,5 +72,19 @@ class BookManager
     }
     return $lastBooks;
     }
+public function getAllBooksbyUser(int $id): array
+    {
+        $allTheUserBooks = [];
+        $db = DBConnect::getPDO();
+        $request = $db->prepare('SELECT b.*, u.pseudo, u.picture, u.user_id FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_id WHERE u.user_id = :id');
+        $request->execute(['id'=>$id]);
+        $allLines = $request->fetchAll();
 
+        foreach($allLines as $line){
+            $oneBook =new Book($line);
+          
+            $allTheUserBooks[]=$oneBook; 
+        }
+        return $allTheUserBooks;
+    }
 }

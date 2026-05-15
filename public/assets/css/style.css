@@ -606,3 +606,67 @@ flex: 1; /* Prend 50% de la largeur */
     color: #666;
     font-size: 14px;
 }
+/* Le conteneur global */
+.chat-box {
+    background-color: #FBF9F6; /* Ton beige clair du site */
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 500px;
+    overflow-y: auto; /* Pour avoir un scroll si la discussion est longue */
+}---------------------
+/* MESSAGES*/
+----------------------
+/* Chaque bloc de message */
+.messages-container 
+{ 
+    max-width: 600px; 
+    margin: 20px auto; 
+    font-family: 'Inter', sans-serif; 
+}
+.message-item 
+{ 
+    background: #fff; 
+    border: 1px solid #ddd; 
+    padding: 10px; margin-bottom: 10px; 
+    border-radius: 8px; }
+.message-date 
+{ 
+    font-size: 0.8em; 
+    color: #999; 
+    margin-left: 10px; }
+.message-text { 
+    margin-top: 5px; 
+    color: #333; }
+.message-item {
+    padding: 10px 15px;
+    border-radius: 12px;
+    max-width: 80%;
+}
+
+/* On peut même différencier l'envoyeur (optionnel) */
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.message-header strong {
+    color: var(--primary-green); /* Ton vert #00AC66 */
+    font-size: 14px;
+}
+
+.message-date {
+    font-size: 11px;
+    color: #999;
+}
+
+.message-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}

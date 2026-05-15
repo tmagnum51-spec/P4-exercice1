@@ -17,15 +17,15 @@ class Message extends AbstractEntity
     {
         return $this->senderId;
     }
-    public function getMessageText(): ?int 
+    public function getMessageText(): ?string
     {
         return $this->messageText;
     }
-    public function getPseudo(): ?int 
+    public function getPseudo(): ?string 
     {
         return $this->pseudo;
     }
-    public function getMessageDate(): ?int 
+    public function getMessageDate(): ?DateTime
     {
         return $this->messageDate;
     }
@@ -41,10 +41,16 @@ class Message extends AbstractEntity
         $this->senderId = $senderId;
 
     }
-    public function setMessageDate(?string $messageDate):void
+  
+    public function setMessageDate(string|DateTime $messageDate): void
     {
+    // Si on reçoit une string (ce qui arrive lors de l'hydratation depuis la DB)
+    if (is_string($messageDate)) {
+        $this->messageDate = new DateTime($messageDate);
+    } else {
+        // Si c'est déjà un objet DateTime
         $this->messageDate = $messageDate;
-
+    }
     }
     public function setPseudo(?string $pseudo):void
     {

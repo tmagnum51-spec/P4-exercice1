@@ -27,3 +27,8 @@ $controller = new BookController();
 $controller->searchBooks();
 
 }
+elseif ($action === 'showMessages') {
+$controller = new MessageController();
+$controller->showMessages();
+
+}

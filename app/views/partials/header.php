@@ -27,7 +27,7 @@
             </section>
             <section class="nav-group-right">
             <nav>    
-                    <a href="index.php?action=message">Messagerie</a>
+                    <a href="index.php?action=showMessages&id=2">Messagerie</a>
                     <a href="index.php?action=account">Mon compte</a>
                     <a href="index.php?action=connection">Connexion</a>
                     </nav>
