@@ -537,9 +537,8 @@ flex: 1; /* Prend 50% de la largeur */
 .text-card {
     background-color: #ffffff;
     text-align: center;
-    border-radius: 10px; /* Pour des coins arrondis */
-    padding: 15px;      /* Pour que le texte ne colle pas aux bords */
-    width: 200px;
+    padding: 60px;      /* Pour que le texte ne colle pas aux bords */
+    min-width: 100px;
     min-height: 50px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
     
@@ -561,7 +560,7 @@ flex: 1; /* Prend 50% de la largeur */
     object-fit: cover;
 }
 .book-card-content h3 {
-    padding: 5px; /* Voici ta marge pour le titre, l'auteur, etc. */
+    padding: 5px; /* la marge pour le titre, l'auteur, etc. */
     display: flex;
     flex-direction: column;
     gap: 0px; /* Espace entre le titre et l'auteur */
