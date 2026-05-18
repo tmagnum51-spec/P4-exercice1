@@ -1,6 +1,13 @@
 
 <?php require_once 'app/views/partials/header.php'; ?>
 <main class="container">
+    <nav class="breadcrumb">
+    <ol>
+        <li><a href="index.php?action=showAllBooks">Nos livres</a></li>
+        <li class="separator">></li>
+        <li class="current">The Kinfolk Table</li>
+    </ol>
+</nav>
     <div class="book-container">
        <div class="book-cover" style="background-image: url('public/assets/img/<?= $book->getCoverPicture() ?>');">
         </div>

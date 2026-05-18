@@ -4,15 +4,10 @@
  
     <div class="signup-container">
         <div class="signup-details">
-            <h1>Inscription</h1>
+            <h1>Connexion</h1>
     <form action="index.php?action=register" method="POST" class="signup-form">     
         
-        <div class="form-group">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" id="pseudo" name="pseudo" placeholder="Ex : TomTrokeur" required>
-        </div>
-
-        <div class="form-group">
+               <div class="form-group">
             <label for="email">Adresse email</label>
             <input type="email" id="email" name="email" placeholder="Ex : exemple@mail.com" required>
         </div>
@@ -22,10 +17,10 @@
             <input type="password" id="password" name="password" placeholder="••••••••" required>
         </div>
 
-        <button type="submit" class="btn-submit">S'inscrire</button>
+        <button type="submit" class="btn-submit">Connexion</button>
         
     </form>
-    <p>Déjà inscrit ? <a href="index.php?action=signin"> Connectez-vous </p>
+    <p>Déjà inscrit ? <a href="index.php?action=signIn"> Connectez-vous </p>
         
         </div>
         <div class="signup-picture">

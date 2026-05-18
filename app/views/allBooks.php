@@ -1,9 +1,10 @@
 <?php require_once 'app/views/partials/header.php'; ?>
-<main class="container">
+<main class="allbooks-page"> <div class="container">
 <section class="allBooksTitle-container">
     <div class="allBooksTitle-title">
         <h2>Nos livres à l'échange</h2>
-    </div>     
+    </div>    
+        
        <div class="search-form-books"> 
         <form action="index.php" method="GET">
             <input type="hidden" name="action" value="search">
@@ -24,18 +25,17 @@
                 <?php foreach($allBooks as $book): ?>
                     <article class="book-card">
                         <a href="index.php?action=showBook&id=<?= $book->getId() ?>">
-                        <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">
-                        <div class="book-card-content">
-                            <h3><?= $book->getTitle() ?></h3>
-                        </div>
-                        <div class="book-card-content-author">
-                            <h3><?= $book->getAuthor() ?></h3>
-                        </div>
-                        <div class="book-card-content-owner">
-                            <p>Vendu par : <?= $book->getpseudo() ?></p>
-                        </div>
-                        </a>
-                    </article>
+                            <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="<?= $book->getTitle() ?>">
+                            
+                            <div class="book-card-content">
+                                <h3><?= $book->getTitle() ?></h3>
+                                <div class="book-card-content-author">
+                                    <h3><?= $book->getAuthor() ?></h3>
+                                </div>
+                                <div class="book-card-content-owner">
+                                    <p>Vendu par : <?= $book->getpseudo() ?></p>
+                                </div>
+                    </div></a></article>
                 <?php endforeach; ?>
             </div>
 

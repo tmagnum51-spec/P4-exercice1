@@ -13,4 +13,12 @@ $userManager = new UserManager();
 //stockage du resultat
 $user= $userManager->getUserById($id);
 }
+public function signUp()
+{
+    require_once 'app/views/signUp.php';
+}
+public function signIn()
+{
+    require_once 'app/views/signIn.php';
+}
 }

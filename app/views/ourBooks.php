@@ -1,18 +1,28 @@
 <?php require_once 'app/views/partials/header.php'; ?>
 
-        <main class="container">
-        <div class="hero">
-            <section class="Intro">
-                <h2>Rejoignez nos lecteurs passionnés</h2>
-                    <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. 
-                        Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres. 
-                    </p>
-                    <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="cta-button">Découvrir</button></form>
-            </section>
+        <main>
+            <div class="container">
+                <div class="hero">
+                    <section class="Intro">
+                        
+                        <h2>Rejoignez nos lecteurs passionnés
+                        </h2>
+                        <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. 
+                            Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres. 
+                        </p>
+                        <form action="index.php?action=showAllBooks" method="POST">
+                            <button type="submit" class="cta-button">Découvrir</button>
+                        </form>
+                    </section>
                        
-        <section class="intro-picture"> 
-        <img src="public/assets/img/intro-picture.jpg" alt="Illustration livres"></section>
-        </div>
+                    <section class="intro-picture"> 
+                        <div class="author-container">
+                        <img src="public/assets/img/intro-picture.jpg" alt="Illustration livres">
+                        <p class="author-name">Hamza</p>
+                        </div>
+                    </section>
+                </div> 
+            </div> 
 
         <section class="latest-books">
             <h2>Les derniers livres ajoutés</h2>
@@ -31,17 +41,17 @@
                             <div class="book-card-content-owner">
                                 <p>Vendu par : <?= $book->getpseudo() ?></p>
                             </div>
-                        </a>
-                         </div>
+                        </div></a>
                     </article>
                 <?php endforeach; ?>
-            </div>
-
+            </div>    
             <div class="container-btn">
-                <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="cta-button">Voir tous les livres</a>
+            <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="cta-button">Voir tous les livres</button>
             </div>
-        </section>
-        <section class="latest-books">
+        </section>    
+           
+      
+        <section class="latest-books-text">
             <h2>Comment ça marche ?</h2>
             <h4>Échanger des livres avec TomTroc c’est simple et amusant ! Suivez ces étapes pour commencer :</h4>
         
@@ -62,26 +72,33 @@
                     </article>
             </div>
 
-            <div class="container-btn">
-                <form action="index.php?action=showAllBooks" method="POST"><button type="submit" class="btn-discover">Voir tous les livres</a>
+           <div class="container-btn">
+                <form action="index.php?action=showAllBooks" method="POST">
+                <button type="submit" class="btn-discover">Voir tous les livres</button>
+                </form>
             </div>
         </section>
-        <section class="banner-container">
-            <div class="banner-img">
-                <img src="public/assets/img/banner.png" alt= "Bibliotheque">
-            </div>
-        </section>
+
+        <div class="banner-container">
+            <img src="public/assets/img/banner.png" class="banner-img" alt="Bibliotheque">
+        </div>
         <section class="values-container">
-            <div class="values-title">
-                Nos valeurs
-            </div>
-                <div class="values-content">
+            <div class="values-content">
+                <div class="values-title">
+                    Nos valeurs
+                </div>
+
+                <div class="values-text">
                 Chez Tom Troc, nous mettons l'accent sur le partage, la découverte et la communauté. Nos valeurs sont ancrées dans notre passion pour les livres et notre désir de créer des liens entre les lecteurs. Nous croyons en la puissance des histoires pour rassembler les gens et inspirer des conversations enrichissantes.
                 Notre association a été fondée avec une conviction profonde : chaque livre mérite d'être lu et partagé. 
                 Nous sommes passionnés par la création d'une plateforme conviviale qui permet aux lecteurs de se connecter, de partager leurs découvertes littéraires et d'échanger des livres qui attendent patiemment sur les étagères.   
                 </div>
-                    <div class="book-card-content-owner">
-                        L’équipe Tom Troc
-                    </div>
+
+                <div class="values-signature">
+                        <span>L’équipe Tom Troc</span>
+                        <img src="public/assets/img/signature.png"  alt="signature">
+                </div>
+            </div>
         </section>
+    </main>
     <?php require_once 'app/views/partials/footer.php'; ?>

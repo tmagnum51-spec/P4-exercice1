@@ -48,36 +48,36 @@ Class Book extends AbstractEntity
             return $this->picture;
         }
 //mutateurs
-    Public function setId(?int $bookId):void
+    public function setId(?int $bookId):void
         {
         $this->bookId = $bookId;
         }
 
-    Public function setTitle(?string $title):void
+    public function setTitle(?string $title):void
         {
         $this->title = $title;
         }
-    Public function setAuthor(?string $author):void
+    public function setAuthor(?string $author):void
     {
         $this->author = $author;
     }
-     Public function setDescription(?string $description):void
+    public function setDescription(?string $description):void
     {
         $this->description = $description;
     }
-    Public function setStatus(?string $status):void
+    public function setStatus(?string $status):void
     {
         $this->status = $status;
     }    
-    Public function setCoverPicture(?string $coverPicture):void
+    public function setCoverPicture(?string $coverPicture):void
     {
         $this->coverPicture = $coverPicture;
     }   
-     Public function setUserId(?int $userId):void
+    public function setUserId(?int $userId):void
     {
         $this->userId = $userId;
     }    
-    Public function setPicture(?string $picture):void
+    public function setPicture(?string $picture):void
     {
         $this->picture = $picture;
     }    

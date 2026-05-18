@@ -12,12 +12,12 @@ class BookManager
        
                 return $bookDetail ? new Book($bookDetail) : null;
     }
-    public function getBookByUSer(int $id) : ?Book
+    public function getBookByUser(int $id) : ?Book
     {
         $db= DBConnect::getPDO();
-        $sql = $db->prepare("SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_Id WHERE u.id = :id
+        $sql = $db->prepare("SELECT b.*, u.pseudo, u.picture FROM books b INNER JOIN users u ON b.fk_Id_User = u.user_id WHERE b.fk_Id_User = :userId
     ");
-        $sql->execute(['id' =>$id]);
+        $sql->execute(['userId' =>$id]);
         $bookDetail = $sql->fetch();
       
        
@@ -87,4 +87,13 @@ public function getAllBooksbyUser(int $id): array
         }
         return $allTheUserBooks;
     }
+    public function countBooksByUser(int $id) : int 
+    {
+        $sql = "SELECT COUNT(*) FROM books WHERE fk_Id_User = :id";
+        $result = $this->db->query($sql, ['id' => $id]);
+        $count = $result->fetchcolumn();
+
+        return (int)$count;
+    }
 }
+ 

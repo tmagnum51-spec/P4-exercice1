@@ -32,3 +32,17 @@ $controller = new MessageController();
 $controller->showMessages();
 
 }
+elseif ($action === 'signup') {
+$controller = new UserController();
+$controller->signUp();
+
+}
+elseif ($action === 'signin') {
+$controller = new UserController();
+$controller->signin();
+
+}
+elseif ($action === 'showUserAccount') {
+$controller = new AccountController();
+$controller->showUserAccount();
+}

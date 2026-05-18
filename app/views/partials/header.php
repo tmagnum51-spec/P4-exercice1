@@ -6,9 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>    
-<main class="nav-container">  
+<div class="nav-container">  
     <header class="header">
         <section class="nav-group-left">
             <div class="logo">
@@ -24,13 +25,13 @@
                 <a href="index.php?action=showHome">Accueil</a>
                 <a href="index.php?action=showAllBooks">Nos livres à l'échange</a>
             </nav>
-            </section>
-            <section class="nav-group-right">
+        </section>
+        <section class="nav-group-right">
             <nav>    
                     <a href="index.php?action=showMessages&id=2">Messagerie</a>
-                    <a href="index.php?action=account">Mon compte</a>
-                    <a href="index.php?action=connection">Connexion</a>
-                    </nav>
-            </section>
-
+                    <a href="index.php?action=showUserAccount">Mon compte</a>
+                    <a href="index.php?action=signup">Connexion</a>
+            </nav>
+        </section>
     </header>
+</div>

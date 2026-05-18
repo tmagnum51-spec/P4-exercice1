@@ -1,12 +1,13 @@
 <?php
 //declaration de la classe User
-class User
+class User extends AbstractEntity
 {
 
-Private int $userID;
+private int $userID;
 private string $pseudo;
 private string $email;
 private string $picture;
+private string $dateCreation;
 
 
 //accesseur
@@ -16,7 +17,7 @@ private string $picture;
         }
     public function getPseudo(): ?string
         {   
-        return $this->Pseudo;}
+        return $this->pseudo;}
     public function getEmail(): ?string
         {   
         return $this->email;}
@@ -26,17 +27,20 @@ private string $picture;
         return $this->picture;
 
     }    
-
+    public function getDateCreation(): ?string
+    {
+        return $this->dateCreation;
+    }
 //mutateurs
-    Public function setID(?int $userID):void
+    public function setUserId(?int $userID):void
     {
         $this->userID = $userID;
     }
-    Public function setPseudo(?string $pseudo):void
+    public function setPseudo(?string $pseudo):void
     {
         $this->pseudo = $pseudo;
     }
-    Public function setEmail(?string $email):void
+    public function setEmail(?string $email):void
     {
         $this->email = $email;
     }
@@ -44,6 +48,11 @@ private string $picture;
     {
         $this->picture = $picture;
     }
+    public function setDateCreation(?string $dateCreation):void
+    {
+        $this->dateCreation = $dateCreation;
+    } 
+              
 
  
 }

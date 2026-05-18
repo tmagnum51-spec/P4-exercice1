@@ -1,5 +1,5 @@
 body {
-
+background-color: rgba(245, 243, 239, 1);
 }
 
 :root {
@@ -7,7 +7,9 @@ body {
     --bg-light: #FAF9F7;
     --text-dark: #292929;
     --text-grey: #A6A6A6;
-    --border-color: #F0F0F0;
+    --border-color: rgb(240, 240, 240);
+    --background-color: rgba(245, 243, 239, 1)
+    
 }
 /* --- RAZ des styles de liens par défaut --- */
 a {
@@ -34,14 +36,7 @@ h1, h2, .logo {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
 }
-/* 3. Ton footer (liens et copyright) sera automatiquement en Inter */
-.footer-content a, 
-.footer-content span {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400; /* Poids normal */
-    font-size: 14px;
-    letter-spacing: -0.01em; /* Inter est encore plus jolie avec un léger resserrage */
-}
+
 /* 1. On nettoie le body pour que la page coule naturellement de haut en bas */
 body {
     margin: 0;
@@ -99,30 +94,106 @@ body {
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 50px;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    gap: 108px;
+    padding: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(245, 243, 239, 1);
 }
 
 .Intro {
-    flex: 1; /* Prend la moitié de la place */
+    flex: 1;                   /* Prend exactement 50% de l'espace disponible */
+    width: 330px;            /* 🛠️ CRUCIAL : La boîte fait EXACTEMENT la taille de ton texte */
+    max-width: 330px;;          /* Empêche le texte de trop s'étaler vers l'image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+/* 2. 🛠️ C'EST ICI QU'ON COUPE : On force le texte à aller à la ligne à 335px */
+ 
+.Intro p {
+    max-width: 335px; /* Le texte ne pourra jamais dépasser cette largeur */
+    width: 100%;
+    font-family: 'Playfair Display', inter;
+    font-weight: 300;
+    font-size: 16px;
+    font-style: light;
+    margin-top: 0px;
+}
+
+.Intro h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    max-width: 335px; /* Le texte ne pourra jamais dépasser cette largeur */
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 36px;
+}
+
+/* 1. On dit au formulaire de faire exactement la moitié (50%) de tes 335px */
+.Intro form {
+    width: 267px; /* 50% de 335px */
+    display: block;
+}
+
+/* 2. Le bouton prend 100% de ce formulaire, son texte ne sera plus jamais coupé */
+.Intro .cta-button {
+    width: 100%;
+    box-sizing: border-box; /* Sécurité pour que le padding ne déforme pas le bouton */
+    padding: 22px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.Intro-content {
+    width: 100%;
+    max-width:330px;
+    max-height: 95px;
+    margin: 0;
+    padding: 0;
 }
 
 .intro-picture {
-    flex: 1;
+    //*flex: 1;
+    align-items: flex-end;*/
+    flex-direction: column;
     display: flex;
-    justify-content: flex-end; /* Pousse l'image bien à droite */
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
+    
 }
-
+.intro-picture .author-container {
+    display: flex;
+    flex-direction: column; /* ↕️ L'image, puis Hamza en-dessous */
+    align-items: flex-end;   /* 📐 Aligne l'image et le texte bien à droite */
+}
+.intro-picture p
+{
+    font-style: italic;          
+    font-weight: 400;            
+    color: var(--text-grey);
+    align-self: flex-end;
+    text-align: right;
+    padding:0px; 
+    margin-top: 0px;    /* 🛠️ Un petit espace propre sous l'image */
+    margin-bottom: 0;
+}
 .intro-picture img {
     width: 100%;       /* S'adapte à sa colonne */
     max-width: 500px;  /* 👈 Ajuste ce chiffre pour changer la taille de l'image */
     height: auto;
-    
+    display: block;
+    margin: 0;
 }
-
+.Intro .cta-button {
+    width: 50%;         /* Fait la moitié de la largeur du texte */
+    max-width: 200px;   /* Sécurité visuelle */
+}
 /* Bouton Vert Principal */
 .cta-button {
     width: 100%;
@@ -134,7 +205,8 @@ body {
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 28px;
+    margin-bottom: 34px;
     transition: opacity 0.2s;
 }
 
@@ -146,6 +218,8 @@ body {
     width: 218px;
     height: 63px;
     border-radius: 10px;
+    margin-top: 28px;
+    margin-bottom: 80px;
     
     /* Style transparent */
     background-color: transparent;
@@ -184,20 +258,37 @@ body {
 }
 .banner-container {
     width: 100%;
-    display: flex;
-    justify-content: center; /* Centre l'image horizontalement */
-    margin: 40px 0;          /* Ajoute un peu d'espace en haut et en bas */
-    overflow: hidden;        /* Coupe ce qui dépasse si besoin */
+    max-width: none !important;
+    position: relative;
+    margin: 0;               /* On réinitialise les marges pour éviter le décalage */
+    padding: 0;
+    display: block;          /* On repasse en block standard pour éviter les pièges de flex */
+    background-color: rgba(245, 243, 239, 1);
+
+   
 }
 
 .banner-img {
     width: 100%;             /* Prend toute la largeur du conteneur */
-    max-width: 1200px;       /* Largeur max pour ne pas qu'elle soit trop immense sur grand écran */
-    height: 300px;           /* Hauteur fixe pour l'effet bannière */
-    object-fit: cover;       /* 👈 TRÈS IMPORTANT : l'image est recadrée sans être déformée */
-    border-radius: 15px;     /* Optionnel : pour des bords arrondis élégants */
+    max-width: none;       /* Largeur max pour ne pas qu'elle soit trop immense sur grand écran */
+    height: auto;           /* Hauteur fixe pour l'effet bannière */
+    display: block;          /* Supprime l'espace vide parasite sous l'image */
+    
+    border-radius: 0;        /* Bords droits pour une bannière pleine largeur */
 }
 .values-container {
+    background-color: rgba(245, 243, 239, 1);
+    /* 🌎 FORCE LA SECTION À PRENDRE TOUTE LA LARGEUR DE L'ÉCRAN */
+    width: 100% !important;
+    max-width: none !important;
+    
+    /* 📐 Gère l'espace avec la bannière et le footer */
+    margin: 0 !important; 
+    padding: 80px 0; 
+    box-sizing: border-box;
+}
+.values-content
+{
     display: flex;
     flex-direction: column;
     /* On aligne tout le contenu du container à gauche */
@@ -212,8 +303,8 @@ body {
     /* On s'assure que le texte ne touche pas les bords sur mobile */
     padding: 0 20px; 
     box-sizing: border-box;
-}
 
+}
 .values-title {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
@@ -224,9 +315,10 @@ body {
     text-align: left; /* Force le titre à gauche */
 }
 
-.values-content {
+.values-text {
     font-family: 'Inter', sans-serif;
     font-weight: 300;
+    font-style: light;
     font-size: 16px;
     line-height: 1.5;
     color: #292929;
@@ -235,11 +327,31 @@ body {
 }
 
 .values-signature {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Aligne la ligne verte et la signature à gauche */
-    gap: 10px;
+    flex-direction: row;    /* Met le texte et l'image côte à côte */
+    
+    /* 🎯 1. Aligne le haut du texte et le haut de l'image sur la même ligne */
+    align-items: flex-start;  
+    
+    gap: 140px;              
+}
+
+.values-signature span {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    color: grey;
+    white-space: nowrap;    
+    
+    /* 🎯 2. LE RÉGLAGE D'OR : Pousse le texte de descendre pile de 20px sous le haut de l'image */
+    margin-top: 20px;    
+}
+
+.signature-img {
+    height: auto;           
+    max-height: 60px; /* Ajuste cette hauteur max si ton image de signature est trop grande */
+    display: block;
 }
 /* Section Image */
 .image-section {
@@ -253,9 +365,20 @@ body {
     min-height: 100vh; /* Pour que ça prenne toute la hauteur de l'écran */
 }
 .latest-books {
+    background-color: rgb(250, 249, 247);
     flex-direction: column;
     display: flex;
     align-items: center;
+    /* min-width: 1440; */
+    width: 100%;
+    padding-top: 50px;    /* 📐 Ajuste cette valeur pour décoller le titre du haut */
+    padding-bottom: 60px; /* Espace tout en bas de la zone beige, après le bouton */
+    box-sizing: border-box;
+    align-self: stretch; /* Force la section à s'étirer si le parent est en Flex */
+    }
+.latest-books h2 {
+    margin-top: 30px;
+    margin-bottom: 30px; /* 📐 Espace entre le texte du titre et le début du rectangle gris */
 }
 
 .book-cover {
@@ -267,10 +390,123 @@ body {
     min-height: 863px;
     max-width: 720px; 
 }
+/*------------SIGNUP---------------*/
 
+/* 1. Le conteneur principal signUp */
+
+.signup-container {
+    display: flex; /* Pour mettre l'image à gauche et le texte à droite */
+    flex-direction: row;
+    min-height: 100vh; 
+    width: 100%;
+    background-color: rgba(250, 249, 247, 1);
+}
+.signup-form {
+    width: 100%;
+    max-width: 400px; /* Largeur idéale pour un formulaire d'inscription */
+}
+.signup-picture {
+    flex: 1; /* Prend l'autre 50% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin-top:0px;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+    background-color: rgba(250, 249, 247, 1);
+}
+.signup-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Permet à l'image de remplir sa moitié d'écran proprement sans se déformer */
+    display: block;
+    overflow: hidden;
+}
+.signup-details {
+    flex: 1; /* Prend 50% de la largeur */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    box-sizing: border-box;
+    color: rgba(166, 166, 166, 1);
+        
+}
+.signup-details h1
+{
+    font-size:36px;
+    color: rgba(0, 0, 0, 1);
+
+}
+.signup-details p
+{
+color: rgba(41, 41, 41, 1);
+font-size:14px;
+font-family: 'Inter', sans-serif;
+}
+/* Structure du formulaire */
+.signup-form {
+    width: 100%;
+    max-width: 400px; /* Limite la largeur du formulaire pour qu'il ne soit pas trop étiré */
+}
+
+/* Espacement entre chaque bloc de champ */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Aligne le label au-dessus de l'input */
+    margin-bottom: 24px;
+}
+
+/* Style des étiquettes (Labels) */
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #292929;
+    margin-bottom: 8px;
+}
+
+/* Style des champs de saisie (Inputs) */
+.form-group input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* Effet quand l'utilisateur clique dans un champ */
+.form-group input:focus {
+    border-color: #00AC66; /* Devient vert au focus */
+}
+/*-------------------SIGNUP FIN-----------------*/
+/* Style du bouton d'inscription */
+.btn-submit {
+    width: 100%;
+    height: 48px;
+    background-color: #00AC66; /* Vert TomTroc */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #009557; /* Vert un peu plus foncé au survol */
+}
 .book-details {
     flex: 1; /* Prend l'autre 50% */
     padding: 50px;
+    background-color: rgba(250, 249, 247, 1);
 }
 
 /* 4. Le texte de description */
@@ -334,7 +570,7 @@ body {
 .header {
     width: 100%;
     height: 80px;
-    background: #F5F3EF;
+    background-color: rgba(245, 243, 239, 1);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -344,13 +580,13 @@ body {
     box-sizing: border-box; /* Pour que le padding ne dépasse pas des 100% */
 }
 .headerContainer-left{
-
+    background-color: rgba(245, 243, 239, 1);
     flex: 1;
     align-items: center;
     padding: 0 50px;
 }
 .headerContainer-right{
-
+    background-color: rgba(245, 243, 239, 1);
     flex: 1;
     align-items: center;
     padding: 0 50px;
@@ -419,20 +655,96 @@ body {
     font-weight: 700;
     color: #00AC66;
 }
+/* 🟢 Le grand conteneur qui peint TOUTE la page en beige clair */
+.allBooks-page-container {
+    width: 100%;
+    background-color: rgba(250, 249, 247, 1); /* Ton beige clair */
+    padding: 40px 0;
+    box-sizing: border-box;
+}
+
+/* Alignement du titre et de la recherche */
+.allBooks-top-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px; /* Crée l'espace entre la recherche et le début des livres */
+}
+.breadcrumb {
+    width: 100%;
+    max-width: 1234px; /* Aligné sur le reste de ton site */
+    margin: 20px auto;  /* Espace au-dessus et en dessous */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Aligne le texte et le ">" sur la même ligne */
+    list-style: none;    /* Supprime les puces automatiques de la liste */
+    padding: 0;
+    margin: 0;
+}
+
+/* Style des liens et du texte */
+.breadcrumb li {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-grey);
+}
+
+/* Le lien cliquable au survol */
+.breadcrumb li a {
+    color: var(--text-grey); /* Un peu plus clair pour montrer que c'est le parent */
+    transition: color 0.2s;
+}
+
+.breadcrumb li a:hover {
+    color: var(--primary-green); /* Petit effet vert sympa au survol */
+}
+
+/* Le séparateur ">" */
+.breadcrumb .separator {
+    margin: 0 10px; /* Espace équilibré à gauche et à droite du ">" */
+    color: var(--text-grey);
+    font-weight: 300;
+}
+
+/* La page actuelle (non cliquable) */
+.breadcrumb .current {
+    font-weight: 500; /* Un peu plus épais pour montrer où on se trouve */
+    color: var(--text-grey);
+}
 .allBooksTitle-container
 {
     display: flex;        /* Active le mode flexible 🔗 */
+    flex-direction: row;
     gap: 200px;           /* Espace entre les cartes ↔️ */
-    justify-content: center; /* Centre les cartes sur la page 🎯 */
-    flex-wrap: wrap;  
-    min-height: 50px;
-    justify-content: center;
-    
+    justify-content: space-between; /* Centre les cartes sur la page 🎯 */
+    align-items: center !important;
 
+/* 🎯 COPIE  DE LA GRILLE : On applique la même largeur et le même centrage */
+    width: 100% !important;
+    max-width: 1234px !important; /* comme la .books-grid */
+    margin: 130px auto 30px auto !important; /* Marge du haut à 130px, et "auto" pour centrer sur l'écran */
+
+   /* 🎯 LE PETIT DÉTAIL : On remet les mêmes paddings que la grille pour un alignement parfait */
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+    
+    /* On nettoie les propriétés parasites */
+    gap: 0 !important; 
+    flex-wrap: nowrap !important;
 }
+
 .allBookTitle-title
 {
 flex: 1; /* Prend 50% de la largeur */
+align-items: center;
 
 }
 .allBookTitle-search
@@ -442,6 +754,7 @@ flex: 1; /* Prend 50% de la largeur */
     justify-content: center;
 
 }
+
 .search-form-books {
     /* On utilise tes dimensions Figma */
     width: 322px;
@@ -456,23 +769,25 @@ flex: 1; /* Prend 50% de la largeur */
 }
 
 .search-field {
-   width: 100%;
+    width: 100%;
     height: 50px; /* Ici, il prendra bien les 50px du parent */
-    padding: 0 45px 0 15px;
+    padding: 0 15px 0 45px;
     border: 1px solid #E2E2E2;
     border-radius: 8px;
     font-size: 14px;
     box-sizing: border-box; /* Crucial pour que le padding n'agrandisse pas le champ */
     outline: none;
+    align-items: right
 }
 
 .search-field::placeholder {
     color: #9A9A9A;
+    
 }
 
 .search-icon-btn {
     position: absolute;
-    right: 15px; /* Aligné à droite à l'intérieur */
+    left: 15px; /* Aligné à gauche à l'intérieur */
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -489,14 +804,23 @@ flex: 1; /* Prend 50% de la largeur */
 }
 /* Le conteneur principal pour centrer la grille comme sur Figma */
 .container {
-    max-width: 1200px;
+    background-color: rgba(245, 243, 239, 1);
+    max-width: 100%px;
     margin: 0 auto;
     padding: 10px 20px;
 }
+/* 🛠️ Le container spécifique à la page AllBooks passe à 100% */
+.allbooks-page .container {
+    background-color: rgba(250, 249, 247, 1);
+    max-width: 100% !important;
+    width: 100%;
+    padding: 0;
+}
 .nav-container {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 10px 20px;
+    background-color: rgba(245, 243, 239, 1);
 }
 .nav-group-left, .nav-group-right {
     display: flex;
@@ -505,24 +829,77 @@ flex: 1; /* Prend 50% de la largeur */
 }
 
 .books-grid {
-    display: grid;        /* Active le mode flexible 🔗 */
-    grid-template-columns: repeat(4, minmax(200px, 280px)) !important;
-    gap: 30px;           /* Espace entre les cartes ↔️ */
+    background-color: rgba(250, 249, 247, 1); /* Correction du rgb */
+    display: grid;        
+    /* ✅ Les colonnes se partagent équitablement les 100% de la page */
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 38px;  
+    justify-content: center;  
+    max-width: 1234px;       
     width: 100%;
-    justify-content: center; /* Centre les cartes sur la page 🎯 */
-    margin: 40px 0;
+    margin: 0 auto 40px auto;
+    padding-top: 40px;        /* 📐 Crée le vide interne en haut de la zone grise avant les cartes */
+    padding-bottom: 40px;     /* Optionnel : équilibre le vide en bas de la zone grise */
+    padding-left: 20px;       /* Optionnel : évite que les cartes collent aux bords gauches/droits du fond gris */
+    padding-right: 20px;
+    box-sizing: border-box;   /* Crucial pour que les paddings ne déforment pas la largeur de 1200px */
+    min-height: 320px;
     flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
     min-height: 720px;
+    
+    
 }
 .books-grid-lastBooks {
-    display: grid;        /* Active le mode flexible 🔗 */
-    grid-template-columns: repeat(4, minmax(200px, 280px)) !important;
-    gap: 30px;           /* Espace entre les cartes ↔️ */
+    background-color: rgba(250, 249, 247, 1); /* Correction du rgb */
+    display: grid;        
+    /* ✅ Les colonnes se partagent équitablement les 100% de la page */
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 38px;  
+    justify-content: center;  
+    max-width: 1234px;       
     width: 100%;
-    justify-content: center; /* Centre les cartes sur la page 🎯 */
-    margin: 40px 0;
-    flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
-    min-height: 220px;
+    margin: 0 auto 40px auto;
+    padding-top: 40px;        /* 📐 Crée le vide interne en haut de la zone grise avant les cartes */
+    padding-bottom: 40px;     /* Optionnel : équilibre le vide en bas de la zone grise */
+    padding-left: 20px;       /* Optionnel : évite que les cartes collent aux bords gauches/droits du fond gris */
+    padding-right: 20px;
+    box-sizing: border-box;   /* Crucial pour que les paddings ne déforment pas la largeur de 1200px */
+    min-height: 320px;
+    /* ❌ Suppression de flex-wrap et justify-content qui bridaient la largeur */
+}
+.latest-books-text {
+    background-color: rgba(245, 243, 239, 1);
+    
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    /* min-width: 1440; */
+    width: 100%;
+    margin-bottom: 0px;
+    
+}
+.latest-books-text h2
+{
+    font: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    width: 380px;            /* 🛠️ CRUCIAL : La boîte fait EXACTEMENT la taille de ton texte */
+    max-width: 330px;;
+    margin-top: 80px;
+    margin-bottom: 12px;
+
+}
+.latest-books-text h4
+{
+    font: 'inter', serif;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+    width: 380px;            /* 🛠️ CRUCIAL : La boîte fait EXACTEMENT la taille de ton texte */
+    max-width: 380px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+
 }
 .books-grid-text {
     display: grid;        /* Active le mode flexible 🔗 */
@@ -533,26 +910,38 @@ flex: 1; /* Prend 50% de la largeur */
     margin: 40px 0;
     flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
     min-height: 220px;
+    background-color:rgba(245, 243, 239, 1);
+    align-items: stretch !important;
+    
 }
 .text-card {
     background-color: #ffffff;
     text-align: center;
-    padding: 60px;      /* Pour que le texte ne colle pas aux bords */
+    padding: 30px;      /* Pour que le texte ne colle pas aux bords */
     min-width: 100px;
     min-height: 50px;
+    border-radius: 10px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
+    align-self: auto !important;
+
+    /* Flexbox interne pour que le contenu des petites cartes se répartisse joliment */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     
 }
 .book-card {
     background-color: #ffffff;
-    width: 200px;
+    width: 100%;
+    max-width: none !important;
     min-height: 324px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); /* Une ombre légère */
     
     /* Pour aligner le contenu à l'intérieur de la carte */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    border-radius: 10px;
 }
 .book-card img {
     width: 100%;
@@ -567,6 +956,8 @@ flex: 1; /* Prend 50% de la largeur */
     flex-grow: 1; /* Pour pousser le contenu si besoin */
     margin: 0px; /* Supprime l'espace automatique sous le titre */
     line-height: 1.2; /* Resserre l'espace entre les lignes de texte */
+    font-size: 16px;
+    font-weight: 400;
 }
 .book-card-content-author {
     padding: 0px; /* Voici ta marge pour le titre, l'auteur, etc. */
@@ -575,7 +966,8 @@ flex: 1; /* Prend 50% de la largeur */
     gap: 0px; /* Espace entre le titre et l'auteur */
     flex-grow: 1; /* Pour pousser le contenu si besoin */
     color: var(--text-grey); /* Le "par" reste discret en gris */
-    font-weight: 100;
+    font-weight: 400;
+    font-size: 14px;
 }
 .book-card-content-owner {
     padding: 0px; /* Voici ta marge pour le titre, l'auteur, etc. */
@@ -584,26 +976,199 @@ flex: 1; /* Prend 50% de la largeur */
     gap: 5px; /* Espace entre le titre et l'auteur */
     flex-grow: 1; /* Pour pousser le contenu si besoin */
     color: var(--text-grey); /* Ta couleur spéciale #00AC66 */
-    font-style: italic;          /* 👈 L'italique que tu souhaitais */
-    font-weight: 500;            /* Un peu plus épais pour la lisibilité */
+    font-style: italic;
+    font-size: 10px;          /* 👈 L'italique que tu souhaitais */
+    font-weight: 400;            /* Un peu plus épais pour la lisibilité */
     margin-top: 10px;
+    border-radius: 10px;
+
 }
 
+/*------------------------------ACCOUNT-------------------*/
+.account-main-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Zone du haut : Flexbox pour aligner à 50/50 */
+.account-container {
+    width: 100%;
+}
+
+.books-grid-text {
+    display: flex;
+    gap: 25px;
+    align-items: stretch; /* Même hauteur pour les deux cartes */
+    background-color: rgb(250, 249, 247);
+}
+
+/* Vos cartes génériques */
+.text-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    flex: 1; /* Force la répartition 50% / 50% */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajustements internes carte profil gauche */
+.profile-summary {
+    display: flex;
+    flex-direction: column;
+    width: 350px;           /* À ajuster selon la largeur souhaitée pour ta carte */
+    min-height: 400px;      /* À ajuster selon la hauteur souhaitée pour ta carte */
+    border: 1px solid #e0e0e0; /* Bordure extérieure optionnelle de la carte */
+    border-radius: 8px;     /* Arrondis optionnels pour la carte */
+    overflow: hidden;   
+    text-align: center;
+}
+.profile-summary h1
+{
+    font: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0px;
+}
+.profile-summary span
+{
+    color: rgba(166, 166, 166, 1);
+    font: 'inter', serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+.profile-summary p1
+{
+    font: 'inter', serif;
+    font-size: 8px;
+    font-weight: 600;
+    color: rgba(41, 41, 41, 1);
+}
+.profile-summary p2
+{
+    font: 'inter', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(41, 41, 41, 1);
+}
+.avatar-container, 
+.profile-container {
+    flex: 1;                /* Force chaque div à occuper exactement 50% de la hauteur */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;/* Centre le contenu verticalement dans chaque moitié */
+    align-items: center;    /* Centre le contenu horizontalement */
+    padding: 20px;          /* Espace intérieur pour que ça respire */
+    box-sizing: border-box; /* Évite que le padding casse les 50% de hauteur */
+}
+/* 🎯 La ligne grise de séparation */
+.avatar-container {
+    border-bottom: 1px solid rgb(245, 243, 239,1); /* Crée la ligne séparatrice en bas du premier bloc */
+}
+.avatar-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    
+}
+/*-------------------TABLEAU-----------------*/
+.text-card-table {
+    font: 'inter', serif;
+    font-size: 12px;
+    font-weight: 400;
+    background-color: #ffffff;
+    padding: 30px 0px;      
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); 
+    
+    /* LA SOLUTION : On passe en block et on force le calcul de largeur */
+    display: block !important; 
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+/* On cible TOUT tableau qui se trouve à l'intérieur de ta text-card */
+.text-card-table table {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: table !important; /* On s'assure qu'il garde son comportement de vrai tableau */
+    border-collapse: collapse; 
+}
+/* 1. On harmonise l'alignement horizontal de tout le tableau */
+.text-card-table th {
+    text-align: center;      /* Centre les titres des colonnes */
+    font-weight: 600;        /* Donne un peu de style aux en-têtes */
+    background-color: #ffffff; /* Optionnel : un fond très léger pour l'en-tête */
+}
+
+.text-card-table td {
+    text-align: center;      /* Centre le contenu de toutes les cellules par défaut */
+    vertical-align: middle;  /* Aligne verticalement le texte au milieu (top pour les images/boutons) */
+}
+.text-card-table td img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;          /* Centre l'image s'il y a de l'espace */
+    border-radius: 4px;      /* Un petit arrondi sur la couverture, c'est toujours plus sympa */
+}
+.cell-description {
+    max-width: 200px;       /* Le texte fera max 200px de large avant de wrapper */
+    word-wrap: break-word;  /* Force les mots ultra-longs à se couper si besoin */
+    word-break: break-word; /* Sécurité pour éviter que ça dépasse du tableau */
+    line-height: 1.4;       /* Optionnel : rend la lecture plus agréable sur plusieurs lignes */
+    text-align: start;
+}
+/* 1. On force la section globale à prendre toute la largeur */
+.account-bookCollection {
+    width: 100%;
+}
+.account-bookCollection table {
+    width: 100%;
+    border-collapse: collapse;
+    align-items: center; 
+}
+
+.account-bookCollection table tbody tr:nth-of-type(even)
+{
+background-color: rgba(237, 242, 246, 1);
+
+}
 .footer-content {
-    display: block !important; /* On force le mode bloc classique */
-    width: 100% !important;    /* On force toute la largeur */
-    text-align: right !important; /* 👈 ÇA, ça pousse tout le texte à droite */
-    padding-right: 50px;
+    display: block !important; /* On garde ton mode block */
+    width: 100% !important;    
+    text-align: right !important; /* Pousse tout à droite */
+    padding: 20px 50px; /* Ajout d'un padding vertical pour donner de la hauteur */
     box-sizing: border-box;
+    background-color: #ffffff;
 }
 
 .footer-content a, 
 .footer-content span {
-    display: inline-block;     /* Permet de mettre des marges si besoin */
-    margin-left: 20px;         /* Espace entre les liens */
+    display: inline-block;     
+    margin-left: 20px;         
     text-decoration: none;
     color: #666;
     font-size: 14px;
+    
+    /* 🎯 CORRECTION 1 : Aligne verticalement le texte avec le milieu du logo */
+    vertical-align: middle; 
+}
+
+/* 🎯 CORRECTION 2 : On applique aussi l'alignement vertical sur le logo */
+.logo-img {
+    display: inline-block; /* Permet au logo de rester sur la même ligne que le texte */
+    margin-left: 20px;
+    max-height: 22px;  
+    max-width: 17px;
+    
+    /* 🎯 Aligne le milieu du logo avec le milieu du texte */
+    vertical-align: middle; 
 }
 /* Le conteneur global */
 .chat-box {
