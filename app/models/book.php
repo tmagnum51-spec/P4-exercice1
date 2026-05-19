@@ -73,10 +73,11 @@ Class Book extends AbstractEntity
     {
         $this->coverPicture = $coverPicture;
     }   
-    public function setUserId(?int $userId):void
+ 
+    public function setUserid(?int $userId): void
     {
-        $this->userId = $userId;
-    }    
+    $this->userId = $userId;
+    }
     public function setPicture(?string $picture):void
     {
         $this->picture = $picture;

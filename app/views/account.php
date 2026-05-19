@@ -13,7 +13,7 @@
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
                     <span class="membership-date">Membre depuis le :<br> <?= htmlspecialchars($userAccount->getDateCreation()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
-                    <p style="font-size: 14px;"><?= $bookCount ?> livres</p>
+                    <p> <img src=public/assets/img/livresVector.svg style="font-size: 14px;">  <?= $bookCount ?>  livres</p>
                 </div>  
             </article>
 
@@ -70,7 +70,7 @@
                                 </td>
                                 <td><?= htmlspecialchars($book->getTitle()) ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor()) ?></td>
-                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 160 ? substr($book->getDescription(), 0, 160) . '...' : $book->getDescription()) ?></td> 
+                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 360 ? substr($book->getDescription(), 0, 360) . '...' : $book->getDescription()) ?></td> 
                                 <td><?php 
                                         $status = $book->getStatus();
                                         // On nettoie et on met en minuscule pour comparer facilement

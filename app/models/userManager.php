@@ -32,6 +32,21 @@ public function getUserByEmail($login)
 
         return $user ? new User($user):null;
 }
+public function createUser($pseudo, $email, $password):?User
+{ 
+    $db= DBConnect::getPDO();
+    $sql= $db->prepare("INSERT INTO `users`(`pseudo`, `email`, `password`, `date_creation`) VALUES (:pseudo, :email, :password, NOW())");
+    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password]);
+    $lastUser=$db->lastInsertId();
+    $sql=$db->prepare("SELECT * FROM users WHERE user_id = :lastUser");
+    $sql->execute(['lastUser'=>$lastUser]);
+    $user=$sql->fetch();
+
+    
+
+        return $user ? new User($user):null;
+
+}
 
 }
 

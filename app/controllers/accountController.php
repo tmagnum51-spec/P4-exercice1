@@ -41,7 +41,7 @@ class AccountController
         }
 
         // Corrigé ici : on pioche dans $_SESSION['user']['id'] qui est créée lors du login
-        $userId = (int)($_GET['id'] ?? $_SESSION['user']['id'] ?? 0);
+        $userId = (int)$_SESSION['user']['id'];
     
         // Appels aux Managers
         $userManager = new UserManager();
@@ -53,6 +53,27 @@ class AccountController
         
         // Envoi à la vue
         require_once 'app/views/account.php';
+    }
+    public function showPublicUserAccount()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: index.php?action=signin');
+            exit();
+        }
+
+        // Corrigé ici : on pioche dans $_SESSION['user']['id'] qui est créée lors du login
+        $userId = (int)($_GET['id'] ?? 0);
+    
+        // Appels aux Managers
+        $userManager = new UserManager();
+        $userAccount = $userManager->getUserByID($userId);
+        $bookCount = $userManager->countBooksByUser($userId);
+
+        $bookManager = new BookManager();
+        $userBooks = $bookManager->getAllBooksbyUser($userId);
+        
+        // Envoi à la vue
+        require_once 'app/views/accountPublic.php';
     }
 
     /**
@@ -96,4 +117,43 @@ class AccountController
         // 3. Quoi qu'il arrive, si on n'est pas redirigé (erreur ou premier chargement), on affiche la vue
         require_once 'app/views/signin.php';
     }
+    public function createAccount(){
+    // 1. On vérifie que les champs ne sont pas vides 
+        if (!empty($_POST['pseudo']) &&  !empty($_POST['email']) && !empty($_POST['password'])) 
+            {
+
+            // On récupère les données propres
+            $pseudo=trim($_POST['pseudo']);
+            $email = trim($_POST['email']);
+            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+
+            $userManager = new UserManager();
+            $newUser = $userManager->createUser($pseudo, $email, $password);
+            
+                if ($newUser) {
+                $_SESSION['user'] = [
+                        'id'           => $newUser->getID(), 
+                        'email'        => $newUser->getEmail(), 
+                        'pseudo'       => $newUser->getPseudo(),
+                        'dateCreation' => $newUser->getDateCreation(),
+                        'picture'      => $newUser->getPicture()
+                    ];
+
+
+                header('Location: index.php?action=showAccount');
+                exit();
+                }
+        else 
+        {
+            echo "Une erreur est survenue lors de la création du compte.";  
+        }
+    }
+    else 
+        {
+            echo "Tous les champs doivent être remplis";
+        }
+
+    }
+
+    
 } // Fin de la classe AccountController

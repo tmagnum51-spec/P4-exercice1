@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 // On part du principe que l'index est à la racine, donc on vérifie le chemin
 require_once 'app/Autoloader.php'; 
@@ -37,10 +40,18 @@ switch ($action) {
     case 'showAccount':
         $accountController->showUserAccount();
         break;
+
+    case 'showAccountPublic':   
+    $accountController->showPublicUserAccount();
+    break;
     
     case 'signup':
         $userController->signUp();
         break;
+
+    case 'newAccount':   
+    $accountController->createAccount();
+    break;
 
     case 'signin':
         $accountController->connectUser();

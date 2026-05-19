@@ -5,7 +5,7 @@
     <div class="signup-container">
         <div class="signup-details">
             <h1>Inscription</h1>
-    <form action="index.php?action=register" method="POST" class="signup-form">     
+    <form action="index.php?action=newAccount" method="POST" class="signup-form">     
         
         <div class="form-group">
             <label for="pseudo">Pseudo</label>

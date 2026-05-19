@@ -983,7 +983,135 @@ align-items: center;
     border-radius: 10px;
 
 }
+/*--------------------PUBLIC ACCOUNT------------------------*/
+.account-main-container-public {
+    width: 100%;
+    max-width: 1400px;
+    min-width: 1200;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
 
+}
+/* Zone du haut : Flexbox pour aligner à 50/50 */
+.account-container-public {
+    width: 100%;
+    flex: 1;
+    
+}
+.books-grid-text-public {
+    display: flex;
+    gap: 25px;
+    align-items: stretch; /* Même hauteur pour les deux cartes */
+    background-color: rgb(250, 249, 247);
+    
+}
+
+/* Vos cartes génériques */
+.text-card-public {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    flex: 1; /* Force la répartition 50% / 50% */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Ajustements internes carte profil gauche */
+.profile-summary-public {
+    display: flex;
+    flex-direction: column;
+    min-width:350px;           /* À ajuster selon la largeur souhaitée pour ta carte */      /* À ajuster selon la hauteur souhaitée pour ta carte */
+    border: 1px solid #e0e0e0; /* Bordure extérieure optionnelle de la carte */
+    border-radius: 8px;     /* Arrondis optionnels pour la carte */
+    overflow: hidden;   
+    text-align: center;
+    min-height: 100%;
+}
+.avatar-container-public, 
+.profile-container-public {
+    flex: 1;                /* Force chaque div à occuper exactement 50% de la hauteur */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;/* Centre le contenu verticalement dans chaque moitié */
+    align-items: center;    /* Centre le contenu horizontalement */
+    padding: 20px;          /* Espace intérieur pour que ça respire */
+    box-sizing: border-box; /* Évite que le padding casse les 50% de hauteur */
+}
+/* 🎯 La ligne grise de séparation */
+.avatar-container-public {
+    border-bottom: 1px solid rgb(245, 243, 239,1); /* Crée la ligne séparatrice en bas du premier bloc */
+}
+.avatar-container-public img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+    
+}
+/* 1. On force la section globale à prendre toute la largeur */
+.account-bookCollection-public {
+    width: 100%;
+    flex: 2;
+    min-height: 100%;
+}
+.account-bookCollection-public table {
+    width: 100%;
+    border-collapse: collapse;
+    align-items: center;
+     
+}
+
+.account-bookCollection-public table tbody tr:nth-of-type(even)
+{
+background-color: rgba(237, 242, 246, 1);
+}
+.text-card-table-public {
+    font: 'inter', serif;
+    font-size: 12px;
+    font-weight: 400;
+    background-color: #ffffff;
+    padding: 30px 0px;      
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); 
+    
+    /* LA SOLUTION : On passe en block et on force le calcul de largeur */
+    display: block !important; 
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+/* On cible TOUT tableau qui se trouve à l'intérieur de ta text-card */
+.text-card-table-public table {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: table !important; /* On s'assure qu'il garde son comportement de vrai tableau */
+    border-collapse: collapse; 
+    
+}
+/* 1. On harmonise l'alignement horizontal de tout le tableau */
+.text-card-table-public th {
+    text-align: center;      /* Centre les titres des colonnes */
+    font-weight: 600;        /* Donne un peu de style aux en-têtes */
+    background-color: #ffffff; /* Optionnel : un fond très léger pour l'en-tête */
+}
+
+.text-card-table-public td {
+    text-align: center;      /* Centre le contenu de toutes les cellules par défaut */
+    vertical-align: middle;  /* Aligne verticalement le texte au milieu (top pour les images/boutons) */
+    min-height: 130px;
+    height: 130px;
+}
+.text-card-table-public td img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;          /* Centre l'image s'il y a de l'espace */
+    border-radius: 4px;      /* Un petit arrondi sur la couverture, c'est toujours plus sympa */
+}
 /*------------------------------ACCOUNT-------------------*/
 .account-main-container {
     width: 90%;
@@ -993,7 +1121,6 @@ align-items: center;
     flex-direction: column;
     gap: 40px;
 }
-
 /* Zone du haut : Flexbox pour aligner à 50/50 */
 .account-container {
     width: 100%;
@@ -1078,6 +1205,7 @@ align-items: center;
     overflow: hidden;
     
 }
+
 /*-------------------TABLEAU-----------------*/
 .text-card-table {
     font: 'inter', serif;
@@ -1110,6 +1238,8 @@ align-items: center;
 .text-card-table td {
     text-align: center;      /* Centre le contenu de toutes les cellules par défaut */
     vertical-align: middle;  /* Aligne verticalement le texte au milieu (top pour les images/boutons) */
+    min-height: 130px;
+    height: 130px;
 }
 .text-card-table td img {
     display: inline-block;
