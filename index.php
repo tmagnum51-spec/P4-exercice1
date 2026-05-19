@@ -1,48 +1,51 @@
 <?php
+session_start();
 // On part du principe que l'index est à la racine, donc on vérifie le chemin
 require_once 'app/Autoloader.php'; 
 Autoloader::register();
 
+$accountController= new AccountController();
+$userController= new UserController();
+$messageController= new MessageController();
+$bookController= new BookController();
 $action = $_GET['action'] ?? 'index';
 
-if ($action === 'index') {
-    $controller = new HomeController();
-    $controller->index();
-} 
-// AJOUTE CETTE CONDITION :
-elseif ($action === 'showBook') {
-    $controller = new BookController();
-    $controller->showBook();
-}
-elseif ($action === 'showHome') {
-    $controller = new BookController();
-    $controller->showHome();
-}
-elseif ($action === 'showAllBooks') {
-    $controller = new BookController();
-    $controller->showAllBooks();
-}
-elseif ($action === 'search') {
-$controller = new BookController();
-$controller->searchBooks();
+switch ($action) {
+    case 'index':
+        
+    $bookController->showHome();
+    break;
 
-}
-elseif ($action === 'showMessages') {
-$controller = new MessageController();
-$controller->showMessages();
+    case 'showHome':
+        
+    $bookController->showHome();
+    break;
+        
+    case 'showBook':
 
-}
-elseif ($action === 'signup') {
-$controller = new UserController();
-$controller->signUp();
+        $bookController->showBook();
+        break;
+        
+    case 'showAllBooks':
+        $bookController->showAllBooks();
+        break;
 
-}
-elseif ($action === 'signin') {
-$controller = new UserController();
-$controller->signin();
+    case 'search':
+        $bookController->searchBooks();
+        break;
+    
+    case 'showAccount':
+        $accountController->showUserAccount();
+        break;
+    
+    case 'signup':
+        $userController->signUp();
+        break;
 
-}
-elseif ($action === 'showUserAccount') {
-$controller = new AccountController();
-$controller->showUserAccount();
+    case 'signin':
+        $accountController->connectUser();
+        break;
+
+
+
 }

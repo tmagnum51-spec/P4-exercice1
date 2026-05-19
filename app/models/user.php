@@ -8,6 +8,7 @@ private string $pseudo;
 private string $email;
 private string $picture;
 private string $dateCreation;
+private string $password;
 
 
 //accesseur
@@ -31,6 +32,10 @@ private string $dateCreation;
     {
         return $this->dateCreation;
     }
+public function getPassword():?string
+    {
+        return $this->password;
+    }
 //mutateurs
     public function setUserId(?int $userID):void
     {
@@ -52,7 +57,10 @@ private string $dateCreation;
     {
         $this->dateCreation = $dateCreation;
     } 
-              
+    public function setPassword(?string $password):void
+    {
+        $this->password = $password;
+    }
 
  
 }

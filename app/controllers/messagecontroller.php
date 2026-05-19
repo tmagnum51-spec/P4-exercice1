@@ -4,6 +4,10 @@ class MessageController
 {
     public function addMessage()
     {
+        if (!isset($_SESSION['user'])) {
+        header('Location: index.php?action=signin');
+        exit();
+    }
         //recupération de l'id du user
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -11,6 +15,10 @@ class MessageController
 
     public function showMessages()
     {
+        if (!isset($_SESSION['user'])) {
+        header('Location: index.php?action=signin');
+        exit();
+    }
     //recupération de l'id du user
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 

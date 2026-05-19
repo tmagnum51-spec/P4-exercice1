@@ -5,7 +5,7 @@
     <div class="signup-container">
         <div class="signup-details">
             <h1>Connexion</h1>
-    <form action="index.php?action=register" method="POST" class="signup-form">     
+    <form action="index.php?action=signin" method="POST" class="signup-form">     
         
                <div class="form-group">
             <label for="email">Adresse email</label>
@@ -20,7 +20,7 @@
         <button type="submit" class="btn-submit">Connexion</button>
         
     </form>
-    <p>Déjà inscrit ? <a href="index.php?action=signIn"> Connectez-vous </p>
+    
         
         </div>
         <div class="signup-picture">

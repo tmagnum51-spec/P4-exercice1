@@ -22,6 +22,17 @@ public function countBooksByUser(int $id) : int
 
     return (int)$count;
 }
+public function getUserByEmail($login)
+{
+    
+    $db= DBConnect::getPDO();
+    $sql = $db->prepare("SELECT * FROM users WHERE email = :email");
+    $sql->execute(['email'=>$login]);
+    $user= $sql->fetch();
+
+        return $user ? new User($user):null;
+}
+
 }
 
 

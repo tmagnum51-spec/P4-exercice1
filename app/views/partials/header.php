@@ -29,7 +29,7 @@
         <section class="nav-group-right">
             <nav>    
                     <a href="index.php?action=showMessages&id=2">Messagerie</a>
-                    <a href="index.php?action=showUserAccount">Mon compte</a>
+                    <a href="index.php?action=showAccount">Mon compte</a>
                     <a href="index.php?action=signup">Connexion</a>
             </nav>
         </section>

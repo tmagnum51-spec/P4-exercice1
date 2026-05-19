@@ -71,7 +71,12 @@
                                 <td><?= htmlspecialchars($book->getTitle()) ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor()) ?></td>
                                 <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 160 ? substr($book->getDescription(), 0, 160) . '...' : $book->getDescription()) ?></td> 
-                                <td><?= htmlspecialchars($book->getStatus()) ?></td>
+                                <td><?php 
+                                        $status = $book->getStatus();
+                                        // On nettoie et on met en minuscule pour comparer facilement
+                                        $statusClass = ($status === 'disponible') ? 'badge-available' : 'badge-unavailable';
+                                        ?>
+                                        <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($status) ?></span></td>
                                 <td>
                                     <a href="index.php?action=editBook&id=<?= $book->getId() ?>">Éditer</a>
                                     <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>

@@ -1124,6 +1124,28 @@ align-items: center;
     line-height: 1.4;       /* Optionnel : rend la lecture plus agréable sur plusieurs lignes */
     text-align: start;
 }
+/* Style de base pour le badge (effet pilule) */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    color: #ffffff; 
+     
+}
+
+/* Version : Disponible (Vert doux pour que ça reste lisible) */
+.badge-available {
+    background-color: rgba(109, 197, 161, 1); /* Fond vert pastel */
+    color: #ffffff;            /* Texte vert foncé pour le contraste */
+}
+
+/* Version : Non disponible (Rouge doux) */
+.badge-unavailable {
+    background-color: rgba(197, 109, 109, 1); /* Fond rouge pastel */
+    color: #ffffff;            /* Texte rouge foncé */
+}
 /* 1. On force la section globale à prendre toute la largeur */
 .account-bookCollection {
     width: 100%;
