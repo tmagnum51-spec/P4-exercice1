@@ -8,6 +8,7 @@
             <article class="text-card profile-summary-public"> 
                 <div class="avatar-container-public">
                     <img src="public/assets/img/<?= $userAccount->getPicture() ?>" alt="Photo de profil">
+                    
                 </div>
                 <div class="profile-container-public">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>

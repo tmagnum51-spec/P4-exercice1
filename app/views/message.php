@@ -19,6 +19,12 @@
     </div>
 </div>
 
-
+<style>
+    /* Petit style rapide pour vérifier que ça s'affiche bien */
+    .messages-container { max-width: 600px; margin: 20px auto; font-family: 'Inter', sans-serif; }
+    .message-item { background: #fff; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px; }
+    .message-date { font-size: 0.8em; color: #999; margin-left: 10px; }
+    .message-text { margin-top: 5px; color: #333; }
+</style>
 
 <?php require_once 'app/views/partials/footer.php'; ?>

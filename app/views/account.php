@@ -7,7 +7,8 @@
             <!-- Carte Gauche : Résumé Profil -->
             <article class="text-card profile-summary"> 
                 <div class="avatar-container">
-                    <img src="public/assets/img/<?= $userAccount->getPicture() ?>" alt="Photo de profil">
+                    <img src="public/assets/img/<?= $userAccount->getPicture() ?>" alt="Photo">
+                    <p> modifier</p> 
                 </div>
                 <div class="profile-container">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>

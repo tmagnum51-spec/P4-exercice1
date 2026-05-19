@@ -18,7 +18,7 @@ public function countBooksByUser(int $id) : int
     $db= DBConnect::getPDO();
     $sql = $db->prepare("SELECT COUNT(*) FROM books WHERE fk_Id_User = :id");
     $sql->execute(['id' => $id]);
-    $count = $sql->fetchcolumn();
+    $count = $sql->fetchColumn();
 
     return (int)$count;
 }
@@ -47,6 +47,19 @@ public function createUser($pseudo, $email, $password):?User
         return $user ? new User($user):null;
 
 }
+public function modifyUser($id, $pseudo, $email, $password):?User
+{ 
+    $db= DBConnect::getPDO();
+    $sql= $db->prepare("UPDATE `users` SET `pseudo`=:pseudo, `email`=:email, `password`=:password WHERE user_id=:id");
+    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password, 'id'=>$id]);
+    $sql=$db->prepare("SELECT * FROM users WHERE `user_id` = :id");
+    $sql->execute(['id'=>$id]);
+    $updatedUser=$sql->fetch();
+
+        return $updatedUser ? new User($updatedUser):null;
+}
+
+
 
 }
 

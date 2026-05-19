@@ -56,6 +56,10 @@ switch ($action) {
     case 'signin':
         $accountController->connectUser();
         break;
+    
+        case 'updateProfile':
+        $accountController->modifyAccount();
+        break;    
 
 
 

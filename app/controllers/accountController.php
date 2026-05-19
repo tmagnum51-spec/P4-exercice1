@@ -154,6 +154,45 @@ class AccountController
         }
 
     }
+    public function modifyAccount(){
+        
+        // 1. On vérifie que les champs ne sont pas vides 
+        if (!empty($_POST['pseudo']) &&  !empty($_POST['email']) && !empty($_POST['password'])) 
+            {
+            // On récupère l'ID de l'utilisateur connecté en session
+            $id = (int)$_SESSION['user']['id'];
 
+            // On récupère les données propres
+            $pseudo=trim($_POST['pseudo']);
+            $email = trim($_POST['email']);
+            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+
+            $userManager = new UserManager();
+            $newUser = $userManager->modifyUser($id, $pseudo, $email, $password);
+
+                if ($newUser) {
+                $_SESSION['user'] = [
+                        'id'           => $newUser->getID(), 
+                        'email'        => $newUser->getEmail(), 
+                        'pseudo'       => $newUser->getPseudo(),
+                        'dateCreation' => $newUser->getDateCreation(),
+                        'picture'      => $newUser->getPicture()
+                    ];
+
+
+                header('Location: index.php?action=showAccount');
+                exit();
+                }
+        else 
+        {
+            echo "Une erreur est survenue lors de la modification du compte.";  
+        }
+    }
+    else 
+        {
+            echo "Tous les champs doivent être remplis";
+        }
+
+    }
     
 } // Fin de la classe AccountController
