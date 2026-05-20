@@ -32,6 +32,11 @@ switch ($action) {
 
     $bookController->editBook();
     break;
+
+    case 'deleteBook':
+
+    $bookController->deleteBook();
+    break;
         
         
     case 'showAllBooks':

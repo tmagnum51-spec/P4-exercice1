@@ -96,5 +96,17 @@ public function getAllBooksbyUser(int $id): array
 
         return (int)$count;
     }
+    public function deleteBookById(int $id)
+    {
+        $db = DBConnect::getPDO();
+        $request= $db->prepare("DELETE FROM `books` WHERE id = :id");
+        $request->execute(['id'=>$id]);
+        
+         
+
+
+
+
+    }
 }
  

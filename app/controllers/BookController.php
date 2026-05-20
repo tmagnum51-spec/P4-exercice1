@@ -80,4 +80,18 @@ $book= $bookManager->getBookById($id);
         echo "Erreur : aucun livre n'a été trouvé.";
     }
 }
+public function deleteBook(){
+    //recupération de l'id du livre
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+    //appel au manager
+    $bookManager = new BookManager();
+    //stockage du resultat
+    $book= $bookManager->deleteBookById($id);
+       
+        header('Location:index.php?action=showAccount');
+    exit;
+    }
+
+
 }
