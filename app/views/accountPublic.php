@@ -50,7 +50,7 @@
                                 </td>
                                 <td><?= htmlspecialchars($book->getTitle()) ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor()) ?></td>
-                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 260 ? substr($book->getDescription(), 0, 260) . '...' : $book->getDescription()) ?></td> 
+                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 90 ? substr($book->getDescription(), 0, 90) . '...' : $book->getDescription()) ?></td> 
                                 
                             </tr>
                         <?php endforeach; ?> 

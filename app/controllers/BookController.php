@@ -88,6 +88,9 @@ public function deleteBook(){
     $bookManager = new BookManager();
     //stockage du resultat
     $book= $bookManager->deleteBookById($id);
+
+    echo "livre supprimé";
+
        
         header('Location:index.php?action=showAccount');
     exit;

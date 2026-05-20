@@ -1,5 +1,6 @@
 body {
 background-color: rgba(245, 243, 239, 1);
+
 }
 
 :root {
@@ -505,7 +506,7 @@ font-family: 'Inter', sans-serif;
 }
 .book-details {
     flex: 1; /* Prend l'autre 50% */
-    padding: 50px;
+    padding: 80px;
     background-color: rgba(250, 249, 247, 1);
 }
 
@@ -656,7 +657,7 @@ font-family: 'Inter', sans-serif;
     color: #00AC66;
 }
 /* 🟢 Le grand conteneur qui peint TOUTE la page en beige clair */
-.allBooks-page-container {
+.allBooks-page .container {
     width: 100%;
     background-color: rgba(250, 249, 247, 1); /* Ton beige clair */
     padding: 40px 0;
@@ -910,7 +911,7 @@ align-items: center;
     margin: 40px 0;
     flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
     min-height: 220px;
-    background-color:rgba(245, 243, 239, 1);
+    background-color:rgba(250, 249, 247, 1);
     align-items: stretch !important;
     
 }
@@ -958,6 +959,11 @@ align-items: center;
 .editBook-container a
 {
     color: rgba(166, 166, 166, 1);
+}
+.editBook-container .book-grid-text
+{
+background-color: rgba(250, 249, 247, 1);
+
 }
 .edit-book-picture-container
 {
@@ -1008,7 +1014,7 @@ color: rgba(166, 166, 166, 1);
 .book-form .form-group input,
 .book-form .form-group textarea,
 .book-form .form-group select {
-    background-color: #f4f4f4; /* Un gris clair et propre */
+    background-color: rgba(237, 242, 246, 1); /* Un gris clair et propre */
     border: 1px solid #e0e0e0; /* Une bordure grise très fine */
     border-radius: 6px;       /* Des angles légèrement arrondis */
     padding: 12px 15px;       /* De l'espace à l'intérieur pour que le texte respire */
@@ -1091,7 +1097,17 @@ color: rgba(166, 166, 166, 1);
 
 }
 /*--------------------PUBLIC ACCOUNT------------------------*/
+.page-content-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    
+    /* 🚀 Magique : il prend toute la hauteur de l'écran moins l'espace du header/footer */
+    min-height: calc(100vh - 200px); /* Ajuste les px selon la hauteur de tes partials */
+}
+
 .account-main-container-public {
+    min-height: 80vh;
     width: 100%;
     max-width: 1400px;
     min-width: 1200;
@@ -1100,6 +1116,7 @@ color: rgba(166, 166, 166, 1);
     flex-direction: row;
     gap: 30px;
     align-items: flex-start;
+    
 
 }
 /* Zone du haut : Flexbox pour aligner à 50/50 */
@@ -1139,6 +1156,7 @@ color: rgba(166, 166, 166, 1);
     text-align: center;
     min-height: 100%;
 }
+
 .avatar-container-public, 
 .profile-container-public {
     flex: 1;                /* Force chaque div à occuper exactement 50% de la hauteur */
@@ -1228,6 +1246,21 @@ background-color: rgba(237, 242, 246, 1);
     margin: 0 auto;          /* Centre l'image s'il y a de l'espace */
     border-radius: 4px;      /* Un petit arrondi sur la couverture, c'est toujours plus sympa */
 }
+/* 2. On configure la cellule de description */
+.text-card-table-public .cell-description {
+    /* Si tu as 4 colonnes et que tu les veux toutes de la même taille : */
+    width: 25%; /* 🚀 Ajuste le % selon le nombre total de tes colonnes (ex: 20% pour 5 colonnes) */
+    
+    /* On gère l'espace interne pour que le texte ne touche pas le bord droit */
+    padding-right: 40px; 
+    padding-left: 10px;  /* Optionnel : petit espace à gauche aussi */
+    
+    box-sizing: border-box;
+
+    /* Optionnel sécurité : si le texte est vraiment trop long, on évite qu'il dépasse */
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+}
 /*------------------------------ACCOUNT-------------------*/
 .account-main-container {
     width: 90%;
@@ -1241,12 +1274,23 @@ background-color: rgba(237, 242, 246, 1);
 .account-container {
     width: 100%;
 }
-
-.books-grid-text {
+.account-form
+{
+    max-width: 322px; /* 🚀 Force le formulaire à rétrécir (ajuste à 500px si tu veux encore plus petit) */
+    width: 100%;       /* Permet de rester responsive sur mobile */
     display: flex;
-    gap: 25px;
-    align-items: stretch; /* Même hauteur pour les deux cartes */
-    background-color: rgb(250, 249, 247);
+    flex-direction: column;
+    gap: 20px;         /* Espace vertical entre chaque bloc Label + Champ */
+
+}
+/* 1. On cible UNIQUELEMENT le .books-grid-text de la page compte */
+.account-main-container .books-grid-text {
+    display: flex;
+    flex-direction: row;     /* Aligne tes deux cartes côte à côte */
+    justify-content: center; /* Centre les deux cartes globalement */
+    gap: 30px;               /* Espace entre les deux cartes */
+    width: 100%;
+    margin-bottom: 40px;     /* Espace avant le tableau du bas */
 }
 
 /* Vos cartes génériques */
@@ -1258,6 +1302,51 @@ background-color: rgba(237, 242, 246, 1);
     flex: 1; /* Force la répartition 50% / 50% */
     display: flex;
     flex-direction: column;
+}
+/* carte de droite dans account*/
+.profile-form-card
+{
+    flex: 1;                 
+    background: #ffffff;
+    padding: 40px;           
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    /* 🚀 On centre tout le contenu à l'intérieur de cette carte */
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Centre le formulaire au milieu de la carte */
+    justify-content: center; 
+}
+.profile-form-card label
+{
+    color: rgba(166, 166, 166, 1);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;            /* Optionnel : ajuste la taille si besoin */
+    margin-bottom: 8px;
+}
+.profile-form-card h1
+{
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    width: 100%;
+    max-width: 320px; 
+    text-align: left; /* Aligne le texte à gauche de cette zone */
+    
+    margin-bottom: 30px; /* Ajoute un petit espace sympa avant le premier champ */
+
+}
+/* 4. On garde les labels alignés à gauche pour que ce soit propre */
+.account-form .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;        
+    width: 100%;
+    color: rgba(166, 166, 166, 1);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;            /* Optionnel : ajuste la taille si besoin */
+    margin-bottom: 8px;
 }
 #image-input {
     display: none;
@@ -1367,10 +1456,14 @@ background-color: rgba(237, 242, 246, 1);
 }
 .cell-description {
     max-width: 200px;       /* Le texte fera max 200px de large avant de wrapper */
+    width: 25%;
     word-wrap: break-word;  /* Force les mots ultra-longs à se couper si besoin */
     word-break: break-word; /* Sécurité pour éviter que ça dépasse du tableau */
+    box-sizing: border-box;
     line-height: 1.4;       /* Optionnel : rend la lecture plus agréable sur plusieurs lignes */
     text-align: start;
+    padding-right: 50px; 
+    padding-left: 50px;  /* Optionnel : petit espace à gauche aussi */
 }
 /* Style de base pour le badge (effet pilule) */
 .status-badge {

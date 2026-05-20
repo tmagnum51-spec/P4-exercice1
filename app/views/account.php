@@ -19,7 +19,8 @@
             </article>
 
             <!-- Carte Droite : Formulaire de Modification -->
-            <article class="text-card profile-form-card"> 
+            <article class="text-card profile-form-card">
+                <h1>Vos informations personnelles</h1> 
                 <form action="index.php?action=updateProfile" method="POST" class="account-form">
                     
                     <div class="form-group">
@@ -37,7 +38,7 @@
                         <input type="password" id="password" name="password" placeholder="••••••••" required>
                     </div>
 
-                    <button type="submit" class="btn-submit">Enregistrer les modifications</button>
+                    <button type="submit" class="btn-discover">Enregistrer</button>
                 </form>
             </article>
 
@@ -71,7 +72,7 @@
                                 </td>
                                 <td><?= htmlspecialchars($book->getTitle()) ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor()) ?></td>
-                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 360 ? substr($book->getDescription(), 0, 360) . '...' : $book->getDescription()) ?></td> 
+                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 90 ? substr($book->getDescription(), 0, 90) . '...' : $book->getDescription()) ?></td> 
                                 <td><?php 
                                         $status = $book->getStatus();
                                         // On nettoie et on met en minuscule pour comparer facilement
