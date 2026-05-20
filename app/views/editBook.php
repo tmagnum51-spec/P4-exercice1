@@ -11,9 +11,12 @@
                 <div class="edit-book-picture-container">
                     <p>Photo</p>
                     <img src="public/assets/img/<?=$book->getCoverPicture()?>">
-                    <span>modifier la photo</span>
+                        <label for="book-file" style="cursor: pointer; text-decoration: underline;">
+                            modifier la photo
+                        </label>
+                <input type="file" id="book-file" name="book_file" form="edit-book-form" accept="image/png, image/jpeg" style="display: none;">
                 </div>   
-                <form action="index.php?action=editBook&id=<?= $book->getId() ?>" method="POST" class="book-form">
+                <form action="index.php?action=editBook&id=<?= $book->getId() ?>" method="POST" enctype="multipart/form-data" id="edit-book-form" class="book-form">
                     
                     <div class="form-group">
                         <label for="title">Titre</label>

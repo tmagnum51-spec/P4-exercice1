@@ -8,7 +8,10 @@
             <article class="text-card profile-summary"> 
                 <div class="avatar-container">
                     <img src="public/assets/img/<?= $userAccount->getPicture() ?>" alt="Photo">
-                    <p> modifier</p> 
+                    <label for="userPicture-file" style="cursor: pointer; text-decoration: underline;">
+                    modifier
+                    </label>
+                    <input type="file" id="userPicture-file" name="userPicture_file" form="user-profile-form" accept="image/png, image/jpeg" style="display: none;"> 
                 </div>
                 <div class="profile-container">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
@@ -21,21 +24,21 @@
             <!-- Carte Droite : Formulaire de Modification -->
             <article class="text-card profile-form-card">
                 <h1>Vos informations personnelles</h1> 
-                <form action="index.php?action=updateProfile" method="POST" class="account-form">
+                <form action="index.php?action=updateProfile" method="POST" enctype="multipart/form-data" class="account-form" id="user-profile-form">
                     
                     <div class="form-group">
                         <label for="pseudo">Pseudo</label>
-                        <input type="text" id="pseudo" name="pseudo" placeholder="<?= htmlspecialchars($userAccount->getPseudo()) ?>" required>
+                        <input type="text" id="pseudo" name="pseudo" value="<?= htmlspecialchars($userAccount->getPseudo()) ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Adresse email</label>
-                        <input type="email" id="email" name="email" placeholder="<?= htmlspecialchars($userAccount->getEmail()) ?>" required>
+                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($userAccount->getEmail()) ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        <input type="password" id="password" name="password" value="••••••••" required>
                     </div>
 
                     <button type="submit" class="btn-discover">Enregistrer</button>
