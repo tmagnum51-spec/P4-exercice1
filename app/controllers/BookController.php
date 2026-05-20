@@ -69,17 +69,49 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 //appel au manager
 $bookManager = new BookManager();
 
-//stockage du resultat
-$book= $bookManager->getBookById($id);
+    
+    // 1. On vérifie que les champs ne sont pas vides 
+        if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
 
-// 4. Appel de la vue pour afficher les données
-    if ($book) {
+            $title= $_POST['title'];
+            $author = $_POST['author'];
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+
+            $book = $bookManager->getBookById($id);
+            
+            if ($book){
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setDescription($description);
+            $book->setStatus($status);
+
+            $bookManager->updateBook($id, $title, $author, $description, $status);
+
+            header('Location: index.php?action=showAccount&success=1');
+                exit();
+            }
+            else {
+                echo "Erreur : Impossible de modifier un livre qui n'existe pas.";
+            }
+
+        }
+        else {
+            $book = $bookManager->getBookById($id);
+            if ($book) {
         // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-        require_once 'app/views/editBook.php';
-    } else {
-        echo "Erreur : aucun livre n'a été trouvé.";
-    }
+                require_once 'app/views/editBook.php';
+            } 
+            else {
+                echo "Erreur : aucun livre n'a été modifié.";
+            }
+                   
+            }
 }
+
+
+
+
 public function deleteBook(){
     //recupération de l'id du livre
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

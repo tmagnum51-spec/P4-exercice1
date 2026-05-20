@@ -101,12 +101,20 @@ public function getAllBooksbyUser(int $id): array
         $db = DBConnect::getPDO();
         $request= $db->prepare("DELETE FROM `books` WHERE id = :id");
         $request->execute(['id'=>$id]);
+                       
+
+
+    }
+    public function updateBook($id, $title, $author, $description, $status):?Bool
+    {
+        $db= DBConnect::getPDO();
+        $sql= $db->prepare("UPDATE `books` SET `title`=:title, `author`=:author, `description`=:description,`status`=:status, `id`=:id WHERE id=:id");
+        $updatedBook=$sql->execute(['id'=>$id, 'title'=>$title, 'author'=>$author, 'description'=>$description, 'status'=>$status]);
         
-         
 
-
-
-
+        return $updatedBook; 
+           
+    
     }
 }
  

@@ -81,7 +81,7 @@
                                         <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($status) ?></span></td>
                                 <td>
                                     <a href="index.php?action=editBook&id=<?= $book->getId() ?>">Éditer</a>
-                                    <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>
+                                    <a class="book-delete-link" href="index.php?action=deleteBook&id=<?= $book->getId() ?>" onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?> 

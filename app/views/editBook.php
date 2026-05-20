@@ -13,11 +13,11 @@
                     <img src="public/assets/img/<?=$book->getCoverPicture()?>">
                     <span>modifier la photo</span>
                 </div>   
-                <form action="index.php?action=updateBook" method="POST" class="book-form">
+                <form action="index.php?action=editBook&id=<?= $book->getId() ?>" method="POST" class="book-form">
                     
                     <div class="form-group">
-                        <label for="titre">Titre</label>
-                        <input type="text" id="titre" name="titre" value="<?= htmlspecialchars($book->getTitle()) ?>" required>
+                        <label for="title">Titre</label>
+                        <input type="text" id="title" name="title" value="<?= htmlspecialchars($book->getTitle()) ?>" required>
                     </div>
 
                     <div class="form-group">
@@ -32,11 +32,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="dispo">Disponibilité</label>
+                        <label for="status">Disponibilité</label>
                         <!-- Remplacement de l'input par le vrai menu déroulant <select> -->
-                        <select id="dispo" name="disponibilite" required>
-                            <option value="1" <?= $book->getStatus() == 1 ? 'selected' : '' ?>>Disponible</option>
-                            <option value="0" <?= $book->getStatus() == 0 ? 'selected' : '' ?>>Non dispo.</option>
+                        <select id="status" name="status" required>
+                            <option value="disponible" <?= $book->getStatus() == "disponible" ? 'selected' : '' ?>>Disponible</option>
+                            <option value="non dispo." <?= $book->getStatus() == "non dispo." ? 'selected' : '' ?>>Non dispo.</option>
                            
                         </select>
                     </div> 

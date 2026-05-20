@@ -87,5 +87,15 @@ Class Book extends AbstractEntity
         $this->pseudo = $pseudo;
     }
 
+    public function convertStatus():string{
+    if ($this->getStatus() == 1 ||$this ->getStatus() === "disponible")
+        {
+            return "disponible";
+        }
+        else 
+            {
+                "non dispo.";
+            }
+    }
 
 }

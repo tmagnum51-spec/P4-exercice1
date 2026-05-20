@@ -400,6 +400,7 @@ body {
     flex-direction: row;
     min-height: 100vh; 
     width: 100%;
+    max-width: 1440;
     background-color: rgba(250, 249, 247, 1);
 }
 .signup-form {
@@ -428,9 +429,9 @@ body {
     flex: 1; /* Prend 50% de la largeur */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 60px;
+    padding: 130px;
     box-sizing: border-box;
     color: rgba(166, 166, 166, 1);
         
@@ -479,11 +480,14 @@ font-family: 'Inter', sans-serif;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.2s;
+    background-color: rgba(237, 242, 246, 1)
+    
 }
 
 /* Effet quand l'utilisateur clique dans un champ */
 .form-group input:focus {
     border-color: #00AC66; /* Devient vert au focus */
+    background-color: rgba(245, 243, 239, 1);
 }
 /*-------------------SIGNUP FIN-----------------*/
 /* Style du bouton d'inscription */
@@ -1001,6 +1005,7 @@ color: rgba(166, 166, 166, 1);
     gap: 20px;
     box-sizing: border-box;
     align-items: stretch;
+    
 }
 /* 2. Style des labels */
 .book-form .form-group label {
@@ -1034,8 +1039,8 @@ color: rgba(166, 166, 166, 1);
 .book-form .form-group input:focus,
 .book-form .form-group textarea:focus,
 .book-form .form-group select:focus {
-    background-color: #ededed; /* Le gris devient un poil plus foncé */
-    border-color: #f8cdc0;     /* La bordure prend la couleur rose saumon de ton header ! */
+    background-color: rgba(245, 243, 239, 1); /* Le gris devient un poil plus foncé */
+    border-color: rgba(0, 172, 102, 1);     /* La bordure prend la couleur rose saumon de ton header ! */
 }
 
 /* Style spécifique pour le textarea pour lui donner une bonne hauteur par défaut */
@@ -1150,7 +1155,7 @@ color: rgba(166, 166, 166, 1);
     display: flex;
     flex-direction: column;
     min-width:350px;           /* À ajuster selon la largeur souhaitée pour ta carte */      /* À ajuster selon la hauteur souhaitée pour ta carte */
-    border: 1px solid #e0e0e0; /* Bordure extérieure optionnelle de la carte */
+    
     border-radius: 8px;     /* Arrondis optionnels pour la carte */
     overflow: hidden;   
     text-align: center;
@@ -1348,6 +1353,22 @@ background-color: rgba(237, 242, 246, 1);
     font-size: 14px;            /* Optionnel : ajuste la taille si besoin */
     margin-bottom: 8px;
 }
+.signup-form .form-group
+{
+     display: flex;
+    flex-direction: column;
+    text-align: left;        
+    width: 100%;
+    color: rgb(255, 255, 255) !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;            /* Optionnel : ajuste la taille si besoin */
+    margin-bottom: 8px;
+}
+
+.signup-form .form-group input
+{
+    background-color: rgb(255, 255, 255);
+}
 #image-input {
     display: none;
 }
@@ -1357,7 +1378,7 @@ background-color: rgba(237, 242, 246, 1);
     flex-direction: column;
     width: 350px;           /* À ajuster selon la largeur souhaitée pour ta carte */
     min-height: 400px;      /* À ajuster selon la hauteur souhaitée pour ta carte */
-    border: 1px solid #e0e0e0; /* Bordure extérieure optionnelle de la carte */
+    
     border-radius: 8px;     /* Arrondis optionnels pour la carte */
     overflow: hidden;   
     text-align: center;
@@ -1412,7 +1433,10 @@ background-color: rgba(237, 242, 246, 1);
     overflow: hidden;
     
 }
-
+.book-delete-link
+{
+    color: rgba(203, 45, 45, 1);
+}
 /*-------------------TABLEAU-----------------*/
 .text-card-table {
     font: 'inter', serif;
@@ -1533,18 +1557,8 @@ background-color: rgba(237, 242, 246, 1);
     /* 🎯 Aligne le milieu du logo avec le milieu du texte */
     vertical-align: middle; 
 }
-/* Le conteneur global */
-.chat-box {
-    background-color: #FBF9F6; /* Ton beige clair du site */
-    border: 1px solid #E2E2E2;
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-height: 500px;
-    overflow-y: auto; /* Pour avoir un scroll si la discussion est longue */
-}---------------------
+
+---------------------
 /* MESSAGES*/
 ----------------------
 /* Chaque bloc de message */
