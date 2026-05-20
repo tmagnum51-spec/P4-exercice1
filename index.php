@@ -28,6 +28,11 @@ switch ($action) {
 
         $bookController->showBook();
         break;
+    case 'editBook':
+
+    $bookController->editBook();
+    break;
+        
         
     case 'showAllBooks':
         $bookController->showAllBooks();

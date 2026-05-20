@@ -61,4 +61,23 @@ $allBooks= $bookmanager->getAllBooks();
 // On charge la vue 
 require_once 'app/views/allBooks.php';
 }
+public function editBook()
+{
+//recupération de l'id du livre
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+//appel au manager
+$bookManager = new BookManager();
+
+//stockage du resultat
+$book= $bookManager->getBookById($id);
+
+// 4. Appel de la vue pour afficher les données
+    if ($book) {
+        // C'est ici que ton fichier CSS "single-book-container" sera utilisé
+        require_once 'app/views/editBook.php';
+    } else {
+        echo "Erreur : aucun livre n'a été trouvé.";
+    }
+}
 }

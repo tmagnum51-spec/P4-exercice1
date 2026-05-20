@@ -930,6 +930,113 @@ align-items: center;
     justify-content: center;
     
 }
+.edit-book-picture-container h1
+{
+    margin-bottom: 0px;
+    font-size: 24px;
+    padding-bottom: 23;    
+}
+.edit-book-picture-container p
+
+{
+    margin: 0px;
+    text-align: left;
+}
+.edit-book-picture-container span
+{
+    margin: 0px;
+    text-align: right;
+    align-items: right;
+}
+.edit-book-picture-container a
+
+{
+    margin: 0px;
+    text-align: right;
+}
+
+.editBook-container a
+{
+    color: rgba(166, 166, 166, 1);
+}
+.edit-book-picture-container
+{
+color: rgba(166, 166, 166, 1);
+}
+.editBook-form-card
+{
+    display: flex !important;   /* On force le mode Flexbox */
+    flex-direction: row !important; /* On force le côte-à-côte horizontal */
+    align-items: flex-start;    /* Garde l'image calée en haut à gauche */
+    gap: 5%;                    /* Laisse 5% d'espace vide au milieu */
+    width: calc(100% - 100px);
+    max-width: 1400px;          /* Largeur maximale de la carte globale */
+    margin: 40px auto;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.edit-book-picture-container {
+    flex: 1;                    /* Prend 1 part */
+    width: 47.5%;               /* Moitié de l'espace (moins la moitié du gap) */
+    box-sizing: border-box;
+}
+.edit-book-picture-container img {
+    width: 100%;
+    max-width: 100%;            /* Interdiction stricte de déborder */
+    height: auto;
+    display: block;             /* Évite les petits pixels blancs sous l'image */
+    border-radius: 8px;
+}
+.book-form {
+    flex: 1;                    /* Prend 1 part égale à l'image */
+    width: 47.5%;               /* L'autre moitié */
+    display: flex;
+    flex-direction: column;     /* Les champs restent empilés verticalement à l'intérieur */
+    gap: 20px;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+/* 2. Style des labels */
+.book-form .form-group label {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(166, 166, 166, 1);
+    font-size: 0.95rem;
+    text-align: left;         /* Sécurité pour le texte du label */
+}
+/* On cible tous les champs de saisie du formulaire */
+.book-form .form-group input,
+.book-form .form-group textarea,
+.book-form .form-group select {
+    background-color: #f4f4f4; /* Un gris clair et propre */
+    border: 1px solid #e0e0e0; /* Une bordure grise très fine */
+    border-radius: 6px;       /* Des angles légèrement arrondis */
+    padding: 12px 15px;       /* De l'espace à l'intérieur pour que le texte respire */
+    color: #333333;           /* La couleur du texte tapé par l'utilisateur */
+    font-family: inherit;      /* Pour que le textarea garde la même police que le reste */
+    outline: none;             /* Enlève la bordure noire par défaut des navigateurs */
+    transition: all 0.3s ease; /* Petit effet fluide quand on clique dessus */
+}
+.book-form .btn-submit
+{
+    align-self: flex-start; /* 🚀 Indique au bouton de ne plus s'étirer et de se caler à gauche */
+    padding: 18px 120px;     /* Donne une forme sympa (plus large que haut) */
+    width: auto;            /* S'adapte au texte */
+    cursor: pointer;
+}
+/* 💡 Petit effet sympa : quand l'utilisateur clique dans un champ (focus) */
+.book-form .form-group input:focus,
+.book-form .form-group textarea:focus,
+.book-form .form-group select:focus {
+    background-color: #ededed; /* Le gris devient un poil plus foncé */
+    border-color: #f8cdc0;     /* La bordure prend la couleur rose saumon de ton header ! */
+}
+
+/* Style spécifique pour le textarea pour lui donner une bonne hauteur par défaut */
+.book-form .form-group textarea {
+    min-height: 120px;
+    resize: vertical;          /* Permet à l'utilisateur de l'agrandir seulement du haut vers le bas */
+}
 .book-card {
     background-color: #ffffff;
     width: 100%;
