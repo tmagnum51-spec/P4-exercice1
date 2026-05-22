@@ -32,11 +32,11 @@ public function getUserByEmail($login)
 
         return $user ? new User($user):null;
 }
-public function createUser($pseudo, $email, $password):?User
+public function createUser($pseudo, $email, $password, $picture):?User
 { 
     $db= DBConnect::getPDO();
-    $sql= $db->prepare("INSERT INTO `users`(`pseudo`, `email`, `password`, `date_creation`) VALUES (:pseudo, :email, :password, NOW())");
-    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password]);
+    $sql= $db->prepare("INSERT INTO `users`(`pseudo`, `email`, `password`,`picture`, `date_creation`) VALUES (:pseudo, :email, :password, :picture, NOW())");
+    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password, 'picture'=>$picture]);
     $lastUser=$db->lastInsertId();
     $sql=$db->prepare("SELECT * FROM users WHERE user_id = :lastUser");
     $sql->execute(['lastUser'=>$lastUser]);
@@ -47,11 +47,11 @@ public function createUser($pseudo, $email, $password):?User
         return $user ? new User($user):null;
 
 }
-public function modifyUser($id, $pseudo, $email, $password):?User
+public function modifyUser($id, $pseudo, $email, $password, $picture):?User
 { 
     $db= DBConnect::getPDO();
-    $sql= $db->prepare("UPDATE `users` SET `pseudo`=:pseudo, `email`=:email, `password`=:password WHERE user_id=:id");
-    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password, 'id'=>$id]);
+    $sql= $db->prepare("UPDATE `users` SET `pseudo`=:pseudo, `email`=:email, `password`=:password, `picture`=:picture WHERE user_id=:id");
+    $sql->execute(['pseudo'=>$pseudo, 'email'=>$email, 'password'=>$password, 'picture'=>$picture, 'id'=>$id]);
     $sql=$db->prepare("SELECT * FROM users WHERE `user_id` = :id");
     $sql->execute(['id'=>$id]);
     $updatedUser=$sql->fetch();

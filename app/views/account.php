@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" value="••••••••" required>
+                        <input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas modifier">
                     </div>
 
                     <button type="submit" class="btn-discover">Enregistrer</button>

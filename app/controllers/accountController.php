@@ -126,9 +126,10 @@ class AccountController
             $pseudo=trim($_POST['pseudo']);
             $email = trim($_POST['email']);
             $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+            $picture='defaultUser.png'; 
 
             $userManager = new UserManager();
-            $newUser = $userManager->createUser($pseudo, $email, $password);
+            $newUser = $userManager->createUser($pseudo, $email, $password, $picture);
             
                 if ($newUser) {
                 $_SESSION['user'] = [
@@ -155,21 +156,53 @@ class AccountController
 
     }
     public function modifyAccount(){
-        
-        // 1. On vérifie que les champs ne sont pas vides 
-        if (!empty($_POST['pseudo']) &&  !empty($_POST['email']) && !empty($_POST['password'])) 
-            {
-            // On récupère l'ID de l'utilisateur connecté en session
+        // On récupère l'ID de l'utilisateur connecté en session
             $id = (int)$_SESSION['user']['id'];
 
+            $userManager= new UserManager();
+
+        // 1. On vérifie que les champs ne sont pas vides 
+        if (!empty($_POST['pseudo']) &&  !empty($_POST['email'])) 
+            {
+            $user= $userManager->getUserById($id);
+                      
             // On récupère les données propres
             $pseudo=trim($_POST['pseudo']);
             $email = trim($_POST['email']);
-            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
-            $userManager = new UserManager();
-            $newUser = $userManager->modifyUser($id, $pseudo, $email, $password);
 
+            if ($user) {
+
+            // --- GESTION DU MOT DE PASSE ---
+            // Si le champ password n'est pas vide, on prend le nouveau et on le hache
+            if (!empty($_POST['password'])) {
+                $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+            } else {
+                // S'il est vide, on récupère le mot de passe actuel déjà présent en BDD
+                $password = $user->getPassword(); 
+            }
+             
+            //On recupère l'image du User
+            $picture = $user->getPicture();
+
+
+            //On recupère l'image si l'utilisateur en a mis une    
+              if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
+            $picture = time() . '_' . $_FILES['picture']['name'];
+
+            move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
+            }
+
+            //On hydrate avec les divers infos
+            $user->setPseudo($pseudo);
+            $user->setEmail($email);
+            $user->setPassword($password);
+            $user->setPicture($picture);
+            
+            //On envoie au manager pour insertion dans la table
+            $newUser = $userManager->modifyUser($id, $pseudo, $email, $password, $picture);
+            }
+            //On met a jour la session avec l'utilisateur modifié    
                 if ($newUser) {
                 $_SESSION['user'] = [
                         'id'           => $newUser->getID(), 
@@ -179,7 +212,7 @@ class AccountController
                         'picture'      => $newUser->getPicture()
                     ];
 
-
+            //On redirige vers la page du compte modifié
                 header('Location: index.php?action=showAccount');
                 exit();
                 }
