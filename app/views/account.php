@@ -11,13 +11,15 @@
                     <label for="userPicture-file" style="cursor: pointer; text-decoration: underline;">
                     modifier
                     </label>
-                    <input type="file" id="userPicture-file" name="userPicture_file" form="user-profile-form" accept="image/png, image/jpeg" style="display: none;"> 
+                    <input type="file" id="userPicture-file" name="picture" form="user-profile-form" accept="image/png, image/jpeg" style="display: none;"> 
                 </div>
                 <div class="profile-container">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
                     <span class="membership-date">Membre depuis le :<br> <?= htmlspecialchars($userAccount->getDateCreation()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
                     <p> <img src=public/assets/img/livresVector.svg style="font-size: 14px;">  <?= $bookCount ?>  livres</p>
+                    <a href="index.php?action=newBook">ajouter un livre</a>
+                    
                 </div>  
             </article>
 

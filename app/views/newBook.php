@@ -4,33 +4,33 @@
     <section class="editBook-container">
         <nav class="breadcrumb">
             <a href="index.php?action=showAccount">← Retour </a>
-        <h1>Modifier les informations</h1>
+        <h1>Ajouter un livre</h1>
         <div class="books-grid-text">
        
             <article class="text-card editBook-form-card"> 
                 <div class="edit-book-picture-container">
                     <p>Photo</p>
-                    <img src="public/assets/img/<?=$book->getCoverPicture()?>">
+                    <img src="public/assets/img/newBook.png">
                         <label for="book-file" style="cursor: pointer; text-decoration: underline;">
                             modifier la photo
                         </label>
                 <input type="file" id="book-file" name="picture" form="edit-book-form" accept="image/png, image/jpeg" style="display: none;">
                 </div>   
-                <form action="index.php?action=editBook&id=<?= $book->getId() ?>" method="POST" enctype="multipart/form-data" id="edit-book-form" class="book-form">
+                <form action="index.php?action=newBook" method="POST" enctype="multipart/form-data" id="edit-book-form" class="book-form">
                     
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input type="text" id="title" name="title" value="<?= htmlspecialchars($book->getTitle()) ?>" required>
+                        <input type="text" id="title" name="title" placeholder="Titre" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Author">autheur</label>
-                        <input type="test" id="author" name="author" value="<?= htmlspecialchars($book->getAuthor()) ?>" required>
+                        <input type="test" id="author" name="author" placeholder="Autheur" required>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Commentaire</label>
-                        <textarea id="description" name="description" required><?= htmlspecialchars($book->getDescription()) ?>
+                        <textarea id="description" name="description" required>
                         </textarea>    
                     </div>
 
@@ -38,8 +38,8 @@
                         <label for="status">Disponibilité</label>
                         <!-- Remplacement de l'input par le vrai menu déroulant <select> -->
                         <select id="status" name="status" required>
-                            <option value="disponible" <?= $book->getStatus() == "disponible" ? 'selected' : '' ?>>Disponible</option>
-                            <option value="non dispo." <?= $book->getStatus() == "non dispo." ? 'selected' : '' ?>>Non dispo.</option>
+                            <option value="disponible" >Disponible</option>
+                            <option value="non dispo." >Non dispo.</option>
                            
                         </select>
                     </div> 

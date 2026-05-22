@@ -105,16 +105,30 @@ public function getAllBooksbyUser(int $id): array
 
 
     }
-    public function updateBook($id, $title, $author, $description, $status):?Bool
+    public function updateBook($id, $title, $author, $description, $status, $picture):?Bool
     {
         $db= DBConnect::getPDO();
-        $sql= $db->prepare("UPDATE `books` SET `title`=:title, `author`=:author, `description`=:description,`status`=:status, `id`=:id WHERE id=:id");
-        $updatedBook=$sql->execute(['id'=>$id, 'title'=>$title, 'author'=>$author, 'description'=>$description, 'status'=>$status]);
+        $sql= $db->prepare("UPDATE `books` SET `title`=:title, `author`=:author, `description`=:description,`status`=:status, `cover_picture`=:picture WHERE id=:id");
+        $updatedBook=$sql->execute(['id'=>$id, 'title'=>$title, 'author'=>$author, 'description'=>$description, 'status'=>$status, 'picture'=>$picture]);
         
 
         return $updatedBook; 
+    }      
+    public function addBook($picture, $title, $author, $description, $status, $userid):?Book
+    {
+        $db= DBConnect::getPDO();
+        $sql= $db->prepare("INSERT INTO `books` (`cover_picture`, `title`, `author`, `description`, `fk_Id_User`, `status`) VALUES (:picture,:title,:author,:description,:userid,:status)");
+        $sql->execute(['picture'=>$picture, 'title'=>$title, 'author'=>$author, 'description'=>$description,'userid'=>$userid, 'status'=>$status]);
+        $lastBook=$db->lastInsertId();
+        $sql=$db->prepare("SELECT * FROM books WHERE id = :lastBook");
+        $sql->execute(['lastBook'=>$lastBook]);
+        $newBook=$sql->fetch();
+
+        return $newBook ? new Book($newBook):null;
+        }
            
     
-    }
+
 }
+
  

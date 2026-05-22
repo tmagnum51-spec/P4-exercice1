@@ -379,20 +379,17 @@ body {
     }
 .latest-books h2 {
     margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 32px; /* 📐 Espace entre le texte du titre et le début du rectangle gris */
+    margin-bottom: 30px; /* 📐 Espace entre le texte du titre et le début du rectangle gris */
 }
 
 .book-cover {
     flex: 1; /* Prend 50% de la largeur */
-    max-width: 100%;  /* Bloque la largeur si elle est trop grande */
-    max-height: 100vh; /* Bloque la hauteur (ici, max la hauteur de l'écran) */
-    height: auto;     /* Recalcule la hauteur proportionnellement */
-    width: auto;
-    object-fit: contain;
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
-    background-size: contain;
+    background-repeat: no-repeat;
+    /* IMPORTANT : si l'image ne s'affiche pas, force une hauteur ici pour tester */
+    min-height: 863px;
+    max-width: 720px; 
 }
 /*------------SIGNUP---------------*/
 
@@ -532,7 +529,7 @@ font-family: 'Inter', sans-serif;
 /* 5. Le badge Propriétaire (Group 12 dans ton Figma) */
 .owner-info {
     display: flex;
-    flex-direction: row;book-cover
+    flex-direction: row;
     align-items: center;
     padding: 6px 17px 6px 6px;
     gap: 12px;

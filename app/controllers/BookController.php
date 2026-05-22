@@ -77,16 +77,29 @@ $bookManager = new BookManager();
             $author = $_POST['author'];
             $description = $_POST['description'];
             $status = $_POST['status'];
+            
 
             $book = $bookManager->getBookById($id);
-            
+
+                                  
             if ($book){
+                
+            $picture=$book->getCoverPicture(); 
+
+                if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
+            $picture = time() . '_' . $_FILES['picture']['name'];
+
+            move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
+            }
+
+
             $book->setTitle($title);
             $book->setAuthor($author);
             $book->setDescription($description);
             $book->setStatus($status);
+            $book->setCoverPicture($picture);
 
-            $bookManager->updateBook($id, $title, $author, $description, $status);
+            $bookManager->updateBook($id, $title, $author, $description, $status, $picture);
 
             header('Location: index.php?action=showAccount&success=1');
                 exit();
@@ -110,7 +123,51 @@ $bookManager = new BookManager();
 }
 
 
+public function newBook()
+{      
+    
+    // 1. On vérifie que les champs ne sont pas vides 
+        if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
 
+            $title= $_POST['title'];
+            $author = $_POST['author'];
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+            $picture ='livresVector.svg';
+
+            if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
+            $picture = time() . '_' . $_FILES['picture']['name'];
+
+            move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
+            }
+
+            //On récupère l'id du user de la session 
+            $userid = (int)$_SESSION['user']['id'];
+
+            $bookManager= new BookManager();
+            $newBook= $bookManager->addBook($picture, $title, $author, $description, $status, $userid);
+
+            
+            if ($newBook){
+
+                $newBookId = $newBook->getId();
+
+            header("Location: index.php?action=editBook&id=$newBookId");
+            exit();
+
+            
+            }
+                else {
+                    echo "aucun livre n'a pu être créé";
+                    }
+                
+
+        }    
+        require_once 'app/views/newBook.php';
+            
+                   
+        
+}
 
 public function deleteBook(){
     //recupération de l'id du livre
