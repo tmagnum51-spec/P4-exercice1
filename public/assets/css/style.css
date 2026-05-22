@@ -462,6 +462,7 @@ font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column; /* Aligne le label au-dessus de l'input */
     margin-bottom: 24px;
+    padding-bottom: 32px;
 }
 
 /* Style des étiquettes (Labels) */
@@ -470,6 +471,7 @@ font-family: 'Inter', sans-serif;
     font-weight: 500;
     color: #292929;
     margin-bottom: 8px;
+    color: rgba(166, 166, 166, 1);
 }
 
 /* Style des champs de saisie (Inputs) */
