@@ -34,6 +34,9 @@ switch ($action) {
     break;
 
     case 'deleteBook':
+    
+    $bookController->deleteBook();
+    break;
         
     case 'newBook':
 
@@ -75,7 +78,27 @@ switch ($action) {
         case 'updateProfile':
         $accountController->modifyAccount();
         break;    
+    
+     case 'showUsers':
+    // Cette action affiche la messagerie de base depuis le header
+    $messageController->showUsers(); 
+    break;
 
+    case 'showMessages':
+    // affiche la discussion avec le focus (gauche + historique à droite)
+    
+    $messageController->showUserDiscussion(); 
+    break;
+
+    case 'initiateDiscussion':
+    // L'action de clic depuis le profil public
+    $messageController->initiateDiscussion();
+    break;
+
+     case 'sendMessage':
+    // L'action de clic depuis le profil public
+    $messageController->sendMessage();
+    break;
 
 
 }

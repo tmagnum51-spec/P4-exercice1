@@ -173,15 +173,16 @@ public function deleteBook(){
     //recupération de l'id du livre
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
+    
     //appel au manager
     $bookManager = new BookManager();
     //stockage du resultat
     $book= $bookManager->deleteBookById($id);
 
-    echo "livre supprimé";
+    //echo "livre supprimé";
 
        
-        header('Location:index.php?action=showAccount');
+        header('Location: index.php?action=showAccount');
     exit;
     }
 

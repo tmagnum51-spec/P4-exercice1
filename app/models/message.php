@@ -1,8 +1,8 @@
 <?php
 class Message extends AbstractEntity
 {
-    private int $sender_Id;
-    private int $recipient_Id;
+    private ?int $senderId;
+    private ?int $recipientId;
     private string $messageText;
     private string $pseudo;
     private DateTime $messageDate;
@@ -36,7 +36,7 @@ class Message extends AbstractEntity
         $this->recipientId = $recipientId;
 
     }
-    public function setSendertId(?int $senderId):void
+    public function setSenderId(?int $senderId):void
     {
         $this->senderId = $senderId;
 

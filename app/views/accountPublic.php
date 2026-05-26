@@ -15,7 +15,7 @@
                     <span class="membership-date">Membre depuis le :<br> <?= htmlspecialchars($userAccount->getDateCreation()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
                     <p> <img src=public/assets/img/livresVector.svg  style="font-size: 14px;">  <?= $bookCount ?> livres</p>
-                    <button type="submit" class="btn-submit">Message</button>
+                    <a href="index.php?action=initiateDiscussion&id=<?= $userAccount->getID() ?>" class="btn-submit">Message</a>
                 </div>  
             </article>
 

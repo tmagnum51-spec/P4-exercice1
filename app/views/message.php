@@ -1,30 +1,79 @@
 <?php require_once 'app/views/partials/header.php'; ?>
-<div class="messages-container">
-    <h1>Messages de <?= htmlspecialchars($messages[0]->getPseudo()) ?></h1>
 
-    <div class="chat-box">
-        <?php foreach ($messages as $message): ?>
-            <div class="message-item">
-                <div class="message-header">
-                    <strong><?= htmlspecialchars($message->getPseudo()) ?></strong>
-                    <span class="message-date">
-                        <?= $message->getMessageDate()->format('d/m/Y H:i') ?>
-                    </span>
-                </div>
-                <p class="message-text">
-                    <?= nl2br(htmlspecialchars($message->getMessageText())) ?>
-                </p>
-            </div>
-        <?php endforeach; ?>
+<div class="messaging-container" style="display: flex; min-height: 80vh;">
+
+    <div class="sidebar-users" style="width: 30%; border-right: 1px solid #eee; padding: 20px;">
+        <h3>Mes discussions</h3>
+        <?php if (!empty($allUsers)): ?>
+            <?php foreach($allUsers as $item): ?>
+                <?php 
+                    $uId = $item['user']->getID();
+                    $pseudo = $item['user']->getPseudo();
+                    $avatar = !empty($item['user']->getPicture()) ? $item['user']->getPicture() : 'default.png';
+                    $textExtrait = $item['message']->getMessageText();
+                ?>
+                <a href="index.php?action=showMessages&focus=<?= $uId ?>" class="user-link" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; text-decoration: none; color: inherit;">
+                    <img src="public/assets/img/<?= $avatar ?>" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;">
+                    <div class="user-info">
+                        <strong style="display: block;"><?= htmlspecialchars($pseudo) ?></strong>
+                        <span style="font-size: 0.85em; color: #888;"><?= htmlspecialchars(substr($textExtrait, 0, 20)) ?>...</span>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p style="color: #999;">Aucune discussion active.</p>
+        <?php endif; ?>
     </div>
-</div>
 
-<style>
-    /* Petit style rapide pour vérifier que ça s'affiche bien */
-    .messages-container { max-width: 600px; margin: 20px auto; font-family: 'Inter', sans-serif; }
-    .message-item { background: #fff; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px; }
-    .message-date { font-size: 0.8em; color: #999; margin-left: 10px; }
-    .message-text { margin-top: 5px; color: #333; }
-</style>
+    <div class="chat-area" style="width: 70%; padding: 20px; display: flex; flex-direction: column;">
+        <?php if (isset($focusId) && $focusId > 0): ?>
+            
+            <div class="chat-messages-container" style="flex: 1; background: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px; min-height: 350px;">
+                <?php if (!empty($messages) && is_array($messages)): ?>
+                    <?php foreach($messages as $message): ?>
+                        
+                        <?php 
+                            $senderId = $message->getSenderId();
+                            $isMe = ($senderId === $currentUserId); 
+                            
+                            // 🎯 SÉCURITÉ DATE : On vérifie que c'est bien un objet DateTime avant de faire ->format()
+                            $dateObj = $message->getMessageDate();
+                            $heure = '';
+                            if ($dateObj instanceof DateTime) {
+                                $heure = $dateObj->format('H:i');
+                            }
+                        ?>
+
+                        <div class="message-row" style="text-align: <?= $isMe ? 'right' : 'left' ?>; margin-bottom: 15px;">
+                            <div class="message-bubble" style="display: inline-block; background: <?= $isMe ? '#9fd3c7' : '#fff' ?>; color: #333; padding: 12px 18px; border-radius: 15px; max-width: 65%; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                                <p style="margin: 0; font-size: 0.95em;"><?= htmlspecialchars($message->getMessageText()) ?></p>
+                                
+                                <?php if (!empty($heure)): ?>
+                                    <span class="message-time" style="display: block; font-size: 0.75em; color: #999; margin-top: 5px; text-align: right;">
+                                        <?= $heure ?>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: #999; text-align: center; margin-top: 100px;">Aucun message dans cette discussion.</p>
+                <?php endif; ?>
+            </div>
+
+            <form action="index.php?action=sendMessage&id=<?= $focusId ?>" method="POST" class="chat-form" style="display: flex; gap: 10px;">
+                <input type="text" name="message_text" placeholder="Votre message..." autofocus required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                <button type="submit" style="padding: 12px 24px; background: #385170; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Envoyer</button>
+            </form>
+
+        <?php else: ?>
+            <div class="no-discussion-selected" style="text-align: center; margin-top: 150px; color: #777;">
+                <h3 style="color: #385170;">Bienvenue dans votre messagerie</h3>
+                <p>Sélectionnez un contact dans la liste de gauche pour afficher l'historique et démarrer une discussion.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+
+</div>
 
 <?php require_once 'app/views/partials/footer.php'; ?>
