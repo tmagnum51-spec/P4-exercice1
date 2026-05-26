@@ -1069,7 +1069,7 @@ color: rgba(166, 166, 166, 1);
     object-fit: cover;
 }
 .book-card-content h3 {
-    padding: 5px; /* la marge pour le titre, l'auteur, etc. */
+    padding: 14px; /* la marge pour le titre, l'auteur, etc. */
     display: flex;
     flex-direction: column;
     gap: 0px; /* Espace entre le titre et l'auteur */
@@ -1090,7 +1090,7 @@ color: rgba(166, 166, 166, 1);
     font-size: 14px;
 }
 .book-card-content-owner {
-    padding: 0px; /* Voici ta marge pour le titre, l'auteur, etc. */
+    padding: 14px; /* Voici ta marge pour le titre, l'auteur, etc. */
     display: flex;
     flex-direction: column;
     gap: 5px; /* Espace entre le titre et l'auteur */
@@ -1621,19 +1621,4 @@ background-color: rgba(237, 242, 246, 1);
     solid #eee; 
     padding: 20px;
 
-}
-.messaging-container
-{
- display: flex; 
- min-height: 80vh;  
-}
-
-.user-link
-{
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    margin-bottom: 20px; 
-    text-decoration: none; 
-    color: inherit;
 }

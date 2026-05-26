@@ -45,7 +45,7 @@
                         ?>
 
                         <div class="message-row" style="text-align: <?= $isMe ? 'right' : 'left' ?>; margin-bottom: 15px;">
-                            <div class="message-bubble" style="display: inline-block; background: <?= $isMe ? '#9fd3c7' : '#fff' ?>; color: #333; padding: 12px 18px; border-radius: 15px; max-width: 65%; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                            <div class="message-bubble" style="display: inline-block; background: <?= $isMe ? '#rgba(166, 166, 166, 1)' : 'rgb(255, 255, 255)' ?>; color: #333; padding: 12px 18px; border-radius: 15px; max-width: 65%; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                                 <p style="margin: 0; font-size: 0.95em;"><?= htmlspecialchars($message->getMessageText()) ?></p>
                                 
                                 <?php if (!empty($heure)): ?>
@@ -62,8 +62,8 @@
             </div>
 
             <form action="index.php?action=sendMessage&id=<?= $focusId ?>" method="POST" class="chat-form" style="display: flex; gap: 10px;">
-                <input type="text" name="message_text" placeholder="Votre message..." autofocus required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
-                <button type="submit" style="padding: 12px 24px; background: #385170; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Envoyer</button>
+                <input type="text" name="message_text" placeholder="Votre message..." autofocus required style="flex: 1; padding: 12px; border: none; solid #rgba(0, 172, 102, 1); border-radius: 6px;">
+                <button type="submit" style="padding: 12px 24px; background: rgba(0, 172, 102, 1); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Envoyer</button>
             </form>
 
         <?php else: ?>
