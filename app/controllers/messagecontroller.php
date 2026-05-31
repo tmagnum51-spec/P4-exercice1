@@ -1,6 +1,7 @@
 <?php
+require_once 'Controller.php';
 
-class MessageController
+class MessageController extends Controller
 {
     public function sendMessage()
     {
@@ -20,7 +21,26 @@ class MessageController
     exit();
     }
 
+public function getCount()
+{
+     if (!isset($_SESSION['user'])) {
+        header('Location: index.php?action=signin');
+        exit();
+    }
+        //recupération de l'id du user
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    $currentUserId=$_SESSION['user']['id'];
 
+    $messageManager = new MessageManager(); 
+    $unreadCount = $messageManager->getUnreadCount($currentUserId);
+    
+    // 4. On RENVOIE le chiffre pour qu'il soit utilisable ailleurs
+    return $unreadCount;
+
+    
+
+   
+}
 
     
 
@@ -31,6 +51,10 @@ public function showUsers()
         header('Location: index.php?action=signin');
         exit();
     }
+
+    $unreadCount = $this->getCount();
+
+
     $currentUserId=(int)$_SESSION['user']['id'];
     $messageManager= new MessageManager;
     $allUsers= $messageManager->getAllUsers($currentUserId);
@@ -38,8 +62,8 @@ public function showUsers()
     $focusId = 0;   // Pas de discussion sélectionnée
     $messages = []; // Aucun message à charger à droite
     
-    require_once 'app/views/message.php';
-
+    $this->render('message',['allUsers'=>$allUsers, 'focusId'=>$focusId, 'messages'=>$messages]);
+    
     }
 
 
@@ -60,7 +84,9 @@ public function showUsers()
 
     $messages = $messageManager->getDiscussionByUser($currentUserId, $focusId);
 
-    require_once 'app/views/message.php';
+    $this->render('message',['messages'=>$messages, 'currentUserId' => $currentUserId]);
+
+   
 
 
     //stockage du resultat
@@ -94,7 +120,7 @@ public function showUsers()
     $messages= $messageManager->getAllMessagesByID($id, $currentUserId);
     $allUsers = $messageManager->getAllUsers($currentUserId);
 
-    require_once 'app/views/message.php';
+    $this->render('message', ['messages'=>$messages, 'allUsers'=>$allUsers, 'focusId'=>$focusId, 'currentUserId' => $currentUserId]);
 
     }
 
@@ -122,8 +148,9 @@ public function showUsers()
 
     //on charge la partie droite
     $messages = $messageManager->getDiscussionByUser($currentUserId, $focusId);
+
+    $this->render('message',['allUsers'=>$allUsers, 'messages'=>$messages, 'focusId'=>$focusId, 'currentUserId' => $currentUserId]);
     
-    require_once 'app/views/message.php';
         
     }
 }

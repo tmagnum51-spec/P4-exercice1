@@ -1,6 +1,6 @@
 <?php
-
-class BookController
+require_once 'Controller.php';
+class BookController extends Controller
 {
 
 public function showBook()
@@ -17,7 +17,8 @@ $book= $bookManager->getBookById($id);
 // 4. Appel de la vue pour afficher les données
     if ($book) {
         // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-        require_once 'app/views/singleBook.php';
+        $this->render('singleBook', ['book'=>$book]);
+        
     } else {
         echo "Erreur : aucun livre n'a été trouvé.";
     }
@@ -35,7 +36,9 @@ $bookManager = new BookManager();
 $allBooks = $bookManager->searchBookByTitle($search);
 
 // 4. On affiche la vue
-require_once 'app/views/allBooks.php';
+$this->render('allBooks', ['allBooks'=>$allBooks]);
+
+
   
     }
 public function showHome()
@@ -46,8 +49,9 @@ $bookmanager = new BookManager();
 //stockage du resultat
 $lastBooks= $bookmanager->lastBooks();
 
-// On charge la vue 
-require_once 'app/views/ourBooks.php';
+// On charge la vue
+$this->render('ourBooks', ['lastBooks'=>$lastBooks]); 
+
 }
 
 public function showAllBooks()
@@ -59,6 +63,7 @@ $bookmanager = new BookManager();
 $allBooks= $bookmanager->getAllBooks();
 
 // On charge la vue 
-require_once 'app/views/allBooks.php';
+$this->render('allBooks', ['allBooks'=>$allBooks]); 
+
 }
 }

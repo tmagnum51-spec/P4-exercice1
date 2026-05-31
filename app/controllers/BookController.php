@@ -1,6 +1,7 @@
 <?php
+require_once 'Controller.php';
 
-class BookController
+class BookController extends Controller
 {
 
 public function showBook()
@@ -17,7 +18,8 @@ $book= $bookManager->getBookById($id);
 // 4. Appel de la vue pour afficher les données
     if ($book) {
         // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-        require_once 'app/views/singleBook.php';
+        $this->render('singleBook', ['book'=>$book]);
+        
     } else {
         echo "Erreur : aucun livre n'a été trouvé.";
     }
@@ -35,7 +37,8 @@ $bookManager = new BookManager();
 $allBooks = $bookManager->searchBookByTitle($search);
 
 // 4. On affiche la vue
-require_once 'app/views/allBooks.php';
+$this->render('allBooks', ['allBooks'=>$allBooks]);
+
   
     }
 public function showHome()
@@ -47,7 +50,8 @@ $bookmanager = new BookManager();
 $lastBooks= $bookmanager->lastBooks();
 
 // On charge la vue 
-require_once 'app/views/ourBooks.php';
+$this->render('ourBooks', ['lastBooks'=>$lastBooks]);
+
 }
 
 public function showAllBooks()
@@ -59,7 +63,8 @@ $bookmanager = new BookManager();
 $allBooks= $bookmanager->getAllBooks();
 
 // On charge la vue 
-require_once 'app/views/allBooks.php';
+$this->render('allBooks', ['allBooks'=>$allBooks]);
+
 }
 public function editBook()
 {
@@ -113,7 +118,9 @@ $bookManager = new BookManager();
             $book = $bookManager->getBookById($id);
             if ($book) {
         // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-                require_once 'app/views/editBook.php';
+                $this->render('book', ['book'=>$book]);
+        
+                
             } 
             else {
                 echo "Erreur : aucun livre n'a été modifié.";
@@ -159,11 +166,13 @@ public function newBook()
             }
                 else {
                     echo "aucun livre n'a pu être créé";
+                    exit();
                     }
                 
 
         }    
-        require_once 'app/views/newBook.php';
+        $this->render('newBook');
+        
             
                    
         

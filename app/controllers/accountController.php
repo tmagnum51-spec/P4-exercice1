@@ -1,6 +1,7 @@
 <?php
+require_once 'Controller.php';
 
-class AccountController
+class AccountController extends Controller
 {
     /**
      * Affiche la messagerie de l'utilisateur connecté
@@ -22,11 +23,14 @@ class AccountController
 
         // 4. Appel de la vue
         if ($messages) {
-            require_once 'app/views/message.php';
+            $this->render('message', ['messages'=>$messages]);
+           
         } else {
             // Plutôt que de bloquer avec un echo, on peut charger la vue qui affichera "Aucun message"
             $error = "Aucun message n'a été trouvé.";
-            require_once 'app/views/message.php';
+            $this->render('message', ['messages'=>$messages, 'error'=>$error]);
+
+           
         }
     }
 
@@ -52,7 +56,8 @@ class AccountController
         $userBooks = $bookManager->getAllBooksbyUser($userId);
         
         // Envoi à la vue
-        require_once 'app/views/account.php';
+        $this->render('account', ['userAccount'=>$userAccount, 'bookCount'=>$bookCount, 'userBooks'=>$userBooks]);
+        
     }
     public function showPublicUserAccount()
     {
@@ -73,7 +78,8 @@ class AccountController
         $userBooks = $bookManager->getAllBooksbyUser($userId);
         
         // Envoi à la vue
-        require_once 'app/views/accountPublic.php';
+        $this->render('accountPublic', ['userAccount'=>$userAccount, 'bookCount'=>$bookCount, 'userBooks'=>$userBooks]);
+        
     }
 
     /**
@@ -83,6 +89,7 @@ class AccountController
     {
         $login = NULL;
         $password = NULL;
+        $error = NULL;
 
         // 1. On vérifie que les champs ne sont pas vides 
         if (!empty($_POST['email']) && !empty($_POST['password'])) 
@@ -115,7 +122,8 @@ class AccountController
         }
 
         // 3. Quoi qu'il arrive, si on n'est pas redirigé (erreur ou premier chargement), on affiche la vue
-        require_once 'app/views/signin.php';
+        $this->render('signin',['error'=>$error]);
+        
     }
     public function createAccount(){
     // 1. On vérifie que les champs ne sont pas vides 

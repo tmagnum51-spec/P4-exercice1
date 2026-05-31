@@ -28,7 +28,7 @@
         </section>
         <section class="nav-group-right">
             <nav>    
-                    <a href="index.php?action=showUsers">Messagerie</a>
+                    <a href="index.php?action=showUsers">Messagerie <?= $unreadCount ?></a>
                     <a href="index.php?action=showAccount">Mon compte</a>
                     <a href="index.php?action=signup">Connexion</a>
             </nav>

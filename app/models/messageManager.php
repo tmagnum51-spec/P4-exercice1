@@ -1,6 +1,18 @@
 <?php
 class MessageManager
 {
+
+public function getUnreadCount(int $currentUserId):int
+{
+    $db= DBConnect::getPDO();
+    $sql= $db->prepare("SELECT COUNT(*) FROM messages WHERE recipient_id=:currentUserId AND is_read=0");
+    $sql->execute(['currentUserId'=>$currentUserId]);
+    $count= $sql->fetchcolumn();
+
+    return $count;
+
+}
+
 public function getAllUsers(int $currentUserId):array
     {
      $allUsers = [];
@@ -31,9 +43,11 @@ public function getAllUsers(int $currentUserId):array
 
     public function getDiscussionByUser(int $currentUserId, $focusUserId)
  {
-    $userDiscussion = [];
     $db = DBConnect::getPDO();
     
+    
+    $userDiscussion = [];
+       
     // On sélectionne TOUS les messages du duo, du plus ancien au plus récent
     $sql = $db->prepare("SELECT id, sender_id, recipient_id, message_text, message_date 
         FROM messages 
@@ -63,6 +77,14 @@ public function getAllMessagesByID(int $id, int $currentUserId) : ?array
     {   
         $allTheMessages = [];
         $db= DBConnect::getPDO();
+
+        
+    //on met a jour les messages qui vont être récupérés
+    $sqlUpdate=$db->prepare("UPDATE  messages SET is_read=1 WHERE recipient_id=:currentUserId AND sender_id=:focusUserId AND is_read=0");
+    $sqlUpdate->execute(['currentUserId'=>$currentUserId , 'focusUserId'=>$id]);
+
+
+
         $sql = $db->prepare("SELECT m.*, u.picture, u.pseudo FROM messages m INNER JOIN users u ON m.recipient_id = u.user_id AND m.sender_id = :currentUserId OR m.sender_id = u.user_id AND recipient_id = :currentUserId WHERE u.user_id = :id ORDER BY m.message_date ASC");
         $sql->execute(['id' =>$id, 'currentUserId'=>$currentUserId]);
         $allLines = $sql->fetchall();
