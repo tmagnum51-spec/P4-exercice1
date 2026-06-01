@@ -118,7 +118,7 @@ $bookManager = new BookManager();
             $book = $bookManager->getBookById($id);
             if ($book) {
         // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-                $this->render('book', ['book'=>$book]);
+                $this->render('editBook', ['book'=>$book]);
         
                 
             } 

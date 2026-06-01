@@ -2,8 +2,8 @@
 
 <div class="messaging-container" style="display: flex; min-height: 80vh;">
 
-    <div class="sidebar-users" style="width: 30%; border-right: 1px solid #eee; padding: 20px;">
-        <h3>Mes discussions</h3>
+    <div class="sidebar-users" style="width: 20%; border-right: 1px solid #rgba(250, 249, 247, 1); padding: 20px;">
+        <h3>Messagerie</h3>
         <?php if (!empty($allUsers)): ?>
             <?php foreach($allUsers as $item): ?>
                 <?php 
@@ -11,11 +11,15 @@
                     $pseudo = $item['user']->getPseudo();
                     $avatar = !empty($item['user']->getPicture()) ? $item['user']->getPicture() : 'default.png';
                     $textExtrait = $item['message']->getMessageText();
+                    $dateMessage = $item['message']->getMessageDate()->format('H:i');
                 ?>
                 <a href="index.php?action=showMessages&focus=<?= $uId ?>" class="user-link" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; text-decoration: none; color: inherit;">
                     <img src="public/assets/img/<?= $avatar ?>" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;">
                     <div class="user-info">
-                        <strong style="display: block;"><?= htmlspecialchars($pseudo) ?></strong>
+                            <div class="user-name-date" style=display: inline-flex; font-family: inter; font-weight: 400; font-size: 12px;>
+                            <span style="display: inline-flex; padding-right: 50px;  "><?= htmlspecialchars($pseudo)?></span>
+                            <span><?= htmlspecialchars($dateMessage)?></span>
+                            </div>
                         <span style="font-size: 0.85em; color: #888;"><?= htmlspecialchars(substr($textExtrait, 0, 20)) ?>...</span>
                     </div>
                 </a>
@@ -25,10 +29,14 @@
         <?php endif; ?>
     </div>
 
-    <div class="chat-area" style="width: 70%; padding: 20px; display: flex; flex-direction: column;">
+    <div class="chat-area" style="width: 80%; padding: 20px; display: flex; flex-direction: column;">
         <?php if (isset($focusId) && $focusId > 0): ?>
-            
+            <div class="nameAndpicture" style="display:inline-flex; padding-right:20px; align-items: center;">
+            <img src="public/assets/img/<?= $avatar ?>"style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right:20px;">
+            <?= htmlspecialchars($pseudo)?>
+            </div>
             <div class="chat-messages-container" style="flex: 1; background: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px; min-height: 350px;">
+
                 <?php if (!empty($messages) && is_array($messages)): ?>
                     <?php foreach($messages as $message): ?>
                         
