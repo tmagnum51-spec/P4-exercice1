@@ -1,8 +1,9 @@
+<div class="page-messagerie-wrapper">
 <?php require_once 'app/views/partials/header.php'; ?>
 
-<div class="messaging-container" style="display: flex; min-height: 80vh;">
+<div class="messaging-container" >
 
-    <div class="sidebar-users" style="width: 20%; border-right: 1px solid #rgba(250, 249, 247, 1); padding: 20px;">
+    <div class="sidebar-users">
         <h3>Messagerie</h3>
         <?php if (!empty($allUsers)): ?>
             <?php foreach($allUsers as $item): ?>
@@ -13,11 +14,11 @@
                     $textExtrait = $item['message']->getMessageText();
                     $dateMessage = $item['message']->getMessageDate()->format('H:i');
                 ?>
-                <a href="index.php?action=showMessages&focus=<?= $uId ?>" class="user-link" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; text-decoration: none; color: inherit;">
+                <a href="index.php?action=showMessages&focus=<?= $uId ?>" class="user-link <?= ($focusId ===$uId) ? 'active' : '' ?>">
                     <img src="public/assets/img/<?= $avatar ?>" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;">
                     <div class="user-info">
-                            <div class="user-name-date" style=display: inline-flex; font-family: inter; font-weight: 400; font-size: 12px;>
-                            <span style="display: inline-flex; padding-right: 50px;  "><?= htmlspecialchars($pseudo)?></span>
+                            <div class="user-name-date">
+                            <span><?= htmlspecialchars($pseudo)?></span>
                             <span><?= htmlspecialchars($dateMessage)?></span>
                             </div>
                         <span style="font-size: 0.85em; color: #888;"><?= htmlspecialchars(substr($textExtrait, 0, 20)) ?>...</span>
@@ -29,13 +30,13 @@
         <?php endif; ?>
     </div>
 
-    <div class="chat-area" style="width: 80%; padding: 20px; display: flex; flex-direction: column;">
+    <div class="chat-area">
         <?php if (isset($focusId) && $focusId > 0): ?>
-            <div class="nameAndpicture" style="display:inline-flex; padding-right:20px; align-items: center;">
+            <div class="nameAndpicture">
             <img src="public/assets/img/<?= $avatar ?>"style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right:20px;">
             <?= htmlspecialchars($pseudo)?>
             </div>
-            <div class="chat-messages-container" style="flex: 1; background: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px; min-height: 350px;">
+            <div class="chat-messages-container">
 
                 <?php if (!empty($messages) && is_array($messages)): ?>
                     <?php foreach($messages as $message): ?>
@@ -44,7 +45,7 @@
                             $senderId = $message->getSenderId();
                             $isMe = ($senderId === $currentUserId); 
                             
-                            // 🎯 SÉCURITÉ DATE : On vérifie que c'est bien un objet DateTime avant de faire ->format()
+                            // On vérifie que c'est bien un objet DateTime avant de faire ->format()
                             $dateObj = $message->getMessageDate();
                             $heure = '';
                             if ($dateObj instanceof DateTime) {
@@ -52,9 +53,9 @@
                             }
                         ?>
 
-                        <div class="message-row" style="text-align: <?= $isMe ? 'right' : 'left' ?>; margin-bottom: 15px;">
-                            <div class="message-bubble" style="display: inline-block; background: <?= $isMe ? '#rgba(166, 166, 166, 1)' : 'rgb(255, 255, 255)' ?>; color: #333; padding: 12px 18px; border-radius: 15px; max-width: 65%; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                                <p style="margin: 0; font-size: 0.95em;"><?= htmlspecialchars($message->getMessageText()) ?></p>
+                        <div class="message-row <?= $isMe ? 'row-me' : 'row-other' ?>">
+                            <div class="message-bubble <?= $isMe ? 'bubble-me' : 'bubble-other' ?>">
+                                <p><?= htmlspecialchars($message->getMessageText()) ?></p>
                                 
                                 <?php if (!empty($heure)): ?>
                                     <span class="message-time" style="display: block; font-size: 0.75em; color: #999; margin-top: 5px; text-align: right;">
@@ -85,3 +86,4 @@
 </div>
 
 <?php require_once 'app/views/partials/footer.php'; ?>
+</div>

@@ -1,6 +1,6 @@
 
 <?php require_once 'app/views/partials/header.php'; ?>
-<main class="container">
+<main class="sign-container">
  
     <div class="signup-container">
         <div class="signup-details">

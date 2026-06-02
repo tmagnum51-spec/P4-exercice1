@@ -28,8 +28,9 @@
                 <img src="public/assets/img/<?= htmlspecialchars($book->getUserPicture()) ?>" class="owner-avatar" alt="Avatar">
                 <span class="owner-name"><?= nl2br(htmlspecialchars($book->getPseudo())) ?></span>
             </a>
+            
 
-            <button class="cta-button">Envoyer un message</button>
+            <a href="index.php?action=initiateDiscussion&id=<?= $book->getUserId() ?>" class="btn-message">Envoyer un message</a>
         </div>
     </div>
 <?php require_once 'app/views/partials/footer.php'; ?>

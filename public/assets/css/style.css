@@ -1,3 +1,4 @@
+
 body {
 background-color: rgba(245, 243, 239, 1);
 
@@ -32,6 +33,7 @@ body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased; /* Pour un rendu plus net */
     font-weight: 400;
+    
 }
 h1, h2, .logo {
     font-family: 'Playfair Display', serif;
@@ -395,6 +397,13 @@ body {
 
 /* 1. Le conteneur principal signUp */
 
+.sign-container {
+    background-color: rgba(245, 243, 239, 1);
+    max-width: 100%px;
+    margin: 0 auto;
+ 
+}
+
 .signup-container {
     display: flex; /* Pour mettre l'image à gauche et le texte à droite */
     flex-direction: row;
@@ -510,6 +519,31 @@ font-family: 'Inter', sans-serif;
 .btn-submit:hover {
     background-color: #009557; /* Vert un peu plus foncé au survol */
 }
+
+.btn-message {
+ display: block; 
+    width: 100%;    /* Prend 100% de la largeur de .book-details */
+    box-sizing: border-box; /* IMPORTANT : inclut le padding dans la largeur */
+    
+    /* Tes styles */
+    height: 48px;
+    background-color: #00AC66;
+    color: #ffffff !important; 
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 48px; /* Centre verticalement le texte */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.btn-message:hover {
+    background-color: #009557; /* Vert un peu plus foncé au survol */
+}
+
 .book-details {
     flex: 1; /* Prend l'autre 50% */
     padding: 80px;
@@ -582,7 +616,7 @@ font-family: 'Inter', sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
+    padding: 20 0px;
     z-index: 1000;
     position: relative;
     box-sizing: border-box; /* Pour que le padding ne dépasse pas des 100% */
@@ -1570,7 +1604,8 @@ background-color: rgba(237, 242, 246, 1);
 { 
     max-width: 600px; 
     margin: 20px auto; 
-    font-family: 'Inter', sans-serif; 
+    font-family: 'Inter', sans-serif;
+     
 }
 .message-item 
 { 
@@ -1618,13 +1653,20 @@ background-color: rgba(237, 242, 246, 1);
 
 .sidebar-users
 
-{" style="width: 30%; 
-    border-right: 1px 
+{   width: 20%; 
+    border-right: 1px;
+    margin-left:40px 
     solid #eee; 
     padding: 20px;
-
+      
 }
-
+.sidebar-users h3
+{
+    font-weight: 400;
+    font-family: Playfair Display;
+    font-size: 26px;
+    margin-left: 30px;
+}
 /* Ton badge */
 .message-counter {
     display: inline-flex;  /* Change inline-block en inline-flex */
@@ -1670,4 +1712,161 @@ background-color: rgba(237, 242, 246, 1);
 .btn-add-book
 {
 text-decoration :underline;
+}
+/* Ce CSS ne s'appliquera QU'À la page qui possède ce wrapper */
+.page-messagerie-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-messagerie-wrapper main {
+    flex: 1; /* Le bloc de contenu prend tout l'espace */
+}
+
+/* Le footer reste en bas grâce au wrapper */
+.page-messagerie-wrapper .main-footer {
+    flex-shrink: 0;
+}
+.messaging-container
+{
+    display: flex;
+    flex-direction: end; 
+    min-height: 80vh;
+    padding-left: 70px;
+    background-color: rgba(245, 243, 239, 1);
+    min-height: 100vh;
+}
+.sidebar-users
+{
+   width: 350px;
+   border-right: 0px;
+   padding: 0px;
+   overflow-y: auto;
+   background-color:rgba(250, 249, 247, 1); 
+   
+}   
+.user-link {
+    background-color: transparent; /* Ou la même couleur que ta sidebar */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s; /* Pour une transition douce */
+}
+
+/* Le style quand le contact est actif (blanc) */
+.user-link.active {
+    background-color: #ffffff; /* Le blanc que tu voulais */
+    border: 0px solid #e0e0e0; /* Une bordure légère pour le faire ressortir */
+}
+.user-link img
+{
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover;
+}
+.user-info
+{
+    display: flex;
+    flex-direction: column; /* C'est la clé : empile verticalement */
+    flex: 1; /* Prend l'espace restant */
+    min-width: 0; /* Évite que le texte long ne dépasse du conteneur */
+
+}
+.user-name-date
+{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: inter; 
+    font-weight: 400; 
+    font-size: 14px;
+}
+.user-name-date span
+{
+    inline-flex; 
+    padding-right: 50px;
+}
+
+.chat-area
+{
+    width: 80%; 
+    padding: 120px; 
+    display: flex; 
+    flex-direction: column;
+    background-color: rgba(245, 243, 239, 1);
+}
+.nameAndpicture
+{
+    display:inline-flex; 
+    padding-right:20px; 
+    align-items: center;  
+}
+.nameAndpicture img
+{
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-right:20px; 
+}
+.chat-messages-container
+{
+    flex: 1; 
+    background: rgba(245, 243, 239, 1); 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    min-height: 350px;
+}
+.message-row
+{
+    text-align: <?= $isMe ? 'right' : 'left' ?>; 
+    margin-bottom: 15px;
+}
+.row-me {
+    text-align: right;
+}
+
+.row-other {
+    text-align: left;
+}
+.message-bubble {
+    display: inline-block;
+    color: #333;
+    padding: 12px 18px;
+    border-radius: 15px;
+    max-width: 65%;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.message-bubble p {
+    margin: 0; 
+    font-size: 0.95em;
+}
+
+/* On définit les variantes de couleurs ici */
+.bubble-me {
+    background: rgba(237, 242, 246, 1);
+}
+
+.bubble-other {
+    background: rgb(255, 255, 255);
+}
+.message-time
+{
+    display: block; 
+    font-size: 0.75em; 
+    color: #999; 
+    margin-top: 5px; 
+    text-align: right;
 }
