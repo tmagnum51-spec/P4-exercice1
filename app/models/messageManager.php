@@ -17,16 +17,14 @@ public function getAllUsers(int $currentUserId):array
     {
      $allUsers = [];
      $db= DBConnect::getPDO();
-     $sql=$db->prepare("SELECT u.user_id, u.pseudo, u.picture, m.message_text, m.message_date, m.sender_id, m.recipient_id
+     $sql=$db->prepare("
+        SELECT DISTINCT u.user_id, u.pseudo, u.picture
         FROM users u
-        INNER JOIN messages m ON m.id = (
-            SELECT m2.id 
-            FROM messages m2 
-            WHERE (m2.sender_id = :id AND m2.recipient_id = u.user_id)
-               OR (m2.sender_id = u.user_id AND m2.recipient_id = :id)
-            ORDER BY m2.message_date DESC 
-            LIMIT 1)
-        ORDER BY m.message_date DESC");
+        JOIN messages m ON (m.sender_id = u.user_id OR m.recipient_id = u.user_id)
+        WHERE (m.sender_id = :id OR m.recipient_id = :id)
+        AND u.user_id != :id
+        ORDER BY m.message_date DESC
+    ");
      $sql->execute(['id'=>$currentUserId]);
      $alllines= $sql->fetchall();
 
@@ -34,12 +32,27 @@ public function getAllUsers(int $currentUserId):array
 
      foreach($alllines as $line)
         {
-            $allUsers[]= ['user'   => new User($line), 'message'=> new Message($line)];
-            
+            $allUsers[] = [
+            'user'    => new User($line), 
+            'message' => $this->getLastMessage($currentUserId, $line['user_id'])
+        ];
         }
      return $allUsers;
 
     }
+    public function getLastMessage(int $currentUserId, int $targetUserId): Message
+{
+    $db = DBConnect::getPDO();
+    $sql = $db->prepare("SELECT * FROM messages 
+                         WHERE (sender_id = :curr AND recipient_id = :target) 
+                         OR (sender_id = :target AND recipient_id = :curr)
+                         ORDER BY message_date DESC LIMIT 1");
+    
+    $sql->execute(['curr' => $currentUserId, 'target' => $targetUserId]);
+    $line = $sql->fetch();
+    
+    return $line ? new Message($line) : new Message(['message_text' => 'Aucun message']);
+}
 
     public function getDiscussionByUser(int $currentUserId, $focusUserId)
  {

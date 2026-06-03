@@ -82,24 +82,26 @@ public function showUsers()
     //appel au manager
     $messageManager = new MessageManager();
 
+    $allUsers = $messageManager->getAllUsers($currentUserId);
     $messages = $messageManager->getDiscussionByUser($currentUserId, $focusId);
 
-    $this->render('message',['messages'=>$messages, 'currentUserId' => $currentUserId]);
+    $focusedUser = null;
+    foreach ($allUsers as $item) {
+        if ($item['user']->getID() === $focusId) {
+            $focusedUser = $item['user'];
+            break;
+        }
+    }
 
-   
-
-
-    //stockage du resultat
-   // $messages= $messageManager->getAllMessagesById($id);
-
-    // 4. Appel de la vue pour afficher les données
-       // if ($messages) {
-            // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-            
-         //   require_once 'app/views/message.php';
-       // } else {
-       //     require_once 'app/views/message.php';
-       // }
+    $this->render('message', [
+        'allUsers'      => $allUsers,
+        'messages'      => $messages,
+        'focusedUser'   => $focusedUser,
+        'focusId'       => $focusId,
+        'currentUserId' => $currentUserId
+    ]);
+    
+    
     }
     public function showUserDiscussion()
     {
@@ -120,8 +122,21 @@ public function showUsers()
     $messages= $messageManager->getAllMessagesByID($id, $currentUserId);
     $allUsers = $messageManager->getAllUsers($currentUserId);
 
-    $this->render('message', ['messages'=>$messages, 'allUsers'=>$allUsers, 'focusId'=>$focusId, 'currentUserId' => $currentUserId]);
+    $focusedUser = null;
+    foreach ($allUsers as $item) {
+        if ($item['user']->getID() === $focusId) {
+            $focusedUser = $item['user'];
+            break;
+        }
+    }
 
+    $this->render('message', [
+        'allUsers'      => $allUsers,
+        'messages'      => $messages,
+        'focusedUser'   => $focusedUser,
+        'focusId'       => $focusId,
+        'currentUserId' => $currentUserId
+    ]);
     }
 
     public function initiateDiscussion()
