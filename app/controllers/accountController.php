@@ -44,7 +44,7 @@ class AccountController extends Controller
             exit();
         }
 
-        // Corrigé ici : on pioche dans $_SESSION['user']['id'] qui est créée lors du login
+        
         $userId = (int)$_SESSION['user']['id'];
     
         // Appels aux Managers
@@ -67,7 +67,7 @@ class AccountController extends Controller
             exit();
         }
 
-        // Corrigé ici : on pioche dans $_SESSION['user']['id'] qui est créée lors du login
+        
         $userId = (int)($_GET['id'] ?? 0);
     
         // Appels aux Managers
@@ -92,7 +92,7 @@ class AccountController extends Controller
         $password = NULL;
         $error = NULL;
 
-        // 1. On vérifie que les champs ne sont pas vides 
+        // On vérifie que les champs ne sont pas vides 
         if (!empty($_POST['email']) && !empty($_POST['password'])) 
         {
             // On récupère les données propres
@@ -102,7 +102,7 @@ class AccountController extends Controller
             $userManager = new UserManager();
             $realUser = $userManager->getUSerByEmail($login);
 
-            // 2. On vérifie les identifiants
+            // On vérifie les identifiants
             if ($realUser && password_verify($password, $realUser->getPassword())) {
                 $_SESSION['user'] = [
                     'id'           => $realUser->getID(), 
@@ -122,12 +122,12 @@ class AccountController extends Controller
             $error = "Veuillez remplir tous les champs.";
         }
 
-        // 3. Quoi qu'il arrive, si on n'est pas redirigé (erreur ou premier chargement), on affiche la vue
+        // on affiche la vue
         $this->render('signin',['error'=>$error]);
         
     }
     public function createAccount(){
-    // 1. On vérifie que les champs ne sont pas vides 
+    // On vérifie que les champs ne sont pas vides 
         if (!empty($_POST['pseudo']) &&  !empty($_POST['email']) && !empty($_POST['password'])) 
             {
 
@@ -237,4 +237,4 @@ class AccountController extends Controller
 
     }
     
-} // Fin de la classe AccountController
+} 

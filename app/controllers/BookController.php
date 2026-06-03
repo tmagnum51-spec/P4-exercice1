@@ -29,14 +29,14 @@ $book= $bookManager->getBookById($id);
        //recupération de la chaine de caractere de recherche 
 $search = $_GET['query']??"";
 
-// 2. Nettoyage de sécurité basique
+// Nettoyage de sécurité basique
 $search = trim(htmlspecialchars($search));
 
-// 3. Appel au Manager (Modèle) pour récupérer les livres filtrés
+// Appel au Manager (Modèle) pour récupérer les livres filtrés
 $bookManager = new BookManager();
 $allBooks = $bookManager->searchBookByTitle($search);
 
-// 4. On affiche la vue
+// On affiche la vue
 $this->render('allBooks', ['allBooks'=>$allBooks]);
 
   
@@ -75,7 +75,7 @@ $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $bookManager = new BookManager();
 
     
-    // 1. On vérifie que les champs ne sont pas vides 
+    // On vérifie que les champs ne sont pas vides 
         if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
 
             $title= $_POST['title'];
@@ -133,7 +133,7 @@ $bookManager = new BookManager();
 public function newBook()
 {      
     
-    // 1. On vérifie que les champs ne sont pas vides 
+    // On vérifie que les champs ne sont pas vides 
         if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
 
             $title= $_POST['title'];

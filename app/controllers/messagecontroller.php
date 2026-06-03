@@ -34,7 +34,7 @@ public function getCount()
     $messageManager = new MessageManager(); 
     $unreadCount = $messageManager->getUnreadCount($currentUserId);
     
-    // 4. On RENVOIE le chiffre pour qu'il soit utilisable ailleurs
+    // On RENVOIE le chiffre pour qu'il soit utilisable ailleurs
     return $unreadCount;
 
     
@@ -59,8 +59,8 @@ public function showUsers()
     $messageManager= new MessageManager;
     $allUsers= $messageManager->getAllUsers($currentUserId);
 
-    $focusId = 0;   // Pas de discussion sélectionnée
-    $messages = []; // Aucun message à charger à droite
+    $focusId = 0;   
+    $messages = []; 
     
     $this->render('message',['allUsers'=>$allUsers, 'focusId'=>$focusId, 'messages'=>$messages]);
     
@@ -158,7 +158,7 @@ public function showUsers()
     }
     $messageManager = new MessageManager();
 
-    //on charge la partie gauche
+    //on charge la partie gauche 
     $allUsers= $messageManager->getAllUsers($currentUserId);
 
     $focusedUser = null;

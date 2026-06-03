@@ -973,7 +973,7 @@ align-items: center;
     margin: 40px 0;
     flex-wrap: wrap;     /* Permet de passer à la ligne si besoin ↩️ */
     min-height: 220px;
-    background-color:rgba(250, 249, 247, 1);
+    background-color:rgba(245, 243, 239, 1);
     align-items: stretch !important;
     
 }

@@ -14,7 +14,7 @@
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
                     <span class="membership-date">Membre depuis <?= htmlspecialchars($userAccount->getMemberSince()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
-                    <p> <img src=public/assets/img/livresVector.svg  style="font-size: 14px;">  <?= $bookCount ?> livres</p>
+                    <p> <img src=public/assets/img/livresVector.svg  style="font-size: 14px;">  <?= $bookCount . (($bookCount > 1) ? ' livres' : ' livre') ?></p>
                     <a href="index.php?action=initiateDiscussion&id=<?= $userAccount->getID() ?>" class="btn-message">Message</a>
                 </div>  
             </article>
