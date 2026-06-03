@@ -15,8 +15,8 @@ background-color: rgba(245, 243, 239, 1);
 }
 /* --- RAZ des styles de liens par défaut --- */
 a {
-    text-decoration: none; /* Supprime le soulignement */
-    color: inherit;       /* Le lien prend la couleur de son parent (noir/gris) */
+    text-decoration: none; 
+    color: inherit;       
 }
 
 a:visited {
@@ -24,11 +24,11 @@ a:visited {
 }
 
 a:hover {
-    /* Optionnel : tu peux définir un effet au survol ici 
+    /* effet au survol  
        pour que l'utilisateur sache que c'est cliquable */
     color: var(--primary-green); 
 }
-/* 1. La base du site en Inter */
+
 body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased; /* Pour un rendu plus net */
@@ -40,7 +40,7 @@ h1, h2, .logo {
     font-weight: 400;
 }
 
-/* 1. On nettoie le body pour que la page coule naturellement de haut en bas */
+
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -106,9 +106,9 @@ body {
 }
 
 .Intro {
-    flex: 1;                   /* Prend exactement 50% de l'espace disponible */
-    width: 330px;            /* 🛠️ CRUCIAL : La boîte fait EXACTEMENT la taille de ton texte */
-    max-width: 330px;;          /* Empêche le texte de trop s'étaler vers l'image */
+    flex: 1;                   
+    width: 330px;            
+    max-width: 330px;;          
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,10 +116,10 @@ body {
     margin: 0;
     padding: 0;
 }
-/* 2. 🛠️ C'EST ICI QU'ON COUPE : On force le texte à aller à la ligne à 335px */
+
  
 .Intro p {
-    max-width: 335px; /* Le texte ne pourra jamais dépasser cette largeur */
+    max-width: 335px; 
     width: 100%;
     font-family: 'Playfair Display', inter;
     font-weight: 300;
@@ -131,23 +131,23 @@ body {
 .Intro h2 {
     margin-top: 0;
     margin-bottom: 8px;
-    max-width: 335px; /* Le texte ne pourra jamais dépasser cette largeur */
+    max-width: 335px; 
     width: 100%;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-size: 36px;
 }
 
-/* 1. On dit au formulaire de faire exactement la moitié (50%) de tes 335px */
+
 .Intro form {
-    width: 267px; /* 50% de 335px */
+    width: 267px; 
     display: block;
 }
 
-/* 2. Le bouton prend 100% de ce formulaire, son texte ne sera plus jamais coupé */
+
 .Intro .cta-button {
     width: 100%;
-    box-sizing: border-box; /* Sécurité pour que le padding ne déforme pas le bouton */
+    box-sizing: border-box; 
     padding: 22px;
     font-size: 16px;
     font-weight: 600;
@@ -172,8 +172,8 @@ body {
 }
 .intro-picture .author-container {
     display: flex;
-    flex-direction: column; /* ↕️ L'image, puis Hamza en-dessous */
-    align-items: flex-end;   /* 📐 Aligne l'image et le texte bien à droite */
+    flex-direction: column; 
+    align-items: flex-end;   
 }
 .intro-picture p
 {
@@ -183,19 +183,19 @@ body {
     align-self: flex-end;
     text-align: right;
     padding:0px; 
-    margin-top: 0px;    /* 🛠️ Un petit espace propre sous l'image */
+    margin-top: 0px;    
     margin-bottom: 0;
 }
 .intro-picture img {
-    width: 100%;       /* S'adapte à sa colonne */
-    max-width: 500px;  /* 👈 Ajuste ce chiffre pour changer la taille de l'image */
+    width: 100%;       
+    max-width: 500px;  
     height: auto;
     display: block;
     margin: 0;
 }
 .Intro .cta-button {
-    width: 50%;         /* Fait la moitié de la largeur du texte */
-    max-width: 200px;   /* Sécurité visuelle */
+    width: 50%;         
+    max-width: 200px;  
 }
 /* Bouton Vert Principal */
 .cta-button {
@@ -217,7 +217,7 @@ body {
     opacity: 0.9;
 }
 .btn-discover {
-    /* Dimensions exactes de ton design */
+    
     width: 218px;
     height: 63px;
     border-radius: 10px;
@@ -226,7 +226,7 @@ body {
     
     /* Style transparent */
     background-color: transparent;
-    border: 1px solid #00AC66; /* Couleur à ajuster selon ton design */
+    border: 1px solid #00AC66; 
     color: #00AC66;
     
     /* Espacements internes (paddings) */
@@ -263,29 +263,29 @@ body {
     width: 100%;
     max-width: none !important;
     position: relative;
-    margin: 0;               /* On réinitialise les marges pour éviter le décalage */
+    margin: 0;               /
     padding: 0;
-    display: block;          /* On repasse en block standard pour éviter les pièges de flex */
+    display: block;          
     background-color: rgba(245, 243, 239, 1);
 
    
 }
 
 .banner-img {
-    width: 100%;             /* Prend toute la largeur du conteneur */
-    max-width: none;       /* Largeur max pour ne pas qu'elle soit trop immense sur grand écran */
-    height: auto;           /* Hauteur fixe pour l'effet bannière */
-    display: block;          /* Supprime l'espace vide parasite sous l'image */
+    width: 100%;            
+    max-width: none;       
+    height: auto;           
+    display: block;          
     
-    border-radius: 0;        /* Bords droits pour une bannière pleine largeur */
+    border-radius: 0;        /
 }
 .values-container {
     background-color: rgba(245, 243, 239, 1);
-    /* 🌎 FORCE LA SECTION À PRENDRE TOUTE LA LARGEUR DE L'ÉCRAN */
+   
     width: 100% !important;
     max-width: none !important;
     
-    /* 📐 Gère l'espace avec la bannière et le footer */
+    
     margin: 0 !important; 
     padding: 80px 0; 
     box-sizing: border-box;
@@ -294,16 +294,16 @@ body {
 {
     display: flex;
     flex-direction: column;
-    /* On aligne tout le contenu du container à gauche */
+    
     align-items: flex-start; 
     
-    /* On centre la "boîte" elle-même au milieu de l'écran */
+    
     margin: 80px auto; 
     
-    /* On fixe la largeur sur ton texte le plus large (392px) */
+    
     width: 392px; 
     
-    /* On s'assure que le texte ne touche pas les bords sur mobile */
+    
     padding: 0 20px; 
     box-sizing: border-box;
 
@@ -315,7 +315,7 @@ body {
     line-height: 43px;
     color: #292929;
     margin-bottom: 30px;
-    text-align: left; /* Force le titre à gauche */
+    text-align: left; 
 }
 
 .values-text {
@@ -325,16 +325,16 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #292929;
-    text-align: left; /* Force le paragraphe à gauche */
-    margin: 0;        /* Enlève les marges qui pourraient décentrer */
+    text-align: left; 
+    margin: 0;        
 }
 
 .values-signature {
     margin-top: 30px;
     display: flex;
-    flex-direction: row;    /* Met le texte et l'image côte à côte */
+    flex-direction: row;    
     
-    /* 🎯 1. Aligne le haut du texte et le haut de l'image sur la même ligne */
+    
     align-items: flex-start;  
     
     gap: 140px;              
@@ -347,13 +347,13 @@ body {
     color: grey;
     white-space: nowrap;    
     
-    /* 🎯 2. LE RÉGLAGE D'OR : Pousse le texte de descendre pile de 20px sous le haut de l'image */
+    
     margin-top: 20px;    
 }
 
 .signature-img {
     height: auto;           
-    max-height: 60px; /* Ajuste cette hauteur max si ton image de signature est trop grande */
+    max-height: 60px; 
     display: block;
 }
 /* Section Image */
@@ -364,8 +364,8 @@ body {
 }
 /* 1. Le conteneur principal (Single livre) */
 .book-container {
-    display: flex; /* Pour mettre l'image à gauche et le texte à droite */
-    min-height: 100vh; /* Pour que ça prenne toute la hauteur de l'écran */
+    display: flex; 
+    min-height: 100vh; 
 }
 .latest-books {
     background-color: rgb(250, 249, 247);
@@ -374,14 +374,14 @@ body {
     align-items: center;
     /* min-width: 1440; */
     width: 100%;
-    padding-top: 50px;    /* 📐 Ajuste cette valeur pour décoller le titre du haut */
-    padding-bottom: 60px; /* Espace tout en bas de la zone beige, après le bouton */
+    padding-top: 50px;    
+    padding-bottom: 60px; 
     box-sizing: border-box;
-    align-self: stretch; /* Force la section à s'étirer si le parent est en Flex */
+    align-self: stretch; 
     }
 .latest-books h2 {
     margin-top: 30px;
-    margin-bottom: 30px; /* 📐 Espace entre le texte du titre et le début du rectangle gris */
+    margin-bottom: 30px; 
 }
 
 .book-cover {
@@ -607,12 +607,17 @@ font-family: 'Inter', sans-serif;
     margin-top: -30px; /* Pour le coller un peu au titre */
     margin-bottom: 20px;
 }
+.main-header
+{
+    width: 100%;
+    background-color:rgba(245, 243, 239, 1)
+}
 /* 1. Le conteneur principal du menu */
 .header {
-    width: 100%;
+    
     max-width: 1440px;
+    margin: 0 auto;
     height: 80px;
-    background-color: rgba(245, 243, 239, 1);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -696,6 +701,21 @@ font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: 700;
     color: #00AC66;
+}
+
+.nav-message-link {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    text-decoration: none;
+    color: #292929;
+}
+.nav-group-right nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    text-decoration: none;
+    color: #292929;
 }
 /* 🟢 Le grand conteneur qui peint TOUTE la page en beige clair */
 .allBooks-page .container {
@@ -1733,7 +1753,8 @@ text-decoration :underline;
     display: flex;
     flex-direction: end; 
     min-height: 80vh;
-    padding-left: 70px;
+    padding-left: 230px;
+    padding-right:200px ;
     background-color: rgba(245, 243, 239, 1);
     min-height: 100vh;
 }
@@ -1799,16 +1820,51 @@ text-decoration :underline;
 .chat-area
 {
     width: 80%; 
-    padding: 120px; 
+    padding: 20px; 
     display: flex; 
     flex-direction: column;
     background-color: rgba(245, 243, 239, 1);
+}
+.chat-form
+{
+    display: flex; 
+    gap: 10px;
+}
+.chat-form input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 0px solid rgb(5, 5, 5); /* Correction de ta syntaxe 'solid' */
+    border-radius: 6px;
+    outline: none; /* Enlève la bordure bleue par défaut du navigateur */
+    margin-bottom: 100px;
+    margin-left: 30px;
+}
+
+/* Le bouton d'envoi */
+.chat-form button {
+    padding: 12px 24px;
+    background: rgba(0, 172, 102, 1);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease; /* Petit effet de survol pour faire pro */
+    margin-right: 250px;
+    margin-bottom: 100px;
+}
+
+/* Effet survol du bouton */
+.chat-form button:hover {
+    background: rgba(0, 150, 90, 1); /* Une couleur un peu plus foncée au survol */
 }
 .nameAndpicture
 {
     display:inline-flex; 
     padding-right:20px; 
-    align-items: center;  
+    padding-bottom: 40px;
+    align-items: center;
+
 }
 .nameAndpicture img
 {

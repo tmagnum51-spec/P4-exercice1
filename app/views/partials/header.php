@@ -28,7 +28,7 @@
         </section>
         <section class="nav-group-right">
             <nav>    
-                    <a href="index.php?action=showUsers" class="nav-message-link"><svg class="icon-messagerie" width="14" height="14" viewBox="-1 -1 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="index.php?action=showUsers" class="nav-message-link"><svg class="icon-messagerie" padding-right=4px width="14" height="14" viewBox="-1 -1 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.5 6.5C13.5 9.8 10.6 12.5 7 12.5C5.8 12.5 4.7 12.2 3.7 11.6L0.5 12.5L1.6 9.6C0.9 8.7 0.5 7.6 0.5 6.5C0.5 3.2 3.4 0.5 7 0.5C10.6 0.5 13.5 3.2 13.5 6.5Z" 
               stroke="#292929" 
               stroke-width="0.71" 

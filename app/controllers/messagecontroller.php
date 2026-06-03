@@ -146,10 +146,21 @@ public function showUsers()
     //on charge la partie gauche
     $allUsers= $messageManager->getAllUsers($currentUserId);
 
+    $focusedUser = null;
+    foreach($allUsers as $item) {
+        if ($item['user']->getID() === $focusId) {
+        $focusedUser = $item['user'];
+        break;
+        }
+    }
+    if ($focusedUser === null) {
+            $focusedUser = $messageManager->getUserById($focusId); 
+        }
+
     //on charge la partie droite
     $messages = $messageManager->getDiscussionByUser($currentUserId, $focusId);
 
-    $this->render('message',['allUsers'=>$allUsers, 'messages'=>$messages, 'focusId'=>$focusId, 'currentUserId' => $currentUserId]);
+    $this->render('message',['allUsers'=>$allUsers, 'messages'=>$messages, 'focusId'=>$focusId, 'currentUserId' => $currentUserId, 'focusedUser' => $focusedUser]);
     
         
     }

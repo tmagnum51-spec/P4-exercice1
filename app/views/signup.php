@@ -25,7 +25,7 @@
         <button type="submit" class="btn-submit">S'inscrire</button>
         
     </form>
-    <p>Déjà inscrit ? <a href="index.php?action=signin"> Connectez-vous </p>
+    <p>Déjà inscrit ? <a href="index.php?action=signin" style="text-decoration :underline;"> Connectez-vous </p>
         
         </div>
         <div class="signup-picture">

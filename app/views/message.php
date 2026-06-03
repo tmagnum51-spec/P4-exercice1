@@ -29,12 +29,21 @@
             <p style="color: #999;">Aucune discussion active.</p>
         <?php endif; ?>
     </div>
-
+    <?php
+    //on recupère l'utilisateur focus pour afficher sa photo et son pseudo
+        $focusedUser = null;
+        foreach ($allUsers as $item) {
+            if ($item['user']->getID() == $focusId) {
+                $focusedUser = $item['user'];
+                break;
+            }
+        }
+        ?>
     <div class="chat-area">
-        <?php if (isset($focusId) && $focusId > 0): ?>
+        <?php if (isset($focusId) && $focusId > 0 && $focusedUser): ?>
             <div class="nameAndpicture">
-            <img src="public/assets/img/<?= $avatar ?>"style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right:20px;">
-            <?= htmlspecialchars($pseudo)?>
+            <img src="public/assets/img/<?= $focusedUser->getPicture() ?>"style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right:20px;">
+            <?= htmlspecialchars($focusedUser->getPseudo())?>
             </div>
             <div class="chat-messages-container">
 
@@ -70,9 +79,9 @@
                 <?php endif; ?>
             </div>
 
-            <form action="index.php?action=sendMessage&id=<?= $focusId ?>" method="POST" class="chat-form" style="display: flex; gap: 10px;">
-                <input type="text" name="message_text" placeholder="Votre message..." autofocus required style="flex: 1; padding: 12px; border: none; solid #rgba(0, 172, 102, 1); border-radius: 6px;">
-                <button type="submit" style="padding: 12px 24px; background: rgba(0, 172, 102, 1); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Envoyer</button>
+            <form action="index.php?action=sendMessage&id=<?= $focusId ?>" method="POST" class="chat-form">
+                <input type="text" name="message_text" placeholder="Votre message..." autofocus required>
+                <button type="submit" >Envoyer</button>
             </form>
 
         <?php else: ?>
