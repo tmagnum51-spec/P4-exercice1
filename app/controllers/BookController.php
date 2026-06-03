@@ -140,7 +140,7 @@ public function newBook()
             $author = $_POST['author'];
             $description = $_POST['description'];
             $status = $_POST['status'];
-            $picture ='livresVector.svg';
+            $picture ='newBook.png';
 
             if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
             $picture = time() . '_' . $_FILES['picture']['name'];

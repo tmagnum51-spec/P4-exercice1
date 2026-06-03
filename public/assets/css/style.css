@@ -1016,11 +1016,12 @@ align-items: center;
 {
     margin: 0px;
     text-align: right;
+    
 }
 
 .editBook-container a
 {
-    color: rgba(166, 166, 166, 1);
+    color: rgba(250, 249, 247, 1);
 }
 .editBook-container .book-grid-text
 {
@@ -1179,6 +1180,7 @@ color: rgba(166, 166, 166, 1);
     flex-direction: row;
     gap: 30px;
     align-items: flex-start;
+    background-color: rgba(245, 243, 239, 1);
     
 
 }
@@ -1332,10 +1334,12 @@ background-color: rgba(237, 242, 246, 1);
     display: flex;
     flex-direction: column;
     gap: 40px;
+    background-color: rgba(250, 249, 247, 1);
 }
 /* Zone du haut : Flexbox pour aligner à 50/50 */
 .account-container {
     width: 100%;
+    background-color: rgba(250, 249, 247, 1);
 }
 .account-form
 {
@@ -1354,6 +1358,7 @@ background-color: rgba(237, 242, 246, 1);
     gap: 30px;               /* Espace entre les deux cartes */
     width: 100%;
     margin-bottom: 40px;     /* Espace avant le tableau du bas */
+    background-color: rgba(250, 249, 247, 1);
 }
 
 /* Vos cartes génériques */
