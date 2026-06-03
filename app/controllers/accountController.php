@@ -48,6 +48,7 @@ class AccountController extends Controller
         $userId = (int)$_SESSION['user']['id'];
     
         // Appels aux Managers
+        $bookCount=0;
         $userManager = new UserManager();
         $userAccount = $userManager->getUserByID($userId);
         $bookCount = $userManager->countBooksByUser($userId);

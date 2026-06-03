@@ -15,9 +15,12 @@
                 </div>
                 <div class="profile-container">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
-                    <span class="membership-date">Membre depuis le :<br> <?= htmlspecialchars($userAccount->getDateCreation()) ?></span>
+                    <span class="membership-date">Membre depuis <?= htmlspecialchars($userAccount->getMemberSince()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
-                    <p> <img src=public/assets/img/livresVector.svg style="font-size: 14px;">  <?= $bookCount ?>  livres</p>
+                    <p>
+                        <img src="public/assets/img/livresVector.svg" style="font-size: 14px;">
+                        <?= $bookCount . (($bookCount > 1) ? ' livres' : ' livre') ?>
+                    </p>
                     <a href="index.php?action=newBook" class="btn-add-book">ajouter un livre</a>
                     
                 </div>  

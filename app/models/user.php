@@ -9,8 +9,28 @@ private string $email;
 private string $picture;
 private string $dateCreation;
 private string $password;
+private string $age;
 
+public function getMemberSince():string
+{
+    $dateCreation= new DateTime($this->dateCreation);
+    $now=new DateTime();
 
+    $age= $now->diff($dateCreation);
+
+    if ($age-> y>=1){
+        return $age->y . ($age->y>1 ? ' ans' : ' an');
+        }
+    if ($age-> m>=1){
+        return $age->m . ($age->m>1 ? ' mois' : ' mois');
+    }
+    if ($age-> d>=1){
+        return $age->d . ($age->d>1 ? ' jours' : ' jour');
+
+    }
+    return $age->h . ($age->h>1 ? ' heures' : ' heure');
+    
+}
 //accesseur
     public function getID(): ?int
         {
@@ -31,6 +51,10 @@ private string $password;
     public function getDateCreation(): ?string
     {
         return $this->dateCreation;
+    }
+    public function getAge():?string
+    {
+        return $this->age;
     }
 public function getPassword():?string
     {
@@ -57,6 +81,10 @@ public function getPassword():?string
     {
         $this->dateCreation = $dateCreation;
     } 
+    public function setAge(?string $age):void
+    {
+        $this->age = $age;
+    }
     public function setPassword(?string $password):void
     {
         $this->password = $password;
