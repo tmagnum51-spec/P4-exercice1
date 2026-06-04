@@ -1931,3 +1931,10 @@ text-decoration :underline;
     margin-top: 5px; 
     text-align: right;
 }
+.chat-header
+{
+    display: flex;         
+    align-items: center;    
+    gap: 10px;
+
+}
