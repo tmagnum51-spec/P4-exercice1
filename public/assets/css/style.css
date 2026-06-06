@@ -1931,3 +1931,13 @@ text-decoration :underline;
     margin-top: 5px; 
     text-align: right;
 }
+.error-message {
+    border: 2px solid #dc3545 !important;
+    color: #dc3545 !important;
+   
+    font-weight: bold;
+}
+/* Force la couleur sur l'input lui-même */
+input.input-error {
+    color: #dc3545 !important;
+}

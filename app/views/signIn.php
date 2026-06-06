@@ -9,12 +9,12 @@
         
                <div class="form-group">
             <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" placeholder="Ex : exemple@mail.com" required>
+            <input type="email" id="email" name="email" placeholder="Ex : exemple@mail.com" novalidation>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            <input type="password" id="password" name="password" placeholder="••••••••" novalidation>
         </div>
 
         <button type="submit" class="btn-submit">Connexion</button>

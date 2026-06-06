@@ -20,17 +20,23 @@
                     
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input type="text" id="title" name="title" placeholder="Titre" required>
+                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($formData['title'] ?? ''); ?>" placeholder="Titre" novalidate>
+                            <?php if (isset($errors['title'])): ?>
+                            <span class="error-message"><?php echo htmlspecialchars($errors['title']); ?></span>
+                            <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <label for="Author">autheur</label>
-                        <input type="test" id="author" name="author" placeholder="Autheur" required>
+                        <input type="test" id="author" name="author" value="<?php echo htmlspecialchars($formData['author'] ?? ''); ?>" placeholder="Autheur" novalidate>
+                             <?php if (isset($errors['author'])): ?>
+                                <span class="error-message"><?php echo htmlspecialchars($errors['author']); ?></span>
+                                <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Commentaire</label>
-                        <textarea id="description" name="description" required>
+                        <textarea id="description" name="description">  <?php echo htmlspecialchars($formData['description'] ?? ''); ?>
                         </textarea>    
                     </div>
 

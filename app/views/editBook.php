@@ -20,29 +20,43 @@
                     
                     <div class="form-group">
                         <label for="title">Titre</label>
-                        <input type="text" id="title" name="title" value="<?= htmlspecialchars($book->getTitle()) ?>" required>
+                        <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($formData['title'] ?? $book->getTitle()); ?>" novalidate>
+                            <?php if (isset($errors['title'])): ?>
+                            <span class="error-message"><?php echo htmlspecialchars($errors['title']); ?></span>
+                            <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <label for="Author">autheur</label>
-                        <input type="test" id="author" name="author" value="<?= htmlspecialchars($book->getAuthor()) ?>" required>
+                        <input type="test" id="author" name="author" value="<?php echo htmlspecialchars($formData['author'] ?? $book->getAuthor()); ?>" novalidate>
+                            <?php if (isset($errors['author'])): ?>
+                            <span class="error-message"><?php echo htmlspecialchars($errors['author']); ?></span>
+                            <?php endif; ?>    
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Commentaire</label>
-                        <textarea id="description" name="description" required><?= htmlspecialchars($book->getDescription()) ?>
-                        </textarea>    
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description"><?php 
+                        echo htmlspecialchars($formData['description'] ?? $book->getDescription()); ?></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="status">Disponibilité</label>
-                        <!-- Remplacement de l'input par le vrai menu déroulant <select> -->
-                        <select id="status" name="status" required>
-                            <option value="disponible" <?= $book->getStatus() == "disponible" ? 'selected' : '' ?>>Disponible</option>
-                            <option value="non dispo." <?= $book->getStatus() == "non dispo." ? 'selected' : '' ?>>Non dispo.</option>
-                           
-                        </select>
-                    </div> 
+                    <label for="status">Disponibilité</label>
+                    
+                    <?php 
+                    // On détermine quel statut doit être sélectionné (le modifié ou celui de la BDD)
+                    $currentStatus = $formData['status'] ?? $book->getStatus(); 
+                    ?>
+
+                    <select id="status" name="status" required>
+                        <option value="disponible" <?php echo $currentStatus === "disponible" ? 'selected' : ''; ?>>
+                            Disponible
+                        </option>
+                        <option value="non dispo." <?php echo $currentStatus === "non dispo." ? 'selected' : ''; ?>>
+                            Non dispo.
+                        </option>
+                    </select>
+                </div>
                     <button type="submit" class="btn-submit">Valider</button>
                 </form>
             </article>

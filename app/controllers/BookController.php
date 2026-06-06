@@ -68,114 +68,132 @@ $this->render('allBooks', ['allBooks'=>$allBooks]);
 }
 public function editBook()
 {
-//recupération de l'id du livre
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    // 1. Récupération et vérification de l'existence du livre
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    $bookManager = new BookManager();
+    $book = $bookManager->getBookById($id);
 
-//appel au manager
-$bookManager = new BookManager();
+    if (!$book) {
+        // si le livre n'existe pas en BDD, on dégage direct
+        header('Location: index.php?action=showAccount&error=not_found');
+        exit();
+    }
 
-    
-    // On vérifie que les champs ne sont pas vides 
-        if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
+    // les variables pour la vue
+    $errors = [];
+    $formData = [];
 
-            $title= $_POST['title'];
-            $author = $_POST['author'];
-            $description = $_POST['description'];
-            $status = $_POST['status'];
+    // 2. Traitement du formulaire (uniquement si soumis)
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        // On stock ce que l'utilisateur a saisi pour lui renvoyer en cas d'erreur
+        $formData = [
+            'title'       => $_POST['title'] ?? '',
+            'author'      => $_POST['author'] ?? '',
+            'description' => $_POST['description'] ?? '',
+            'status'      => $_POST['status'] ?? ''
+        ];
+
+        // validation champ par champ
+        if (empty($formData['title'])) {
+            $errors['title'] = "Un titre de livre est obligatoire.";
+        }
+
+        if (empty($formData['author'])) {
+            $errors['author'] = "L'auteur du livre est obligatoire.";
+        }
+
+        // mise à jour
+        if (empty($errors)) {
             
+            // Gestion de l'image (on garde l'ancienne par défaut)
+            $picture = $book->getCoverPicture(); 
 
-            $book = $bookManager->getBookById($id);
-
-                                  
-            if ($book){
-                
-            $picture=$book->getCoverPicture(); 
-
-                if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
-            $picture = time() . '_' . $_FILES['picture']['name'];
-
-            move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
+            if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
+                $picture = time() . '_' . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
             }
 
-
-            $book->setTitle($title);
-            $book->setAuthor($author);
-            $book->setDescription($description);
-            $book->setStatus($status);
+            // Mise à jour de l'objet et de la BDD
+            $book->setTitle($formData['title']);
+            $book->setAuthor($formData['author']);
+            $book->setDescription($formData['description']);
+            $book->setStatus($formData['status']);
             $book->setCoverPicture($picture);
 
-            $bookManager->updateBook($id, $title, $author, $description, $status, $picture);
+            $bookManager->updateBook($id, $formData['title'], $formData['author'], $formData['description'], $formData['status'], $picture);
 
+            // Redirection succès
             header('Location: index.php?action=showAccount&success=1');
-                exit();
-            }
-            else {
-                echo "Erreur : Impossible de modifier un livre qui n'existe pas.";
-            }
-
+            exit();
         }
-        else {
-            $book = $bookManager->getBookById($id);
-            if ($book) {
-        // C'est ici que ton fichier CSS "single-book-container" sera utilisé
-                $this->render('editBook', ['book'=>$book]);
-        
-                
-            } 
-            else {
-                echo "Erreur : aucun livre n'a été modifié.";
-            }
-                   
-            }
+    }
+
+    // 3. on affiche la vue (Premier chargement OU retour sur erreur)
+    $this->render('editBook', [
+        'book'     => $book,
+        'errors'   => $errors,
+        'formData' => $formData
+    ]);
 }
 
 
 public function newBook()
 {      
-    
-    // On vérifie que les champs ne sont pas vides 
-        if (!empty($_POST['title']) &&  !empty($_POST['author']) && !empty($_POST['status'])) {
+    $errors = [];
+    $formData = [];
 
-            $title= $_POST['title'];
-            $author = $_POST['author'];
-            $description = $_POST['description'];
-            $status = $_POST['status'];
-            $picture ='newBook.png';
+    // On ne traite les données que si le formulaire a été soumis (méthode POST)
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        // 1. On stocke les entrées partielles pour les renvoyer à la vue
+        $formData['title'] = $_POST['title'] ?? '';
+        $formData['author'] = $_POST['author'] ?? '';
+        $formData['description'] = $_POST['description'] ?? '';
+        $formData['status'] = $_POST['status'] ?? '';
 
-            if(isset($_FILES['picture'])&& $_FILES['picture']['error'] === 0){
-            $picture = time() . '_' . $_FILES['picture']['name'];
+        // 2. On vérifie champ par champ et on renvoie une erreur spécifique
+        if (empty(trim($formData['title']))) {
+            $errors['title'] = "Un titre de livre est obligatoire.";
+        }
+        if (empty(trim($formData['author']))) {
+            $errors['author'] = "L'auteur est obligatoire.";
+        }
+      
+        // 3. Si aucune erreur, on procède à l'enregistrement
+        if (empty($errors)) {
+            $title = $formData['title'];
+            $author = $formData['author'];
+            $description = $formData['description'];
+            $status = $formData['status'];
+            $picture = 'newBook.png';
 
-            move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
+            if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
+                $picture = time() . '_' . $_FILES['picture']['name'];
+                move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
             }
 
-            //On récupère l'id du user de la session 
+            // On récupère l'id du user de la session 
             $userid = (int)$_SESSION['user']['id'];
 
-            $bookManager= new BookManager();
-            $newBook= $bookManager->addBook($picture, $title, $author, $description, $status, $userid);
+            $bookManager = new BookManager();
+            $newBook = $bookManager->addBook($picture, $title, $author, $description, $status, $userid);
 
-            
-            if ($newBook){
-
+            if ($newBook) {
                 $newBookId = $newBook->getId();
-
-            header("Location: index.php?action=editBook&id=$newBookId");
-            exit();
-
-            
+                header("Location: index.php?action=editBook&id=$newBookId");
+                exit();
+            } else {
+                $errors['global'] = "Aucun livre n'a pu être créé en base de données.";
             }
-                else {
-                    echo "aucun livre n'a pu être créé";
-                    exit();
-                    }
-                
-
-        }    
-        $this->render('newBook');
-        
-            
-                   
-        
+        }
+    }    
+    
+    // 4. On transmet les erreurs et les données su formulaire à la vue
+    $this->render('newBook', [
+        'errors' => $errors,
+        'formData' => $formData
+    ]);
 }
 
 public function deleteBook(){

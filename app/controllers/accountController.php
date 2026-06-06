@@ -127,43 +127,63 @@ class AccountController extends Controller
         
     }
     public function createAccount(){
-    // On vérifie que les champs ne sont pas vides 
-        if (!empty($_POST['pseudo']) &&  !empty($_POST['email']) && !empty($_POST['password'])) 
-            {
+    $errors = [];
+    $formData = [];
 
-            // On récupère les données propres
-            $pseudo=trim($_POST['pseudo']);
-            $email = trim($_POST['email']);
-            $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
-            $picture='defaultUser.png'; 
+    // On ne traite les données que si le formulaire a été soumis (méthode POST)
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
+        // 1. On stocke les entrées partielles pour les renvoyer à la vue
+        $formData['pseudo'] = $_POST['pseudo'] ?? '';
+        $formData['email'] = $_POST['email'] ?? '';
+        $formData['password'] = $_POST['password'] ?? '';
+        
+        // 2. On vérifie champ par champ et on renvoie une erreur spécifique
+        if (empty(trim($formData['pseudo']))) {
+            $errors['pseudo'] = "Le pseudo est obligatoire."; 
+        }
+        if (empty(trim($formData['email']))) {
+            $errors['email'] = "L'email est obligatoire."; 
+        }
+        
+        if (empty(trim($formData['password']))) {
+            $errors['password'] = "Un mot de passe est obligatoire.";
+        }
 
-            $userManager = new UserManager();
-            $newUser = $userManager->createUser($pseudo, $email, $password, $picture);
+        // 3. Si aucune erreur, on procède à l'enregistrement
+        if (empty($errors)) {
+            $pseudo = $formData['pseudo'];
+            $email = $formData['email'];
+            $hashedPassword = password_hash($formData['password'], PASSWORD_ARGON2ID);
+            $picture = 'defaultUser.png'; 
             
-                if ($newUser) {
+            $userManager = new UserManager();
+            $newUser = $userManager->createUser($pseudo, $email, $hashedPassword, $picture);
+            
+            if ($newUser) {
                 $_SESSION['user'] = [
-                        'id'           => $newUser->getID(), 
-                        'email'        => $newUser->getEmail(), 
-                        'pseudo'       => $newUser->getPseudo(),
-                        'dateCreation' => $newUser->getDateCreation(),
-                        'picture'      => $newUser->getPicture()
-                    ];
-
+                    'id'           => $newUser->getID(), 
+                    'email'        => $newUser->getEmail(), 
+                    'pseudo'       => $newUser->getPseudo(),
+                    'dateCreation' => $newUser->getDateCreation(),
+                    'picture'      => $newUser->getPicture()
+                ];
 
                 header('Location: index.php?action=showAccount');
                 exit();
-                }
-        else 
-        {
-            echo "Une erreur est survenue lors de la création du compte.";  
-        }
-    }
-    else 
-        {
-            echo "Tous les champs doivent être remplis";
-        }
+            } else {
+                $errors['global'] = "Une erreur est survenue lors de la création du compte.";  
+            }
+        } 
+    } 
 
-    }
+    // 4. On transmet les erreurs et les données du formulaire à la vue 
+    
+    $this->render('signup', [ 
+        'errors' => $errors,
+        'formData' => $formData
+    ]);
+}
     public function modifyAccount(){
         // On récupère l'ID de l'utilisateur connecté en session
             $id = (int)$_SESSION['user']['id'];
