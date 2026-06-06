@@ -1890,7 +1890,7 @@ text-decoration :underline;
 }
 .message-row
 {
-    text-align: <?= $isMe ? 'right' : 'left' ?>; 
+    text-align:  'right', 'left'; 
     margin-bottom: 15px;
 }
 .row-me {
@@ -1940,4 +1940,11 @@ text-decoration :underline;
 /* Force la couleur sur l'input lui-même */
 input.input-error {
     color: #dc3545 !important;
+}
+.chat-header
+{
+    display: flex;         
+    align-items: center;    
+    gap: 10px;
+
 }
