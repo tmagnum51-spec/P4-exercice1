@@ -31,6 +31,9 @@
             <!-- Carte Droite : Formulaire de Modification -->
             <article class="text-card profile-form-card">
                 <h1>Vos informations personnelles</h1>
+                <?php if (!empty($errors['global'])): ?>
+                    <p class="error-message" style="color: red;"><?= $errors['global'] ?></p>
+                <?php endif; ?>
                 <form action="index.php?action=updateProfile" method="POST" enctype="multipart/form-data"
                     class="account-form" id="user-profile-form" novalidate>
 
@@ -38,12 +41,18 @@
                         <label for="pseudo">Pseudo</label>
                         <input type="text" id="pseudo" name="pseudo"
                             value="<?= htmlspecialchars($userAccount->getPseudo()) ?>" required>
+                        <?php if (!empty($errors['pseudo'])): ?>
+                            <span class="error-message" style="color: red;"><?= $errors['pseudo'] ?></span>
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Adresse email</label>
                         <input type="email" id="email" name="email"
                             value="<?= htmlspecialchars($userAccount->getEmail()) ?>" required>
+                        <?php if (!empty($errors['email'])): ?>
+                            <span class="error-message" style="color: red;"><?= $errors['email'] ?></span>
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group">

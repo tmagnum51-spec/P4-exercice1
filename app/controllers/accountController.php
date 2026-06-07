@@ -198,69 +198,64 @@ class AccountController extends Controller
     }
     public function modifyAccount()
     {
-        // On récupère l'ID de l'utilisateur connecté en session
         $id = (int)$_SESSION['user']['id'];
-
         $userManager = new UserManager();
+        $user = $userManager->getUserByID($id); // Récupération indispensable ici
 
-        // 1. On vérifie que les champs ne sont pas vides 
-        if (!empty($_POST['pseudo']) &&  !empty($_POST['email'])) {
-            $user = $userManager->getUserById($id);
+        $errors = [];
 
-            // On récupère les données propres
-            $pseudo = trim($_POST['pseudo']);
-            $email = trim($_POST['email']);
+        // On ne traite la logique que si le formulaire est soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // 1. Vérifications obligatoires
+            if (empty(trim($_POST['pseudo'] ?? ''))) {
+                $errors['pseudo'] = "Le pseudo est obligatoire.";
+            }
+            if (empty(trim($_POST['email'] ?? ''))) {
+                $errors['email'] = "L'email est obligatoire.";
+            }
 
-            if ($user) {
+            // 2. Si aucune erreur, on traite
+            if (empty($errors) && $user) {
+                $pseudo = trim($_POST['pseudo']);
+                $email = trim($_POST['email']);
 
-                // --- GESTION DU MOT DE PASSE ---
-                // Si le champ password n'est pas vide, on prend le nouveau et on le hache
-                if (!empty($_POST['password'])) {
-                    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
-                } else {
-                    // S'il est vide, on récupère le mot de passe actuel déjà présent en BDD
-                    $password = $user->getPassword();
-                }
+                // GESTION PASSWORD
+                $password = !empty($_POST['password']) ? password_hash(trim($_POST['password']), PASSWORD_ARGON2ID) : $user->getPassword();
 
-                //On recupère l'image du User
+                // GESTION IMAGE
                 $picture = $user->getPicture();
-
-
-                //On recupère l'image si l'utilisateur en a mis une    
                 if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
                     $picture = time() . '_' . $_FILES['picture']['name'];
-
                     move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
                 }
 
-                //On hydrate avec les divers infos
-                $user->setPseudo($pseudo);
-                $user->setEmail($email);
-                $user->setPassword($password);
-                $user->setPicture($picture);
-
-                //On envoie au manager pour insertion dans la table
+                // MÀJ Manager
                 $newUser = $userManager->modifyUser($id, $pseudo, $email, $password, $picture);
-            }
-            //On met a jour la session avec l'utilisateur modifié    
-            if ($newUser) {
-                $_SESSION['user'] = [
-                    'id'           => $newUser->getId(),
-                    'email'        => $newUser->getEmail(),
-                    'pseudo'       => $newUser->getPseudo(),
-                    'dateCreation' => $newUser->getDateCreation(),
-                    'picture'      => $newUser->getPicture()
-                ];
 
-                //On redirige vers la page du compte modifié
-                header('Location: index.php?action=showAccount');
-                exit();
-            } else {
-                echo "Une erreur est survenue lors de la modification du compte.";
+                if ($newUser) {
+                    $_SESSION['user'] = [
+                        'id'           => $newUser->getID(), // Utilise getID() comme défini dans ton entité
+                        'email'        => $newUser->getEmail(),
+                        'pseudo'       => $newUser->getPseudo(),
+                        'dateCreation' => $newUser->getDateCreation(),
+                        'picture'      => $newUser->getPicture()
+                    ];
+                    header('Location: index.php?action=showAccount');
+                    exit();
+                } else {
+                    $errors['global'] = "Une erreur est survenue lors de la modification.";
+                }
             }
-        } else {
-            echo "Tous les champs doivent être remplis";
         }
+
+        // 3. Affichage (soit au chargement initial (GET), soit après une erreur)
+        $bookManager = new BookManager();
+        $this->render('account', [
+            'errors'      => $errors,
+            'userAccount' => $user,
+            'userBooks'   => $bookManager->getAllBooksbyUser($id),
+            'bookCount'   => $userManager->countBooksByUser($id)
+        ]);
     }
 }
