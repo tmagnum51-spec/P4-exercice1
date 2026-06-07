@@ -3,47 +3,53 @@
 <main class="account-main-container">
     <section class="account-container">
         <div class="books-grid-text">
-            
+
             <!-- Carte Gauche : Résumé Profil -->
-            <article class="text-card profile-summary"> 
+            <article class="text-card profile-summary">
                 <div class="avatar-container">
                     <img src="public/assets/img/<?= $userAccount->getPicture() ?>" alt="Photo">
                     <label for="userPicture-file" style="cursor: pointer; text-decoration: underline;">
-                    modifier
+                        modifier
                     </label>
-                    <input type="file" id="userPicture-file" name="picture" form="user-profile-form" accept="image/png, image/jpeg" style="display: none;"> 
+                    <input type="file" id="userPicture-file" name="picture" form="user-profile-form"
+                        accept="image/png, image/jpeg" style="display: none;">
                 </div>
                 <div class="profile-container">
                     <h2><?= htmlspecialchars($userAccount->getPseudo()) ?></h2>
-                    <span class="membership-date">Membre depuis <?= htmlspecialchars($userAccount->getMemberSince()) ?></span>
+                    <span class="membership-date">Membre depuis
+                        <?= htmlspecialchars($userAccount->getMemberSince()) ?></span>
                     <p> <br>BIBLIOTHEQUE : </p>
                     <p>
                         <img src="public/assets/img/livresVector.svg" style="font-size: 14px;">
                         <?= $bookCount . (($bookCount > 1) ? ' livres' : ' livre') ?>
                     </p>
                     <a href="index.php?action=newBook" class="btn-add-book">ajouter un livre</a>
-                    
-                </div>  
+
+                </div>
             </article>
 
             <!-- Carte Droite : Formulaire de Modification -->
             <article class="text-card profile-form-card">
-                <h1>Vos informations personnelles</h1> 
-                <form action="index.php?action=updateProfile" method="POST" enctype="multipart/form-data" class="account-form" id="user-profile-form">
-                    
+                <h1>Vos informations personnelles</h1>
+                <form action="index.php?action=updateProfile" method="POST" enctype="multipart/form-data"
+                    class="account-form" id="user-profile-form" novalidate>
+
                     <div class="form-group">
                         <label for="pseudo">Pseudo</label>
-                        <input type="text" id="pseudo" name="pseudo" value="<?= htmlspecialchars($userAccount->getPseudo()) ?>" required>
+                        <input type="text" id="pseudo" name="pseudo"
+                            value="<?= htmlspecialchars($userAccount->getPseudo()) ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Adresse email</label>
-                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($userAccount->getEmail()) ?>" required>
+                        <input type="email" id="email" name="email"
+                            value="<?= htmlspecialchars($userAccount->getEmail()) ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas modifier">
+                        <input type="password" id="password" name="password"
+                            placeholder="Laisser vide pour ne pas modifier">
                     </div>
 
                     <button type="submit" class="btn-discover">Enregistrer</button>
@@ -54,7 +60,7 @@
     </section>
 
     <!-- Section de la liste des livres -->
-    <section class="account-bookCollection">    
+    <section class="account-bookCollection">
         <article class="text-card-table">
             <table>
                 <thead>
@@ -66,33 +72,37 @@
                         <th>Disponibilité</th>
                         <th>Action</th>
                     </tr>
-                </thead>    
+                </thead>
                 <tbody>
                     <?php if (empty($userBooks)): ?>
                         <tr>
                             <td colspan="6" style="text-align: center;">La bibliothèque est vide</td>
                         </tr>
                     <?php else: ?>
-                        <?php foreach($userBooks as $book): ?>
+                        <?php foreach ($userBooks as $book): ?>
                             <tr>
                                 <td>
                                     <img src="public/assets/img/<?= $book->getCoverPicture() ?>" alt="Couverture" width="50">
                                 </td>
                                 <td><?= htmlspecialchars($book->getTitle()) ?></td>
                                 <td><?= htmlspecialchars($book->getAuthor()) ?></td>
-                                <td class="cell-description"><?= htmlspecialchars(strlen($book->getDescription()) > 90 ? substr($book->getDescription(), 0, 90) . '...' : $book->getDescription()) ?></td> 
-                                <td><?php 
-                                        $status = $book->getStatus();
-                                        // On nettoie et on met en minuscule pour comparer facilement
-                                        $statusClass = ($status === 'disponible') ? 'badge-available' : 'badge-unavailable';
-                                        ?>
-                                        <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($status) ?></span></td>
+                                <td class="cell-description">
+                                    <?= htmlspecialchars(strlen($book->getDescription()) > 90 ? substr($book->getDescription(), 0, 90) . '...' : $book->getDescription()) ?>
+                                </td>
+                                <td><?php
+                                    $status = $book->getStatus();
+                                    // On nettoie et on met en minuscule pour comparer facilement
+                                    $statusClass = ($status === 'disponible') ? 'badge-available' : 'badge-unavailable';
+                                    ?>
+                                    <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($status) ?></span>
+                                </td>
                                 <td>
                                     <a href="index.php?action=editBook&id=<?= $book->getId() ?>">Éditer</a>
-                                    <a class="book-delete-link" href="index.php?action=deleteBook&id=<?= $book->getId() ?>" onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>
+                                    <a class="book-delete-link" href="index.php?action=deleteBook&id=<?= $book->getId() ?>"
+                                        onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>
                                 </td>
                             </tr>
-                        <?php endforeach; ?> 
+                        <?php endforeach; ?>
                     <?php endif; ?>
                 </tbody>
             </table>
