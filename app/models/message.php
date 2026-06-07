@@ -7,13 +7,13 @@ class Message extends AbstractEntity
     private string $pseudo;
     private DateTime $messageDate;
 
-    
-   //accesseur
-    public function getRecipientId(): ?int 
+
+    //accesseur
+    public function getRecipientId(): ?int
     {
         return $this->recipientId;
     }
-    public function getSenderId(): ?int 
+    public function getSenderId(): ?int
     {
         return $this->senderId;
     }
@@ -21,7 +21,7 @@ class Message extends AbstractEntity
     {
         return $this->messageText;
     }
-    public function getPseudo(): ?string 
+    public function getPseudo(): ?string
     {
         return $this->pseudo;
     }
@@ -31,35 +31,31 @@ class Message extends AbstractEntity
     }
 
     //mutateurs
-    public function setRecipientId(?int $recipientId):void
+    public function setRecipientId(?int $recipientId): void
     {
         $this->recipientId = $recipientId;
-
     }
-    public function setSenderId(?int $senderId):void
+    public function setSenderId(?int $senderId): void
     {
         $this->senderId = $senderId;
-
     }
-  
+
     public function setMessageDate(string|DateTime $messageDate): void
     {
-    // Si on reçoit une string (ce qui arrive lors de l'hydratation depuis la DB)
-    if (is_string($messageDate)) {
-        $this->messageDate = new DateTime($messageDate);
-    } else {
-        // Si c'est déjà un objet DateTime
-        $this->messageDate = $messageDate;
+        // Si on reçoit une string (ce qui arrive lors de l'hydratation depuis la DB)
+        if (is_string($messageDate)) {
+            $this->messageDate = new DateTime($messageDate);
+        } else {
+            // Si c'est déjà un objet DateTime
+            $this->messageDate = $messageDate;
+        }
     }
-    }
-    public function setPseudo(?string $pseudo):void
+    public function setPseudo(?string $pseudo): void
     {
         $this->pseudo = $pseudo;
-
     }
-    public function setMessageText(?string $messageText):void
+    public function setMessageText(?string $messageText): void
     {
         $this->messageText = $messageText;
-
     }
 }

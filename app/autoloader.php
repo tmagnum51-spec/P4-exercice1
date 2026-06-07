@@ -1,10 +1,13 @@
 <?php
-class Autoloader {
-    public static function register(){
+class Autoloader
+{
+    public static function register()
+    {
         spl_autoload_register([__CLASS__, 'autoload']);
     }
 
-    public static function autoload($class){
+    public static function autoload($class)
+    {
         // On crée une liste des dossiers où chercher
         $sources = [
             'app/controllers/',

@@ -1932,10 +1932,10 @@ text-decoration :underline;
     text-align: right;
 }
 .error-message {
-    border: 2px solid #dc3545 !important;
+   
     color: #dc3545 !important;
    
-    font-weight: bold;
+    font-weight: 400;
 }
 /* Force la couleur sur l'input lui-même */
 input.input-error {

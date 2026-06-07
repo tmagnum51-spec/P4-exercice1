@@ -1,6 +1,6 @@
 <?php
 
-class DBConnect 
+class DBConnect
 {
     public static string $host = 'localhost';
     public static string $dbname = 'tomtroc';
@@ -9,18 +9,13 @@ class DBConnect
 
 
     public static function getPDO()
-   
-    
+
+
     {
         try {
-        return new PDO('mysql:host=' . self::$host . ';dbname=' . self::$dbname . ';charset=utf8',self::$user,self::$pass);
+            return new PDO('mysql:host=' . self::$host . ';dbname=' . self::$dbname . ';charset=utf8', self::$user, self::$pass);
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getmessage());
         }
-    
-    catch (Exception $e)
-{
-    die('Erreur : ' . $e->getmessage());
-}
-
     }
 }
-?>

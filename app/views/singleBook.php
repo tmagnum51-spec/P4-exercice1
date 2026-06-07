@@ -1,21 +1,20 @@
-
 <?php require_once 'app/views/partials/header.php'; ?>
 <main class="container">
     <nav class="breadcrumb">
-    <ol>
-        <li><a href="index.php?action=showAllBooks">Nos livres</a></li>
-        <li class="separator">></li>
-        <li class="current">The Kinfolk Table</li>
-    </ol>
-</nav>
+        <ol>
+            <li><a href="index.php?action=showAllBooks">Nos livres</a></li>
+            <li class="separator">></li>
+            <li class="current">The Kinfolk Table</li>
+        </ol>
+    </nav>
     <div class="book-container">
-       <div class="book-cover" style="background-image: url('public/assets/img/<?= $book->getCoverPicture() ?>');">
+        <div class="book-cover" style="background-image: url('public/assets/img/<?= $book->getCoverPicture() ?>');">
         </div>
-        
+
         <div class="book-details">
             <h1 class="title"><?= htmlspecialchars($book->getTitle()) ?></h1>
             <p class="book-author">par <?= htmlspecialchars($book->getAuthor()) ?></p>
-            
+
             <div class="divider"></div>
 
             <p class="section-label">Description</p>
@@ -24,13 +23,15 @@
             </p>
 
             <p class="section-label">Propriétaire</p>
-            <a href="index.php?action=showAccountPublic&id=<?=$book->getUserId()?>" class="owner-info">
-                <img src="public/assets/img/<?= htmlspecialchars($book->getUserPicture()) ?>" class="owner-avatar" alt="Avatar">
+            <a href="index.php?action=showAccountPublic&id=<?= $book->getUserId() ?>" class="owner-info">
+                <img src="public/assets/img/<?= htmlspecialchars($book->getUserPicture()) ?>" class="owner-avatar"
+                    alt="Avatar">
                 <span class="owner-name"><?= nl2br(htmlspecialchars($book->getPseudo())) ?></span>
             </a>
-            
 
-            <a href="index.php?action=initiateDiscussion&id=<?= $book->getUserId() ?>" class="btn-message">Envoyer un message</a>
+
+            <a href="index.php?action=initiateDiscussion&id=<?= $book->getUserId() ?>" class="btn-message">Envoyer un
+                message</a>
         </div>
     </div>
-<?php require_once 'app/views/partials/footer.php'; ?>
+    <?php require_once 'app/views/partials/footer.php'; ?>

@@ -101,7 +101,7 @@ class BookController extends Controller
             // mise à jour
             if (empty($errors)) {
 
-                // Gestion de l'image (on garde l'ancienne par défaut)
+                // Gestion de l'image 
                 $picture = $book->getCoverPicture();
 
                 if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
@@ -141,7 +141,7 @@ class BookController extends Controller
         // On ne traite les données que si le formulaire a été soumis (méthode POST)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // 1. On stocke les entrées partielles pour les renvoyer à la vue
+            // 1. On stocke les entrées pour les renvoyer à la vue
             $formData['title'] = $_POST['title'] ?? '';
             $formData['author'] = $_POST['author'] ?? '';
             $formData['description'] = $_POST['description'] ?? '';

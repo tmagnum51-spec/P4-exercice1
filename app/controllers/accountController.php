@@ -142,7 +142,7 @@ class AccountController extends Controller
         $errors = [];
         $formData = [];
 
-        // On ne traite les données que si le formulaire a été soumis (méthode POST)
+        // On ne traite les données que si le formulaire a été soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // 1. On stocke les entrées partielles pour les renvoyer à la vue
@@ -189,7 +189,7 @@ class AccountController extends Controller
             }
         }
 
-        // 4. On transmet les erreurs et les données du formulaire à la vue 
+        // 4. On transmet  à la vue 
 
         $this->render('signup', [
             'errors' => $errors,
@@ -200,14 +200,14 @@ class AccountController extends Controller
     {
         $id = (int)$_SESSION['user']['id'];
         $userManager = new UserManager();
-        $user = $userManager->getUserByID($id); // Récupération indispensable ici
+        $user = $userManager->getUserByID($id);
 
         $errors = [];
 
-        // On ne traite la logique que si le formulaire est soumis
+        // On verifie si le formulaire est soumis
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // 1. Vérifications obligatoires
+            // 1. Vérifications des champs
             if (empty(trim($_POST['pseudo'] ?? ''))) {
                 $errors['pseudo'] = "Le pseudo est obligatoire.";
             }
@@ -220,17 +220,17 @@ class AccountController extends Controller
                 $pseudo = trim($_POST['pseudo']);
                 $email = trim($_POST['email']);
 
-                // GESTION PASSWORD
+                // password
                 $password = !empty($_POST['password']) ? password_hash(trim($_POST['password']), PASSWORD_ARGON2ID) : $user->getPassword();
 
-                // GESTION IMAGE
+                // image
                 $picture = $user->getPicture();
                 if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
                     $picture = time() . '_' . $_FILES['picture']['name'];
                     move_uploaded_file($_FILES['picture']['tmp_name'], 'public/assets/img/' . $picture);
                 }
 
-                // MÀJ Manager
+
                 $newUser = $userManager->modifyUser($id, $pseudo, $email, $password, $picture);
 
                 if ($newUser) {
@@ -249,7 +249,7 @@ class AccountController extends Controller
             }
         }
 
-        // 3. Affichage (soit au chargement initial (GET), soit après une erreur)
+        // 3. envoi a la vue
         $bookManager = new BookManager();
         $this->render('account', [
             'errors'      => $errors,
